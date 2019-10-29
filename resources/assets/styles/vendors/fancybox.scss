@@ -1,0 +1,19 @@
+.flickity-button {
+  opacity: 1;
+  background: transparent !important;
+
+  svg {
+    fill: color(light);
+    transition: $transition;
+  }
+
+  &:hover {
+    svg {
+      fill: color(secondary);
+    }
+  }
+}
+
+.flickity-button:disabled {
+  opacity: 1 !important;
+}

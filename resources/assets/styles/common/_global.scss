@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: map-get($font-family, "main"), sans-serif;
+  overflow-x: initial;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.gmp_map_opts,
+.gmpMapDetailsContainer,
+.gmp_MapPreview {
+  height: 100% !important;
+  min-height: 300px;
+}
+
+xmp {
+  padding: 15px;
+  background: #001d2b;
+  border-radius: 16px;
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.admin-bar {
+  margin-top: 32px !important;
+
+  @include mediaTo(md) {
+    margin-top: 46px !important;
+  }
+
+  .header {
+    top: 32px;
+
+    @include mediaTo(md) {
+      top: 46px;
+    }
+  }
+}

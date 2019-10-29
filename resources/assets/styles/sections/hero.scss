@@ -1,0 +1,126 @@
+.hero {
+  $root: &;
+
+  height: 100vh;
+  position: relative;
+  color: color(light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: gutter(80);
+    margin: 0 auto;
+  }
+
+  &__title {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(0.8), gutter_num(1.6))
+    );
+
+    @extend .fadeOutUp;
+
+    font-weight: 400;
+    animation-duration: $transition * 2;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  &__dsc {
+    margin: 0 auto;
+
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(5))
+    );
+
+    @extend .fadeOutUp;
+
+    max-width: gutter(70);
+    animation-duration: $transition * 1.5;
+    font-weight: 300;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  &__link {
+    @extend .fadeOutUp;
+
+    animation-duration: $transition * 2;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  &__carousel {
+    @extend %absolute;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  &__cell {
+    @extend %overlay;
+    @extend %overlay--gradient;
+
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__image {
+    @extend %absolute;
+    @extend %image;
+    @extend .fadeOut;
+
+    animation-duration: $transition * 2;
+    z-index: -1;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  .flickity-viewport {
+    width: 100%;
+    height: 100% !important;
+  }
+
+  .is-selected {
+    #{$root}__title,
+    #{$root}__dsc {
+      @extend .fadeInUp;
+    }
+
+    #{$root}__link {
+      @extend .fadeInUp;
+    }
+
+    #{$root}__image {
+      @extend .fadeIn;
+    }
+  }
+
+  .flickity-prev-next-button {
+    @include mediaTo(md) {
+      top: unset !important;
+      bottom: 10vh !important;
+    }
+  }
+}

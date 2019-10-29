@@ -1,0 +1,40 @@
+/** Import Bootstrap functions */
+@import "~bootstrap/scss/functions";
+
+$theme-colors: (
+  light: #fff,
+  dark: #000,
+  primary: #020c24,
+  secondary: #ec964f,
+  greey: #a7a7a7,
+  special: #ec964f,
+  free: #20ff49,
+  taken: #ffdd1b,
+  sold: #fa0909
+);
+
+$media: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1440px
+);
+
+$transition: 0.4s;
+
+$font-family: (
+  main: azo-sans-web,
+  title: "Playfair Display"
+);
+
+$gutter: 10px;
+$gutter_num: 10;
+
+/** Bootstrap navbar fix (https://git.io/fADqW) */
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
+
+$z-index: (
+  header: 100
+);

@@ -1,0 +1,13 @@
+.container {
+  width: calc(100% - #{gutter(54)});
+  margin: 0 auto;
+
+  @include mediaTo(lg) {
+    width: calc(100% - #{gutter(6)});
+  }
+
+  &--fluid {
+    position: relative;
+    width: 100%;
+  }
+}

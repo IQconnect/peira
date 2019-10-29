@@ -1,0 +1,93 @@
+.invest {
+  $root: &;
+
+  z-index: 10;
+
+  &__title {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(1.6), gutter_num(3.2))
+    );
+
+    display: block;
+    font-weight: 400;
+    color: color(secondary);
+  }
+
+  &__dsc {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(1.6), gutter_num(3.2))
+    );
+
+    display: block;
+    max-width: gutter(80);
+  }
+
+  &__carousel {
+    @extend %absolute;
+
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__cell {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__image {
+    @extend %absolute;
+    @extend %image;
+    @extend .fadeOut;
+
+    animation-duration: $transition * 2;
+    z-index: -1;
+  }
+
+  &__nav {
+    @extend %absolute;
+
+    top: unset;
+    bottom: gutter(3.2);
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mediaTo(md) {
+      display: none;
+    }
+  }
+
+  &__nav-elem {
+    position: relative;
+  }
+
+  &__nav-image {
+    @extend %image;
+
+    box-sizing: content-box;
+    border: 2px solid transparent;
+    transition: $transition;
+
+    &.-is-active {
+      border-color: color("secondary");
+    }
+  }
+
+  .flickity-viewport {
+    width: 100%;
+    height: 100% !important;
+  }
+}

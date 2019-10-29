@@ -1,0 +1,27 @@
+.widgets {
+  &__item {
+    position: relative;
+    margin-right: gutter(3);
+
+    @include mediaTo(lg) {
+      margin-right: gutter(6);
+    }
+
+    &--phone {
+      @include mediaTo(lg) {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__count {
+    @extend %absolute;
+
+    left: unset;
+    top: unset;
+  }
+}

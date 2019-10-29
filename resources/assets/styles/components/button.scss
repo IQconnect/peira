@@ -1,0 +1,52 @@
+.button {
+  @extend .link--menu;
+
+  @include cssLock("padding", 360, 1920, (gutter_num(1), gutter_num(1.5)));
+  @include cssLock("padding-left", 360, 1920, (gutter_num(1.5), gutter_num(2)));
+  @include cssLock("padding-right", 360, 1920, (gutter_num(1.5), gutter_num(2)));
+
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 0;
+  background: color(secondary);
+  cursor: pointer;
+  transition: $transition;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+
+  &:hover {
+    background: darken(color(secondary), 10%);
+  }
+
+  &--icon {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: gutter(2);
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &--border {
+    border: 1px solid color(light);
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &--big {
+    @include cssLock("padding", 360, 1920, (gutter_num(1.5), gutter_num(2)));
+    @include cssLock("padding-left", 360, 1920, (gutter_num(3), gutter_num(4.8)));
+    @include cssLock("padding-right", 360, 1920, (gutter_num(3), gutter_num(4.8)));
+  }
+}

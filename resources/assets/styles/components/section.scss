@@ -1,0 +1,4 @@
+.section {
+  @include cssLock("padding-top", 360, 1920, (gutter_num(6), gutter_num(12)));
+  @include cssLock("padding-bottom", 360, 1920, (gutter_num(6), gutter_num(14)));
+}

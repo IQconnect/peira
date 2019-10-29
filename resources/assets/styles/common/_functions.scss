@@ -1,0 +1,15 @@
+@function color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@function gutter($key) {
+  @return $key * $gutter;
+}
+
+@function gutter_num($key) {
+  @return $key * $gutter_num;
+}

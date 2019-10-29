@@ -1,0 +1,100 @@
+%text {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  display: inline-block;
+}
+
+.headline {
+  @include cssLock("font-size", 360, 1920, (gutter_num(3), gutter_num(6)));
+
+  font-family: map-get($font-family, title), sans-serif;
+  font-weight: 800;
+  line-height: 1.7;
+
+  @extend %text;
+}
+
+.title {
+  @include cssLock("font-size", 360, 1920, (gutter_num(2.5), gutter_num(4)));
+
+  font-family: map-get($font-family, title), sans-serif;
+  font-weight: 800;
+
+  @extend %text;
+}
+
+.subtitle {
+  @include cssLock("font-size", 360, 1920, (16, 40));
+
+  font-family: map-get($font-family, title), sans-serif;
+  font-weight: 800;
+
+  @extend %text;
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.text {
+  @include cssLock("font-size", 360, 1920, (14, 18));
+
+  font-family: map-get($font-family, main), sans-serif;
+
+  @extend %text;
+
+  line-height: 1.4;
+}
+
+.major-text {
+  @extend %text;
+
+  @include cssLock("font-size", 360, 1920, (16, 20));
+
+  font-family: map-get($font-family, main), sans-serif;
+}
+
+.minor-text {
+  @extend %text;
+
+  @include cssLock("font-size", 360, 1920, (12, 14));
+
+  font-family: map-get($font-family, main), sans-serif;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.my-menu-link {
+  @include cssLock("font-size", 360, 1920, (10, 16));
+
+  font-weight: 400;
+}
+
+.main-font {
+  font-family: map-get($font-family, main), sans-serif;
+}
+
+.title-font {
+  font-family: map-get($font-family, title), sans-serif;
+}
+
+.link {
+  transition: $transition;
+
+  &--menu {
+    @include cssLock("font-size", 360, 1920, (12, 14));
+
+    font-family: map-get($font-family, main), sans-serif;
+  }
+
+  &:hover {
+    color: color(special);
+  }
+}
