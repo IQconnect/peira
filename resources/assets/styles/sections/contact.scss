@@ -1,6 +1,10 @@
 .contact {
   $root: &;
 
+  @include mediaTo(md) {
+    background-color: lighten(color(greey), 32%);
+  }
+
   &__title {
     @include cssLock(
       "margin-bottom",
@@ -15,14 +19,14 @@
   &__form {
     @include cssLock("padding", 360, 1920, (gutter_num(2.4), gutter_num(4.8)));
     @include cssLock("padding-left", 360, 1920, (gutter_num(3), gutter_num(6)));
-    @include cssLock(
-      "padding-right",
-      360,
-      1920,
-      (gutter_num(3), gutter_num(6))
-    );
+    @include cssLock("padding-right", 360, 1920, (gutter_num(3), gutter_num(6)));
 
     background-color: lighten(color(greey), 32%);
+
+    @include mediaTo(md) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   &__cell {
@@ -31,6 +35,10 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: gutter(1.6);
     margin-bottom: gutter(1.6);
+
+    @include mediaTo(md) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__input {
@@ -40,9 +48,34 @@
     font-weight: 400;
     background-color: lighten(color(greey), 32%);
     border: 1px solid lighten(color(greey), 20.5%);
+    height: 100%;
+    border-radius: 0;
+    max-width: 100%;
+    min-width: 100%;
+
+    &.nice-select {
+      color: color(greey);
+      font-weight: 300;
+
+      &.-is-change {
+        color: color(special);
+        font-weight: 400;
+      }
+    }
+
+    ul {
+      width: 100%;
+    }
+
+    li {
+      &.disabled {
+        display: none;
+      }
+    }
 
     &::placeholder {
       font-weight: 300;
+      color: color(greey);
     }
 
     &:focus {
@@ -60,6 +93,70 @@
     &:-webkit-autofill:active {
       -webkit-text-fill-color: color(special) !important;
       -webkit-box-shadow: 0 0 0 50px lighten(color(greey), 32%) inset !important;
+    }
+  }
+
+  &__terms-wrapper {
+    color: color(greey);
+    margin-top: gutter(2);
+
+    a {
+      transition: $transition;
+      text-decoration: underline;
+
+      &:hover {
+        color: color(special);
+      }
+    }
+  }
+
+  &__checkbox {
+    margin-top: gutter(2);
+    padding-left: gutter(4);
+    position: relative;
+    cursor: pointer;
+
+    label {
+      user-select: none;
+    }
+
+    input {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+
+      &:checked + #{$root}__checkbox-box {
+        border-color: color(special);
+        color: color(special);
+      }
+    }
+  }
+
+  &__checkbox-box {
+    position: absolute;
+    top: gutter(0.5);
+    left: 0;
+    width: gutter(2.4);
+    height: gutter(2.4);
+    border: solid 2px lighten(color(greey), 20.5%);
+    color: transparent;
+    transition: $transition;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  &__button {
+    margin-top: gutter(3);
+    text-align: right;
+
+    @include mediaTo(md) {
+      text-align: center;
     }
   }
 }

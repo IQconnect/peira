@@ -1,5 +1,6 @@
 // import external dependencies
 import 'jquery';
+import 'jquery-nice-select';
 
 // Import everything from autoload
 import './autoload/**/*';
@@ -36,4 +37,12 @@ jQuery(document).ready(() => {
   Menu.init();
   Invests.init();
   Invest.init();
+  $('select').niceSelect();
 });
+
+setTimeout(() => {
+  $('.nice-select').on('click', function () {
+    console.log('change');
+    $(this).addClass('-is-change');
+  })
+}, 1000)

@@ -48,4 +48,12 @@ img {
       top: 46px;
     }
   }
+
+  .small-hero {
+    margin-top: gutter(12.4);
+
+    @include mediaTo(md) {
+      margin-top: gutter(10.4);
+    }
+  }
 }
