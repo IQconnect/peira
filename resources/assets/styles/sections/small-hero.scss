@@ -1,0 +1,75 @@
+.small-hero {
+  @extend %overlay;
+  @extend %overlay--gradient;
+
+  $root: &;
+
+  margin-top: gutter(10);
+  height: calc(60vh);
+  position: relative;
+  color: color(light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: gutter(80);
+    margin: 0 auto;
+  }
+
+  &__title {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(0.8), gutter_num(1.6))
+    );
+
+    @extend .fadeOutUp;
+
+    font-weight: 400;
+    animation-duration: $transition * 2;
+    display: block;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  &__dsc {
+    margin: 0 auto;
+
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(5))
+    );
+
+    @extend .fadeOutUp;
+
+    max-width: gutter(70);
+    animation-duration: $transition * 1.5;
+    font-weight: 300;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+
+  &__image {
+    @extend %absolute;
+    @extend %image;
+    @extend .fadeOut;
+
+    animation-duration: $transition * 2;
+    z-index: -1;
+
+    @include mediaTo(md) {
+      animation: none !important;
+    }
+  }
+}
