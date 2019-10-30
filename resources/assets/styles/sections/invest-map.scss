@@ -1,0 +1,17 @@
+.invest-map {
+  &__wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: gutter(6);
+
+    @include media(md) {
+      height: 60vh;
+    }
+  }
+
+  &__map {
+    height: 100%;
+    width: 100%;
+  }
+}

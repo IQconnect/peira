@@ -13,5 +13,6 @@ $builder
             ->addLayout(get_field_partial('components.small-hero'))
             ->addLayout(get_field_partial('components.text-text'))
             ->addLayout(get_field_partial('components.invests'))
-            ->addLayout('contact', ['label'=>'Kontakt']);
+            ->addLayout('contact', ['label'=>'Kontakt'])
+            ->addLayout('invests-map', ['label'=>'Nasze inwestycje - mapa']);
 return $builder;
