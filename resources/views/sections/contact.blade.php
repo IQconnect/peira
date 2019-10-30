@@ -1,3 +1,30 @@
+@php
+    $invests = [];
+    $query = new WP_Query(array(
+        'post_type' => 'inwestycje',
+        'post_status' => 'publish'
+    ));
+
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $post  = get_post($post_id);
+
+        $invest = [
+            'name' => $post->post_title,
+            'slug' => $post->post_name,
+        ];
+
+        array_push($invests, $invest);
+    }
+
+    wp_reset_query();
+
+    $rodo = option('rodo');
+    $terms = option('terms');
+@endphp
+
 <section class="contact section">
     <div class="container">
         <form data-aftersend="Wiadomość została wysłana." id="contact-form" class="contact__form form">
@@ -10,25 +37,28 @@
             </div>
             <div class="contact__cell">
                 <input class="contact__input text" type="text" name="phone" placeholder="Telefon">
-                <select class="contact__input" name="" id="">
-                    <option value="sr">
-                        Srebrzyńska Park
-                    </option>
-                    <option value="her">
-                        Hilińskiego Park
-                    </option>
+                @if ($invests)
+                <select class="contact__input text" name="" id="" required>
+                    <option disabled selected> Wybierz inwestycję* </option>
+                    @foreach ($invests as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
                 </select>
+                @endif
             </div>
             <textarea class="contact__input text" required="" rows="6" name="message" placeholder="Wiadomość"></textarea>
-            <div class="contact__terms">
-                <p>Informujemy, iż Pani/Pana dane będą przetwarzane w celu podjęcia działań na Pani/Pana żądanie przed zawarciem umowy. Administratorem Pani/Pana danych osobowych jest PEIRA Sp. z o.o. Sp. k. z siedzibą w Łodzi przy ul.Matejki 9. Przysługuje Pani/Panu prawo dostępu do nich, ich sprostowania oraz skargi do organu nadzorczego. Szczegóły pod adresem <a target="_blank" href="http://www.peira.pl/rodo/">www.peira.pl/rodo</a>.</p>
-                <p class="contact__checkbox checkbox">
-                    <input type="checkbox" id="terms1" name="terms1">
-                    <label for="terms1">wyrażam zgodę na przetwarzanie danych w celach marketingowych, w tym przekazywanie mi zgodnie z ustawą z dnia 18 lipca 2002r. o świadczeniu usług drogą elektroniczną, na podany adres e-mail lub telefon, informacji handlowej na temat projektów realizowanych przez PEIRA Sp. z o.o. Sp. k. z siedziba w Łodzi oraz spółki PEIRA Srebrzyńska Sp. z o.o. Sp.k., PEIRA Helińskiego Sp. z o.o. Sp.k., PEIRA Przybyszewskiego sp. z o.o. sp.k, w tym wysyłanej za pośrednictwem urządzeń końcowych oraz automatycznych systemów wywołujących.</label>
+            <div class="contact__terms-wrapper">
+                <div class="contact__terms terms">
+                    {!! $rodo !!}
+                </p>
+                <p class="contact__checkbox terms">
+                    <input type="checkbox" id="terms1" name="terms1" required>
+                    <span class="contact__checkbox-box">X</span>
+                    <label for="terms1">{!! $terms !!}</label>
                 </p>
             </div>
             <div class="contact__button">
-                <button name="send_email" value="1" class="btn btn--one">Wyślij</button>
+                <button name="send_email" value="1" class="button button--big">WYŚLIJ WIADOMOŚĆ</button>
             </div>
         </form>
     </div>
