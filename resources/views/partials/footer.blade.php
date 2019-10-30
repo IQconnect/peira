@@ -10,7 +10,9 @@ $email = option('email');
 	{!! image($footerImg['ID'], 'full', 'footer__bg') !!}
 	<div class="container">
 		@if($logo)
+		<figure class="footer__wraplogo">
 		<img src="{{ $logo['url'] }}" alt="Peira" class="footer__logo" />
+		</figure>
 		@endif
 		<div class="footer__content">
 			<div class="footer__left">
@@ -43,12 +45,13 @@ $email = option('email');
 		</div>
 		<div class="footer__copyright link--menu">
 			COPYRIGHT 2019 © PEIRA.PL. WSZELKIE PRAWA ZASTRZEŻONE.
-			@if($iq)
-			<a class="footer__madeby" href="https://ilike-art.com/">
-				created by <img class="footer__by" src="{!! $iq['url'] !!}" alt="logo" />
-			</a>
-			@endif
+
 		</div>
 	</div>
 	</div>
+	@if($iq)
+		<a class="footer__madeby" href="https://ilike-art.com/">
+			created by <img class="footer__by" src="{!! $iq['url'] !!}" alt="logo" />
+		</a>
+	@endif
 </footer>
