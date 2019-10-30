@@ -1,0 +1,41 @@
+.invests-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &__elem {
+    box-shadow: 0 15px 50px 0 rgba(14, 35, 68, 0.15);
+    margin-bottom: gutter(2.4);
+  }
+
+  &__img {
+    height: auto !important;
+  }
+
+  &__content {
+    padding: gutter(1.6) gutter(2.4);
+  }
+
+  &__title {
+    text-transform: uppercase;
+    display: block;
+    font-weight: 600;
+    color: color(primary);
+  }
+
+  &__address {
+    color: color(greey);
+  }
+
+  &__footer {
+    margin-top: gutter(2.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__info {
+    color: color(special);
+    font-weight: 600;
+  }
+}

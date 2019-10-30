@@ -45,6 +45,16 @@
     }
   }
 
+  &--rev {
+    border: 1px solid color(special);
+    color: color(special);
+    background: color(light);
+
+    &:hover {
+      color: color(light);
+    }
+  }
+
   &--big {
     @include cssLock("padding", 360, 1920, (gutter_num(1.5), gutter_num(2)));
     @include cssLock("padding-left", 360, 1920, (gutter_num(3), gutter_num(4.8)));

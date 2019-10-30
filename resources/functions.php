@@ -119,6 +119,7 @@ function clearSpace($text) {
 }
 
 add_image_size( 'gallery-thumb', 180, 100, true );
+add_image_size( 'invest-list', 420, 140, true );
 
 add_action('admin_head', 'remove_content_editor');
 /**

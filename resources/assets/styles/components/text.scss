@@ -55,6 +55,14 @@
   font-family: map-get($font-family, main), sans-serif;
 }
 
+.semi-text {
+  @extend %text;
+
+  @include cssLock("font-size", 360, 1920, (14, 16));
+
+  font-family: map-get($font-family, main), sans-serif;
+}
+
 .minor-text {
   @extend %text;
 

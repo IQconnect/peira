@@ -12,8 +12,9 @@ import home from './routes/home';
 import aboutUs from './routes/about';
 
 import Hero from './components/hero';
-import Invests from './components/Invests';
-import Invest from './components/Invest';
+import Invests from './components/invests';
+import Invest from './components/invest';
+import InvestMap from './components/invest-map';
 import Menu from './components/menu';
 
 
@@ -37,6 +38,7 @@ jQuery(document).ready(() => {
   Menu.init();
   Invests.init();
   Invest.init();
+  InvestMap.init();
   $('select').niceSelect();
 });
 

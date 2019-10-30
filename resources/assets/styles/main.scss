@@ -42,6 +42,7 @@
 /** Blocks */
 @import "blocks/widgets";
 @import "blocks/invest";
+@import "blocks/invests-list";
 
 /** Partials */
 @import "partials/header";
@@ -52,5 +53,6 @@
 @import "sections/text-section";
 @import "sections/invests";
 @import "sections/contact";
+@import "sections/invest-map";
 
 /** Pages */
