@@ -3,9 +3,26 @@
   margin: 0;
   list-style: none;
 
+  @include mediaTo(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: gutter(2.4);
+  }
+
+  @include mediaTo(sm) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   &__elem {
     box-shadow: 0 15px 50px 0 rgba(14, 35, 68, 0.15);
     margin-bottom: gutter(2.4);
+
+    &.-is-active {
+      .button {
+        @extend .button;
+      }
+    }
   }
 
   &__img {

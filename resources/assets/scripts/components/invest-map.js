@@ -1,21 +1,32 @@
 /* eslint-disable */
 
+import IsInViewPort from '../util/IsInViewPort';
+import 'jquery';
+
 const loadGoogleMapsApi = require('load-google-maps-api')
 
 const CONFIG = {
     ELEM: '[invest-map]',
+    TRIGGER: '[data-invest-map-elem]',
+    CLASS: '-is-active',
 };
 
 const InvestMap = {
     init() {
-        const { ELEM } = CONFIG;
+        const { ELEM, TRIGGER, CLASS } = CONFIG;
 
         this.elem = document.querySelector(ELEM);
+        this.trigger = document.querySelectorAll(TRIGGER);
+
+        this.class = CLASS;
+
         this.markersArray = [];
+        this.map;
 
         console.log('init');
         if (this.elem) {
             this.initMap();
+            this.addEvents();
         }
     },
 
@@ -183,7 +194,8 @@ const InvestMap = {
 
         const elem = this.elem;
         const markersArray = this.markersArray;
-        const selectFlag = () => { this.selectFlag() };
+        const selectFlag = (name) => { this.selectFlag(name) };
+        const myMap = [];
 
         loadGoogleMapsApi().then(function (googleMaps) {
             const map = new googleMaps.Map(elem, {
@@ -193,6 +205,8 @@ const InvestMap = {
                 },
                 zoom: 11,
             });
+
+            myMap.push(map);
 
             console.log(elem.dataset.markers);
 
@@ -218,6 +232,7 @@ const InvestMap = {
                     custom: 'my-custom',
                     icon: icon,
                     iconActive: iconActive,
+                    iconInactive: icon,
                     zoom: Number(marker.zoom),
                 });
 
@@ -225,17 +240,7 @@ const InvestMap = {
                 console.log(flag);
 
                 googleMaps.event.addListener(flag, 'click', function () {
-                    map.setZoom(flag.zoom);
-                    map.panTo(flag.getPosition());
-
-                    markersArray.forEach((elem) => {
-                        elem.setIcon(flag.icon);
-                    })
-
-                    flag.setIcon(flag.iconActive);
-
-                    console.log(flag.custom);
-                    selectFlag();
+                    selectFlag(flag.title);
                 });
 
             });
@@ -244,11 +249,77 @@ const InvestMap = {
         });
 
         this.markersArray = markersArray;
-        console.log('this.markersArray', this.markersArray)
+        this.map = myMap;
+        console.log('map', this.map)
     },
 
-    selectFlag() {
-        console.log('select-flag');
+    selectFlag(name) {
+
+        this.markersArray.forEach(flag => {
+            console.log(flag.title, name);
+
+            if (flag.title == name) {
+                flag.setIcon(flag.iconActive);
+                this.map[0].setZoom(11);
+                // this.map[0].setZoom(flag.zoom);
+                this.map[0].panTo(flag.getPosition());
+            }
+
+            else {
+                console.log('remove flag');
+                flag.setIcon(flag.iconInactive);
+            }
+        });
+
+        this.trigger.forEach(elem => {
+
+            if (elem.dataset.investMapElem == name) {
+                elem.classList.add(this.class);
+                if (IsInViewPort(elem)) {
+                    console.log('true');
+                }
+
+                else {
+                    console.log('false');
+
+                    let top = elem.getBoundingClientRect().y;
+                    let offset = -window.innerHeight / 5;
+                    if(top < 0) {
+                        offset = -200;
+                    }
+
+                    top = $(window).scrollTop() + top + offset;
+
+                    console.log('top: ', top, '| height: ', elem.offsetHeight, '| elemTop: ',elem.getBoundingClientRect().top,'| offset: ', offset);
+                    const body = $("html, body");
+                    body.stop().animate({ scrollTop: top }, 500, 'swing', function () {
+                        
+                    });
+                }
+            }
+
+            else {
+                //add to current target
+                elem.classList.remove(this.class);
+            }
+        })
+
+    },
+
+    addEvents() {
+        this.trigger.forEach((elem) => {
+            elem.addEventListener('click', (e) => {
+                const $this = e.currentTarget;
+
+                if(window.innerWidth < 993) {
+                    window.location = $this.querySelector('.invests-list__button').getAttribute('href');
+                }
+
+                else {
+                    this.selectFlag($this.dataset.investMapElem);
+                }
+            })
+        })
     },
 }
 

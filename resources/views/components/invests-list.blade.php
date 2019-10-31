@@ -8,7 +8,7 @@
             $address = get_field('address', $invest);
             $link = get_permalink($invest);
         @endphp
-        <li class="invests-list__elem" data-invest-map-elem=>
+        <li class="invests-list__elem" data-invest-map-elem="{{ $name }}">
             {!! image($img, 'invest-list', 'invests-list__img') !!}
             <div class="invests-list__content">
                 <h3 class="invests-list__title semi-text">
