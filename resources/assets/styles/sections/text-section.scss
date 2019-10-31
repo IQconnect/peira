@@ -24,6 +24,7 @@
   &__label {
     font-weight: 600;
     color: color(primary);
+    display: block;
 
     @include cssLock(
       "margin-bottom",
