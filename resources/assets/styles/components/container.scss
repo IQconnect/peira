@@ -2,8 +2,8 @@
   width: calc(100% - #{gutter(54)});
   margin: 0 auto;
 
-  @include mediaTo(lg) {
-    width: calc(100% - #{gutter(6)});
+  @include mediaTo(xl) {
+    width: calc(100% - #{gutter(6.4)});
   }
 
   &--fluid {

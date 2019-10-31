@@ -49,5 +49,3 @@
     </div>
 </section>
 @endif
-
-@dump($JSON_MARKERS)
