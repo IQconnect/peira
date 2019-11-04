@@ -16,6 +16,7 @@ import Invests from './components/invests';
 import Invest from './components/invest';
 import InvestMap from './components/invest-map';
 import Menu from './components/menu';
+import Dropdown from './components/dropdown';
 
 
 /** Populate Router instance with DOM routes */
@@ -39,6 +40,7 @@ jQuery(document).ready(() => {
   Invests.init();
   Invest.init();
   InvestMap.init();
+  Dropdown.init();
   $('select').niceSelect();
 });
 

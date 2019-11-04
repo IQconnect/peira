@@ -1,0 +1,142 @@
+.dropdown {
+  $root: &;
+
+  @include cssLock("margin-bottom", 360, 1920, (15, 32));
+
+  box-shadow: 0 5px 50px 0 rgba(14, 35, 68, 0.1);
+  padding-bottom: 0;
+  background-color: color(light);
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: gutter(2) 0 gutter(1);
+    transition: $transition * 4;
+  }
+
+  &__header-wrapper {
+    max-width: $gutter * 80;
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__icon {
+    width: gutter(3);
+    height: gutter(3);
+    margin: 0 gutter(3);
+    filter: hue-rotate(190deg) brightness(0.2);
+  }
+
+  &__image {
+    @extend %image;
+
+    &--round {
+      border-radius: 50%;
+    }
+  }
+
+  &__title {
+    color: color(primary);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    list-style-type: none;
+    width: 100%;
+    max-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: gutter(2);
+    padding: 0 gutter(5);
+    border: none;
+    overflow: hidden;
+    transition: $transition;
+    opacity: 0;
+
+    @include mediaTo(xl) {
+      grid-template-columns: auto auto;
+      padding-bottom: gutter(3);
+    }
+
+    @include mediaTo(lg) {
+      grid-template-columns: auto;
+      padding-bottom: gutter(2);
+    }
+  }
+
+  &__elem {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+
+    @include mediaTo(lg) {
+      justify-content: center;
+      text-align: center;
+      padding-bottom: gutter(5);
+    }
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    line-height: gutter(2.7);
+
+    @include mediaTo(lg) {
+      width: unset;
+    }
+  }
+
+  &__avatar {
+    @include cssLock("height", 360, 1920, (gutter_num(6), gutter_num(13)));
+    @include cssLock("width", 360, 1920, (gutter_num(6), gutter_num(15)));
+
+    border-radius: 50%;
+    margin: 0;
+    padding-right: gutter(1);
+
+    @include mediaTo(lg) {
+      margin: gutter(2) 0 gutter(1);
+    }
+  }
+
+  &__name {
+    color: color(secondary);
+    font-weight: 600;
+  }
+
+  &__job {
+    color: color(primary);
+    font-weight: 600;
+  }
+
+  &__answear {
+    color: color(greyy);
+  }
+
+  &.-is-active {
+    #{$root}__title {
+      color: color(secondary);
+    }
+
+    #{$root}__icon {
+      filter: none;
+    }
+
+    #{$root}__content {
+      max-height: gutter(31);
+      border-color: color(greyy);
+      opacity: 1;
+      transition: $transition * 1.5;
+
+      @include mediaTo(lg) {
+        max-height: 100%;
+      }
+    }
+  }
+}

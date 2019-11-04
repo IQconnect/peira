@@ -56,7 +56,7 @@
     margin: 0;
 
     @include mediaTo(lg) {
-      margin-top: gutter(5);
+      margin-top: gutter(3);
     }
 
     &--reverse {
@@ -73,5 +73,9 @@
     @extend %image;
 
     object-fit: none;
+
+    @include mediaTo(lg) {
+      object-fit: cover;
+    }
   }
 }
