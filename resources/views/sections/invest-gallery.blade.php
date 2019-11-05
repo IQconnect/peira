@@ -15,11 +15,23 @@
     @endphp
     @if ($slider1)
     <div class="invest-slider">
-        @foreach ($slider1 as $elem)
-        <div class="invest-slider__cell">
-            {!! image($elem['ID'], 'full', 'invest-slider') !!}
+        <div class="invest-slider__carousel">
+            @foreach ($slider1 as $elem)
+            <div class="invest-slider__cell">
+                {!! image($elem['ID'], 'full', 'invest-slider__image') !!}
+            </div>
+            @endforeach
         </div>
-        @endforeach
+        
+        <div class="container">
+            <div class="invest-slider__nav-carousel">
+                @foreach ($slider1 as $elem)
+                <div class="invest-slider__nav-cell">
+                    {!! image($elem['ID'], 'full', 'invest-slider__image--nav') !!}
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
     @endif
 </section>

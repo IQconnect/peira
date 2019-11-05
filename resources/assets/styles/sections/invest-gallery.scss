@@ -1,4 +1,58 @@
-.invest-gallery {
+.invest-slider {
+  height: 100vh;
+  position: relative;
+
+  .container {
+    position: relative;
+    height: 100%;
+  }
+
+  &__carousel {
+    @extend %absolute;
+
+    width: 100%;
+    height: 60vh;
+    bottom: unset;
+  }
+
+  &__cell {
+    @extend %overlay;
+    @extend %overlay--gradient;
+
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  &__image {
+    @extend %absolute;
+    @extend %image;
+
+    &--nav {
+      @extend %absolute;
+      @extend %image;
+    }
+  }
+
+  &__nav-carousel {
+    @extend %absolute;
+
+    bottom: unset;
+    top: 61vh;
+    height: gutter(24);
+  }
+
+  &__nav-cell {
+    width: calc(100% / 3 - #{gutter(3)});
+    height: 100%;
+    position: relative;
+    margin: gutter(3);
+  }
+
+  .flickity-slider {
+    width: 100%;
+  }
+
   .flickity-viewport {
     width: 100%;
     height: 100% !important;

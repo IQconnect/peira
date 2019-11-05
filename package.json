@@ -83,6 +83,7 @@
     "animate.css": "^3.7.2",
     "bootstrap": "v4.2.1",
     "flickity": "^2.2.0",
+    "flickity-as-nav-for": "^2.0.1",
     "flickity-fade": "^1.0.0",
     "jquery": "^3.3.1",
     "jquery-nice-select": "^1.1.0",

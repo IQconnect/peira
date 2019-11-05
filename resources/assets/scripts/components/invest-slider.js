@@ -1,33 +1,64 @@
 var Flickity = require('flickity');
 import 'flickity-fade';
+import 'flickity-as-nav-for';
 
 const CONFIG = {
     ELEM: '.invest-slider__carousel',
     CELL: '.invest-slider__cell',
+    NAV: '.invest-slider__nav-carousel',
+    NAV_CELL: '.invest-slider__nav-cell',
 };
 
 const InvestSlider = {
     init() {
-        const { ELEM, CELL } = CONFIG;
+        const { ELEM, CELL, NAV, NAV_CELL } = CONFIG;
         this.elem = document.querySelectorAll(ELEM);
+        this.nav = document.querySelectorAll(NAV);
+
+        this.sliderArray = [];
+        this.navArray= [];
+
         console.log('Init invest-slider', this.elem)
+
         if (this.elem) {
-            this.elem.forEach(element => {
+            this.elem.forEach((element, index) => {
                 this.slider = new Flickity(element, {
                     pageDots: false,
                     prevNextButtons: true,
                     cellSelector: CELL,
                     wrapAround: true,
-                    autoPlay: 3000,
                     fade: false,
-                    arrowShape: 'M18 45 41 24 34 17 0 50 34 83 41 76 18 55 100 55 100 45 18 45ZM14 50',
                 });
 
+                this.sliderNav = new Flickity(this.nav[index], {
+                    pageDots: false,
+                    prevNextButtons: true,
+                    cellSelector: NAV_CELL,
+                    wrapAround: true,
+                    fade: false,
+                    asNavFor: ELEM,
+                });
+
+                console.log('index', index)
+
+                this.sliderArray.push(this.slider);
+                this.navArray.push(this.sliderNav);
+
                 setTimeout(() => {
-                    this.slider.resize();
-                }, 1000)
+                    this.resize();
+                }, 2000)
             });
         }
+    },
+
+    resize() {
+        this.sliderArray.forEach(element => {
+            element.resize();
+        })
+
+        this.navArray.forEach(element => {
+            element.resize();
+        })
     },
 };
 
