@@ -12,6 +12,7 @@ $option
 $option
     ->addTab('main', ['label'=>'Ustawienia główne', 'placement' => 'left'])
         ->addImage('logo_header', ['label'=>'Logo Header'])
+        ->addPageLink('invest_link', ['label'=>'Link do inwestycji'] )
     ->addTab('contact', ['label'=>'Informacje kontatkowe', 'placement' => 'left'])
         ->addText('phone', ['label'=>'Telefon', 'wrapper' => array ('width' => '50%')])
         ->addText('email', ['label' => 'Email', 'wrapper' => array ('width' => '50%')])

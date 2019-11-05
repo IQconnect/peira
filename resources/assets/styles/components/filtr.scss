@@ -1,0 +1,87 @@
+.filtr {
+  $root: &;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: gutter(6);
+  row-gap: gutter(3.2);
+  width: 100%;
+  padding-bottom: gutter(6.2);
+
+  &__label {
+    color: color(primary);
+    font-weight: 600;
+    margin-bottom: gutter(1.6);
+    -webkit-appearance: none !important;
+    width: 100%;
+    display: block;
+    min-width: unset;
+
+    &--special {
+      color: color(special);
+    }
+  }
+
+  &__input-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: gutter(1.6);
+  }
+
+  &__input {
+    display: block;
+    padding: gutter(1.4) gutter(0.5) gutter(1.4) gutter(1.6);
+    color: color(greey);
+    border: 1px solid lighten(color(greey), 8.5%);
+    width: 100%;
+    max-width: unset;
+    min-width: unset;
+    transition: $transition;
+
+    &--checkbox {
+      @extend %absolute;
+
+      right: unset;
+      display: block;
+      width: gutter(2.4);
+      height: gutter(2.4);
+      padding: 0;
+      margin: auto;
+      box-shadow: inset 0 0 0 gutter(0.5) color(light);
+    }
+
+    &:focus {
+      outline-color: color(special);
+      color: color(special);
+      border-color: color(special);
+    }
+  }
+
+  &__checkbox {
+    @extend %absolute;
+
+    right: unset;
+    opacity: 0;
+
+    &:checked {
+      & + #{$root}__input {
+        &--checkbox {
+          outline-color: color(special);
+          color: color(special);
+          border-color: color(special);
+          background-color: color(special);
+        }
+      }
+    }
+  }
+
+  &__checkbox-wrapper {
+    position: relative;
+
+    #{$root}__label {
+      margin-bottom: 0;
+      padding-left: gutter(4);
+      white-space: nowrap;
+    }
+  }
+}

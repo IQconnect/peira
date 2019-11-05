@@ -58,6 +58,12 @@
     @include mediaTo(md) {
       animation: none !important;
     }
+
+    @include mediaTo(sm) {
+      br {
+        display: none;
+      }
+    }
   }
 
   &__image {

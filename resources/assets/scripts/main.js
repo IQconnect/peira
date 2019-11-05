@@ -16,6 +16,9 @@ import Invests from './components/invests';
 import Invest from './components/invest';
 import InvestMap from './components/invest-map';
 import Menu from './components/menu';
+import SingleNav from './components/single-nav';
+import Table from './components/table';
+import InvestSlider from './components/invest-slider';
 
 
 /** Populate Router instance with DOM routes */
@@ -31,15 +34,15 @@ const routes = new Router({
 // Load Events
 jQuery(document).ready(() => {
   routes.loadEvents();
-
-  // Example init of scripts
-  // remove it when add 1st component
   Hero.init();
   Menu.init();
   Invests.init();
   Invest.init();
   InvestMap.init();
   $('select').niceSelect();
+  SingleNav.init();
+  Table.init();
+  InvestSlider.init();
 });
 
 setTimeout(() => {

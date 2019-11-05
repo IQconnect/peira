@@ -3,7 +3,12 @@
 
   @include cssLock("padding", 360, 1920, (gutter_num(3), gutter_num(4.8)));
   @include cssLock("padding-top", 360, 1920, (gutter_num(2), gutter_num(2.5)));
-  @include cssLock("padding-bottom", 360, 1920, (gutter_num(2), gutter_num(2.5)));
+  @include cssLock(
+    "padding-bottom",
+    360,
+    1920,
+    (gutter_num(2), gutter_num(2.5))
+  );
 
   background: color(primary);
   color: color(light);
@@ -12,6 +17,10 @@
   left: 0;
   width: 100%;
   z-index: z-index(header);
+
+  &--stick {
+    position: absolute;
+  }
 
   &__wrapper {
     @include cssLock("height", 360, 1920, (gutter_num(3), gutter_num(5)));
@@ -133,5 +142,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &__info-link {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: $transition/2 linear;
+
+    @include mediaTo(sm) {
+      font-size: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 100;
+    }
+
+    svg {
+      transform: rotate(180deg);
+      height: gutter(1.5);
+      margin-right: gutter(1.6);
+      transition: $transition/2;
+      transition-property: transform;
+    }
+
+    &:hover {
+      color: color(special);
+
+      svg {
+        transform: rotate(180deg) translateX(gutter(0.5));
+      }
+    }
   }
 }

@@ -38,6 +38,9 @@
 @import "components/hamburger";
 @import "components/count";
 @import "components/section";
+@import "components/checkbox";
+@import "components/filtr";
+@import "components/table";
 
 /** Blocks */
 @import "blocks/widgets";
@@ -55,5 +58,7 @@
 @import "sections/invests";
 @import "sections/contact";
 @import "sections/invest-map";
+@import "sections/single-nav";
+@import "sections/invest-gallery";
 
 /** Pages */

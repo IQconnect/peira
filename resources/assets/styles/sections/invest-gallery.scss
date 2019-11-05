@@ -1,0 +1,13 @@
+.invest-gallery {
+  .flickity-viewport {
+    width: 100%;
+    height: 100% !important;
+  }
+
+  .flickity-prev-next-button {
+    @include mediaTo(md) {
+      top: unset !important;
+      bottom: 10vh !important;
+    }
+  }
+}

@@ -1,4 +1,47 @@
 .section {
   @include cssLock("padding-top", 360, 1920, (gutter_num(6), gutter_num(12)));
-  @include cssLock("padding-bottom", 360, 1920, (gutter_num(6), gutter_num(14)));
+  @include cssLock(
+    "padding-bottom",
+    360,
+    1920,
+    (gutter_num(6), gutter_num(14))
+  );
+
+  &--half-top {
+    @include cssLock("padding-top", 360, 1920, (gutter_num(3), gutter_num(6)));
+  }
+
+  &--no-bottom {
+    padding-bottom: 0;
+  }
+
+  &--shade {
+    background-color: lighten(color(greey), 32%);
+  }
+
+  &__header {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(6))
+    );
+  }
+
+  &__label {
+    color: color(special);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    color: color(primary);
+    font-weight: 300;
+  }
+
+  &__wrapper {
+    &--shade {
+      background-color: lighten(color(greey), 32%);
+    }
+  }
 }

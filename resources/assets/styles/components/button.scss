@@ -3,7 +3,12 @@
 
   @include cssLock("padding", 360, 1920, (gutter_num(1), gutter_num(1.5)));
   @include cssLock("padding-left", 360, 1920, (gutter_num(1.5), gutter_num(2)));
-  @include cssLock("padding-right", 360, 1920, (gutter_num(1.5), gutter_num(2)));
+  @include cssLock(
+    "padding-right",
+    360,
+    1920,
+    (gutter_num(1.5), gutter_num(2))
+  );
 
   font-weight: 700;
   letter-spacing: 1px;
@@ -57,7 +62,38 @@
 
   &--big {
     @include cssLock("padding", 360, 1920, (gutter_num(1.5), gutter_num(2)));
-    @include cssLock("padding-left", 360, 1920, (gutter_num(3), gutter_num(4.8)));
-    @include cssLock("padding-right", 360, 1920, (gutter_num(3), gutter_num(4.8)));
+    @include cssLock(
+      "padding-left",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(4.8))
+    );
+    @include cssLock(
+      "padding-right",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(4.8))
+    );
+  }
+
+  &--status {
+    width: 100%;
+    pointer-events: none;
+  }
+
+  &--free {
+    background-color: color("free");
+  }
+
+  &--sale {
+    background-color: color("sale");
+  }
+
+  &--reservation {
+    background-color: color("reservation");
+  }
+
+  &--sold {
+    background-color: color("sold");
   }
 }
