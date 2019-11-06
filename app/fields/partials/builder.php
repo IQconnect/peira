@@ -13,6 +13,7 @@ $builder
             ->addLayout(get_field_partial('components.small-hero'))
             ->addLayout(get_field_partial('components.text-text'))
             ->addLayout(get_field_partial('components.text-img'))
+            ->addLayout(get_field_partial('components.text-slide'))
             ->addLayout(get_field_partial('components.icon'))
             ->addLayout(get_field_partial('components.invests'))
             ->addLayout(get_field_partial('components.dropdown'))

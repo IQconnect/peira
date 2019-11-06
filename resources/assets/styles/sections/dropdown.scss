@@ -32,10 +32,11 @@
   }
 
   &__image {
+    @extend %absolute;
     @extend %image;
 
     &--round {
-      border-radius: 50%;
+      border-radius: 100%;
     }
   }
 
@@ -89,19 +90,19 @@
 
     @include mediaTo(lg) {
       width: unset;
+      align-items: flex-start;
     }
   }
 
   &__avatar {
-    @include cssLock("height", 360, 1920, (gutter_num(6), gutter_num(13)));
-    @include cssLock("width", 360, 1920, (gutter_num(6), gutter_num(15)));
+    @include cssLock("width", 360, 1920, (gutter_num(8), gutter_num(11)));
+    @include cssLock("height", 360, 1920, (gutter_num(8), gutter_num(11)));
 
-    border-radius: 50%;
-    margin: 0;
-    padding-right: gutter(1);
+    position: relative;
+    margin: 0 gutter(1) 0 0;
 
     @include mediaTo(lg) {
-      margin: gutter(2) 0 gutter(1);
+      margin: gutter(2) gutter(1) 0 gutter(1);
     }
   }
 
