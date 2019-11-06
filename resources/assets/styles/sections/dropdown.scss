@@ -56,7 +56,7 @@
     padding: 0 gutter(5);
     border: none;
     overflow: hidden;
-    transition: $transition;
+    transition: $transition / 2;
     opacity: 0;
 
     @include mediaTo(xl) {
@@ -126,7 +126,7 @@
     }
 
     #{$root}__icon {
-      filter: none;
+      filter: invert(0);
     }
 
     #{$root}__content {
@@ -134,6 +134,7 @@
       border-color: color(greyy);
       opacity: 1;
       transition: $transition * 1.5;
+      padding-bottom: gutter(2.4);
 
       @include mediaTo(lg) {
         max-height: 100%;
