@@ -12,15 +12,15 @@ $contactform
 	->addTextArea('contactjob', ['label'=> 'Stanowisko','rows'=>1,'wrapper' => array ('width' => '33%')])
         ->addTextArea('contactphone', ['label'=> 'Telephone','rows'=>1, 'wrapper' => array ('width' => '50%')])
 		->addTextArea('contactemail', ['label'=> 'Email','rows'=>1, 'wrapper' => array ('width' => '50%')])
-		->addTextArea('contactadres', ['label'=> 'Email','rows'=>1, 'wrapper' => array ('width' => '50%')])
+		->addTextArea('contactadres', ['label'=> 'Adres','rows'=>1, 'wrapper' => array ('width' => '50%')])
 	->endGroup()
 	->addGroup('people', ['label'=>'Dział'])
-
-		->addTextArea('name', ['label'=> 'Imie i nazwisko','rows'=>1,'wrapper' => array ('width' => '33%')])
-        ->addTextArea('jobtitle', ['label'=> 'Stanowisko','rows'=>1,'wrapper' => array ('width' => '33%')])
-        ->addTextArea('phone', ['label'=> 'Telephone','rows'=>1, 'wrapper' => array ('width' => '50%')])
-        ->addTextArea('email', ['label'=> 'Email','rows'=>1, 'wrapper' => array ('width' => '50%')])
-		->addImage('avatar', ['label'=> 'Zdjęcie', 'wrapper' => array ('width' => '50%')])
+	->addTextArea('jobtitle', ['label'=> 'Stanowisko','rows'=>1,'wrapper' => array ('width' => '33%')])
+		->addRepeater('person')
+			->addTextArea('name', ['label'=> 'Imie i nazwisko','rows'=>1,'wrapper' => array ('width' => '33%')])
+			->addTextArea('phone', ['label'=> 'Telephone','rows'=>1, 'wrapper' => array ('width' => '50%')])
+			->addTextArea('email', ['label'=> 'Email','rows'=>1, 'wrapper' => array ('width' => '50%')])
+			->addImage('avatar', ['label'=> 'Zdjęcie', 'wrapper' => array ('width' => '50%')])
 	->endGroup()
 		;
 		return $contactform;

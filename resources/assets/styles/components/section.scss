@@ -16,6 +16,7 @@
       (gutter_num(6), gutter_num(8))
     );
   }
+
   &--half-top {
     @include cssLock("padding-top", 360, 1920, (gutter_num(3), gutter_num(6)));
   }
