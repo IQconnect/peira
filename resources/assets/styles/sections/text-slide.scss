@@ -1,4 +1,6 @@
 .text-slide {
+  $root: &;
+
   &__title {
     @include cssLock(
       "margin-bottom",
@@ -38,5 +40,19 @@
     color: color(greey);
     font-weight: 300;
     line-height: initial;
+  }
+
+  &__hidedtext {
+    color: color(greey);
+    font-weight: 300;
+    line-height: initial;
+    opacity: 0;
+  }
+
+  &.-is-active {
+    #{$root}__hidedtext {
+      opacity: 1;
+      background-color: red;
+    }
   }
 }
