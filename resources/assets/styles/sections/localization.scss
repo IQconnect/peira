@@ -1,0 +1,46 @@
+.localization {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: gutter(3);
+
+    @include mediaTo(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__element {
+    display: flex;
+    flex-direction: row;
+
+    @include mediaTo(md) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__imgwrap {
+    @include cssLock("height", 360, 1920, (30, 50));
+    @include cssLock("width", 360, 1920, (30, 50));
+
+    margin: 0 gutter(2) 0 0;
+
+    @include mediaTo(md) {
+      margin: 0;
+    }
+  }
+
+  &__text {
+    margin-top: gutter(1.8);
+    text-align: center;
+    font-weight: 600;
+    color: color(primary);
+  }
+
+  &__image {
+    @extend %image;
+
+    object-fit: contain;
+  }
+}

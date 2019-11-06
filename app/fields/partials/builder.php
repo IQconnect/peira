@@ -17,6 +17,7 @@ $builder
             ->addLayout(get_field_partial('components.invests'))
             ->addLayout(get_field_partial('components.dropdown'))
             ->addLayout(get_field_partial('components.contactform'))
+            ->addLayout(get_field_partial('components.localization'))
             ->addLayout('contact', ['label'=>'Kontakt'])
             ->addLayout('invests-map', ['label'=>'Nasze inwestycje - mapa']);
 return $builder;
