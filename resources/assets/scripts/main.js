@@ -16,6 +16,7 @@ import Invests from './components/invests';
 import Invest from './components/invest';
 import InvestMap from './components/invest-map';
 import Menu from './components/menu';
+import Dropdown from './components/dropdown';
 import SingleNav from './components/single-nav';
 import Table from './components/table';
 import InvestSlider from './components/invest-slider';
@@ -40,6 +41,7 @@ jQuery(document).ready(() => {
   Invests.init();
   Invest.init();
   InvestMap.init();
+  Dropdown.init();
   $('select').niceSelect();
   SingleNav.init();
   Table.init();

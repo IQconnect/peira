@@ -49,6 +49,15 @@
     }
   }
 
+  &__wraplogo {
+    margin: 0;
+
+    @include mediaTo(sm) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   &__logo {
     max-width: $gutter * 12;
     width: 100%;
@@ -124,7 +133,6 @@
 
     @include mediaTo(md) {
       flex-direction: column;
-      padding-bottom: gutter(2);
       align-items: center;
       text-align: center;
     }
@@ -139,9 +147,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-end;
+    margin-right: gutter(4);
+    padding-bottom: gutter(4);
 
     @include mediaTo(lg) {
       flex-direction: column;
+      margin-right: 0;
+      padding: 0;
     }
   }
 

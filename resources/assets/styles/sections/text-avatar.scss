@@ -1,0 +1,91 @@
+.text-avatar {
+  $root: &;
+
+  &__image {
+    @extend %absolute;
+    @extend %image;
+
+    &--round {
+      border-radius: 100%;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__job {
+    color: color(primary);
+    font-weight: 600;
+    margin: gutter(2) 0;
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    color: color(greey);
+    padding-bottom: gutter(2);
+  }
+
+  &__content {
+    list-style-type: none;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: none;
+    overflow: hidden;
+
+    @include mediaTo(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__jobcontent {
+    color: color(primary);
+    font-weight: 600;
+    margin-bottom: gutter(2);
+  }
+
+  &__elem {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding-bottom: gutter(5);
+  }
+
+  &__desc {
+    width: 90%;
+    line-height: gutter(2.7);
+    color: color(greey);
+    padding-bottom: gutter(2);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    line-height: gutter(2.7);
+    color: color(greey);
+    margin-left: gutter(4);
+  }
+
+  &__avatar {
+    @include cssLock("width", 360, 1920, (gutter_num(6), gutter_num(11)));
+    @include cssLock("height", 360, 1920, (gutter_num(6), gutter_num(11)));
+
+    margin: 0;
+    position: relative;
+    padding-right: gutter(1);
+  }
+
+  &__name {
+    color: color(secondary);
+    font-weight: 600;
+  }
+
+  &__answear {
+    color: color(primary);
+  }
+}
