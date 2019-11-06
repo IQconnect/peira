@@ -60,7 +60,7 @@ const InvestSlider = {
 
             setTimeout(() => {
                 this.resize();
-            }, 500)
+            }, 1000)
         });
     },
 
@@ -81,6 +81,7 @@ const InvestSlider = {
                 this.switcher.forEach(element => {element.classList.remove(this.class)});
                 $this.classList.add(this.class);
                 this.wrapper.dataset.investSlider = $this.dataset.investSliderIndex;
+                this.resize();
             });
         });
     },

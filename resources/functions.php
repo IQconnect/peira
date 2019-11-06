@@ -38,7 +38,7 @@ if (version_compare('4.7.0', get_bloginfo('version'), '>=')) {
  * Ensure dependencies are loaded
  */
 if (!class_exists('Roots\\Sage\\Container')) {
-    if (!file_exists($composer = __DIR__.'/../vendor/autoload.php')) {
+    if (!file_exists($composer = __DIR__ . '/../vendor/autoload.php')) {
         $sage_error(
             __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
             __('Autoloader not found.', 'sage')
@@ -85,9 +85,9 @@ array_map(
 Container::getInstance()
     ->bindIf('config', function () {
         return new Config([
-            'assets' => require dirname(__DIR__).'/config/assets.php',
-            'theme' => require dirname(__DIR__).'/config/theme.php',
-            'view' => require dirname(__DIR__).'/config/view.php',
+            'assets' => require dirname(__DIR__) . '/config/assets.php',
+            'theme' => require dirname(__DIR__) . '/config/theme.php',
+            'view' => require dirname(__DIR__) . '/config/view.php',
         ]);
     }, true);
 
@@ -96,36 +96,45 @@ Container::getInstance()
  * ADD ACF OPTION PAGE
  */
 
-if( function_exists('acf_add_options_page') ) {
+if (function_exists('acf_add_options_page')) {
 
-	acf_add_options_page('Ustawienia Strony');
-
+    acf_add_options_page('Ustawienia Strony');
 }
 
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
+@ini_set('upload_max_size', '64M');
+@ini_set('post_max_size', '64M');
+@ini_set('max_execution_time', '300');
 
-function image($id, $size, $class) {
-    return wp_get_attachment_image($id, $size, false, ['class'=>$class]);
+function image($id, $size, $class)
+{
+    return wp_get_attachment_image($id, $size, false, ['class' => $class]);
 }
 
-function option($field) {
+function option($field)
+{
     return get_field($field, 'option');
 }
 
-function clearSpace($text) {
+function clearSpace($text)
+{
     return str_replace(' ', '', $text);
 }
 
-add_image_size( 'gallery-thumb', 180, 100, true );
-add_image_size( 'invest-list', 420, 140, true );
+add_image_size('gallery-thumb', 180, 100, true);
+add_image_size('invest-list', 420, 140, true);
 
 add_action('admin_head', 'remove_content_editor');
 /**
  * Remove the content editor from ALL pages 
  */
 function remove_content_editor()
-{ 
-    remove_post_type_support('page', 'editor');        
+{
+    remove_post_type_support('page', 'editor');
 }
+
+function cc_mime_types($mimes)
+{
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');

@@ -19,6 +19,7 @@ import Menu from './components/menu';
 import SingleNav from './components/single-nav';
 import Table from './components/table';
 import InvestSlider from './components/invest-slider';
+import LocationMap from './components/location-map';
 
 
 /** Populate Router instance with DOM routes */
@@ -43,6 +44,7 @@ jQuery(document).ready(() => {
   SingleNav.init();
   Table.init();
   InvestSlider.init();
+  LocationMap.init();
 });
 
 setTimeout(() => {
