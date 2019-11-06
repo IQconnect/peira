@@ -1,0 +1,1 @@
+<svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M18 45 41 24 34 17 0 50 34 83 41 76 18 55 100 55 100 45 18 45ZM14 50" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>

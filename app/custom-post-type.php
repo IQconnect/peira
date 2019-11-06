@@ -13,6 +13,7 @@ function create_inwestycje() {
             'has_archive' => true,
             'rewrite' => array('slug' => 'inwestycje'),
             'supports' => array('title'),
+            'taxonomies'  => array( 'category' ),
             'menu_icon'  => 'dashicons-admin-multisite',
         )
     );

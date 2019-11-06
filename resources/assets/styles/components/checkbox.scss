@@ -1,0 +1,45 @@
+$checbox-size: 2.4;
+
+.checkbox {
+  @include cssLock("font-size", 360, 1920, (10, 16));
+
+  font-family: map-get($font-family, main), sans-serif;
+  border: 0;
+  background: 0;
+  text-transform: uppercase;
+  color: color(primary);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  line-height: gutter($checbox-size);
+  outline: 0;
+  padding: 0 #{gutter($checbox-size) + gutter(0.8)} 0 #{gutter($checbox-size) + gutter(1.6)};
+
+  &::before {
+    @extend %absolute;
+
+    content: "";
+    width: gutter($checbox-size);
+    height: gutter($checbox-size);
+    border: solid 2px color(greey);
+    right: unset;
+    left: 0;
+    border-radius: 100%;
+    transition: $transition;
+    box-shadow: inset 0 0 0 9px white;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      border-color: color(special);
+    }
+  }
+
+  &.-is-active {
+    &::before {
+      border-color: color(special);
+      background-color: color(special);
+    }
+  }
+}

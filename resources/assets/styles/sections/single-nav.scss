@@ -1,0 +1,57 @@
+.single-nav {
+  @include cssLock(
+    "padding-right",
+    360,
+    1920,
+    (gutter_num(3), gutter_num(4.8))
+  );
+
+  position: sticky;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  box-shadow: 0 15px 50px 0 rgba(14, 35, 68, 0.1);
+  background-color: color(light);
+  z-index: 100;
+
+  @include mediaTo(xl) {
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  &__menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    @include mediaTo(xl) {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__link {
+    padding: gutter(3);
+    color: color(primary);
+    text-transform: uppercase;
+
+    &.-is-active {
+      background-color: color(special);
+      color: color(light);
+    }
+  }
+
+  &__widgets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mediaTo(xl) {
+      display: none;
+    }
+  }
+}

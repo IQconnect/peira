@@ -9,16 +9,22 @@ const CONFIG = {
     ELEM: '[invest-map]',
     TRIGGER: '[data-invest-map-elem]',
     CLASS: '-is-active',
+    LIST: '[data-invest-map-list]',
+    HIDE_CLASS: '-is-hidden',
+    CATS: '[data-invest-map-cats]',
 };
 
 const InvestMap = {
     init() {
-        const { ELEM, TRIGGER, CLASS } = CONFIG;
+        const { ELEM, TRIGGER, LIST, CATS, CLASS, HIDE_CLASS } = CONFIG;
 
         this.elem = document.querySelector(ELEM);
         this.trigger = document.querySelectorAll(TRIGGER);
+        this.list = document.querySelector(LIST);
+        this.cats = document.querySelectorAll(CATS);
 
         this.class = CLASS;
+        this.classHide = HIDE_CLASS;
 
         this.markersArray = [];
         this.map;
@@ -234,6 +240,8 @@ const InvestMap = {
                     iconActive: iconActive,
                     iconInactive: icon,
                     zoom: Number(marker.zoom),
+                    cat: marker.cat,
+                    visible: true
                 });
 
                 markersArray.push(flag);
@@ -260,7 +268,7 @@ const InvestMap = {
 
             if (flag.title == name) {
                 flag.setIcon(flag.iconActive);
-                this.map[0].setZoom(11);
+                this.map[0].setZoom(flag.zoom);
                 // this.map[0].setZoom(flag.zoom);
                 this.map[0].panTo(flag.getPosition());
             }
@@ -319,7 +327,62 @@ const InvestMap = {
                     this.selectFlag($this.dataset.investMapElem);
                 }
             })
+        });
+
+        this.cats.forEach((elem) => {
+            elem.addEventListener('click', (e) => {
+                const $this = e.currentTarget;
+
+                this.cats.forEach((elem) => { elem.classList.remove(this.class) });
+                $this.classList.add(this.class);
+
+                const cat = $this.dataset.investMapCats;
+
+                this.selectCat(cat)
+            })
         })
+
+    },
+
+    selectCat(cat) {
+        console.log(cat);
+
+        this.list.classList.add(this.classHide);
+
+        this.trigger.forEach((elem) => {
+            if(elem.dataset.investMapElemCat == cat || cat == 'all') {
+                setTimeout(()=> {
+                    elem.classList.remove(this.classHide) 
+                }, 400)
+            }
+            
+            else {
+                setTimeout(()=> {
+                    elem.classList.add(this.classHide)
+                }, 400)
+            }
+        });
+
+        //visible: true
+
+        this.markersArray.forEach(flag => {
+            console.log(flag.cat, cat);
+            flag.setIcon(flag.iconInactive);
+
+            if (flag.cat == cat || cat == 'all') {
+                flag.visible = true;
+            }
+
+            else {
+                flag.visible = false;
+            }
+        });
+
+        setTimeout(()=> {
+            this.list.classList.remove(this.classHide);
+            this.map[0].panBy(0, 1);
+            this.map[0].setZoom(11);
+        }, 500)
     },
 }
 

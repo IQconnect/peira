@@ -71,7 +71,8 @@
   font-family: map-get($font-family, main), sans-serif;
 }
 
-.terms {
+.terms,
+.table-label {
   @extend %text;
 
   @include cssLock("font-size", 360, 1920, (10, 12));

@@ -19,6 +19,8 @@
         $zoom = get_field('zoom');
         $icon = get_field('img_active')['url'];
         $iconActive = get_field('img_inactive')['url'];
+        $cat_id = wp_get_post_categories($post_id)[0];
+        $cat = get_term_by( 'id', $cat_id, 'category' );
 
         $mark = [
             'name'=> $name,
@@ -27,6 +29,7 @@
             'icon'=> $iconActive,
             'iconActive'=> $icon,
             'zoom'=> $zoom,
+            'cat'=>$cat->slug,
         ];
 
         array_push($markers, $mark);
@@ -40,8 +43,9 @@
 @endphp
 
 @if ($invests)
-<section class="section invest-map">
+<section class="section section--half-top invest-map">
     <div class="container">
+        @include('components.invests-nav', ['invests'=>$invests])
         <div class="invest-map__wrapper">
             @include('components.invests-list', ['invests'=>$invests])
             <div class="invest-map__map" invest-map data-lat="51.7812267" data-lng="19.3825387" data-markers="{{ $JSON_MARKERS }}"></div>

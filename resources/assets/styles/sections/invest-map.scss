@@ -1,4 +1,26 @@
 .invest-map {
+  &__nav {
+    @include cssLock("padding-bottom", 360, 1920, (gutter_num(3), gutter_num(6)));
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+    @include mediaTo(xs) {
+      flex-direction: column;
+    }
+  }
+
+  &__elem {
+    @include mediaTo(xs) {
+      margin-bottom: gutter(1.6);
+    }
+  }
+
   &__wrapper {
     height: 100%;
     display: grid;
