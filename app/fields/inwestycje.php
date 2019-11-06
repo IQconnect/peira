@@ -37,5 +37,17 @@ $inwestycje
         ->addGallery('slider1', ['label'=>'WIZUALIZACJE'])
         ->addGallery('slider2', ['label'=>'WNĘTRZA'])
         ->addGallery('slider3', ['label'=>'OKOLICA'])
+    ->addTab('Lokalizacja')
+        ->addRepeater('localization')
+            ->addText('name', ['label'=>'Title'])
+            ->addText('lat', ['label'=>'LAT'])
+            ->addText('lng', ['label'=>'LNG'])
+            ->addSelect('cat', ['label'=>'Katogria'])
+                ->addChoice('Sklepy')
+                ->addChoice('Komunikacja')
+                ->addChoice('Edukacja')
+                ->addChoice('Rozrywka')
+                ->addChoice('Inne')
+
     ;
 return $inwestycje;

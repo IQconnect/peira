@@ -50,7 +50,7 @@ img {
   }
 
   .small-hero {
-    margin-top: gutter(12.4);
+    margin-top: gutter(8.4);
 
     @include mediaTo(md) {
       margin-top: gutter(10.4);
