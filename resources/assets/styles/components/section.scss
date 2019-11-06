@@ -26,6 +26,14 @@
       1920,
       (gutter_num(3), gutter_num(6))
     );
+
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+
+    @include mediaTo(md) {
+      flex-direction: column;
+    }
   }
 
   &__label {
