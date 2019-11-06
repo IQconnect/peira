@@ -30,15 +30,15 @@
 
   &__content {
     list-style-type: none;
-    display: flex;
+    display: grid;
     padding: 0;
     margin: 0;
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr;
     border: none;
     overflow: hidden;
 
     @include mediaTo(md) {
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
   }
 
