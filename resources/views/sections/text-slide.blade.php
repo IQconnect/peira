@@ -33,8 +33,8 @@
                 <p class="text-slide__dsc text">
                     {!! $dsc1 !!}
 				</p>
-				<button data-toggle-button >rozwiń tekst</button>
-				<div class="text-slide__hidedtext text" data-dropdown>
+				<button data-toggle-bot >rozwiń tekst</button>
+				<div class="text-slide__hidedtext" data-drop>
 						{!! $addtxt1 !!}
 				</div>
             </div>
@@ -45,10 +45,11 @@
                 <p class="text-slide__dsc text">
                     {!! $dsc2 !!}
 				</p>
-				<button data-toggle-button >rozwiń tekst</button>
-				<div class="text-slide__hidedtext text" data-dropdown>
+
+				<div class="text-slide__hidedtext" data-drop>
 						{!! $addtxt2 !!}
-				</div>
+                </div>
+                <button data-toggle-bot >rozwiń tekst</button>
             </div>
         </div>
     </div>

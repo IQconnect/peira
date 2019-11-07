@@ -16,6 +16,7 @@ import Invests from './components/invests';
 import Invest from './components/invest';
 import InvestMap from './components/invest-map';
 import Menu from './components/menu';
+import Buttonslide from './components/buttonslide';
 import Dropdown from './components/dropdown';
 import SingleNav from './components/single-nav';
 import Table from './components/table';
@@ -47,6 +48,7 @@ jQuery(document).ready(() => {
   Table.init();
   InvestSlider.init();
   LocationMap.init();
+  Buttonslide.init();
 });
 
 setTimeout(() => {
