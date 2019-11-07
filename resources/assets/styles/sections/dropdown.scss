@@ -31,6 +31,12 @@
     filter: hue-rotate(190deg) brightness(0.2);
   }
 
+  &__arrow {
+    width: gutter(3);
+    height: gutter(3);
+    margin: 0 gutter(3);
+  }
+
   &__image {
     @extend %absolute;
     @extend %image;
@@ -102,7 +108,7 @@
     margin: 0 gutter(1) 0 0;
 
     @include mediaTo(lg) {
-      margin: gutter(2) gutter(1) 0 gutter(1);
+      margin: 0 gutter(1) 0 gutter(1);
     }
   }
 
@@ -126,7 +132,7 @@
     }
 
     #{$root}__icon {
-      filter: none;
+      filter: invert(0);
     }
 
     #{$root}__content {
@@ -134,6 +140,7 @@
       border-color: color(greyy);
       opacity: 1;
       transition: $transition * 1.5;
+      padding-bottom: gutter(3);
 
       @include mediaTo(lg) {
         max-height: 100%;

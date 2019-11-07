@@ -16,15 +16,15 @@
 					@endphp
 					<header class="dropdown__header" data-dropdown>
 						<div class="dropdown__header-wrapper">
-							<figure class="dropdown__icon " data-toggle-button>
+							<figure class="dropdown__icon " data-dropdown>
 									{!! image($icon['ID'], 'full', 'dropdown__image') !!}
 							</figure>
 							<h2 class="dropdown__title semi-text">
 								{{ $title }}
 							</h2>
 						</div>
-						<div class="dropdown__icon">
-							<button class="icon icon--plus icon--dark" data-toggle-button></button>
+						<div class="dropdown__arrow">
+							<button class="icons icons__arrow-down" data-toggle-button></button>
 						</div>
 					</header>
 					@if ($people)

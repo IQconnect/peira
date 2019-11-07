@@ -20,8 +20,7 @@ const dropdown = {
         const $this = event.currentTarget;
         const button = $this.querySelector(this.$button);
 
-        button.classList.toggle(this.$class);
-        button.classList.toggle('icon--special');
+        button.classList.toggle('-is-active');
         $this.parentElement.classList.toggle(this.$class);
       });
     });
