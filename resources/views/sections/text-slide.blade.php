@@ -10,8 +10,8 @@
 	$dsc2 = $content['dsc2'];
 
 
-    $dsc1 = $content['addtxt'];
-    $dsc2 = $content['addtxt2'];
+    $addtxt1 = $content['addtxt'];
+    $addtxt2 = $content['addtxt2'];
 @endphp
 
 <section class="section text-slide">
@@ -30,18 +30,18 @@
                 <h4 class="text-slide__label minor-text">
                     {!! $label1 !!}
                 </h4>
-                <p class="text-slide__dsc text">
+                <div class="text-slide__dsc text">
                     {!! $dsc1 !!}
-				</p>
+				</div>
 				<button>rozwiń tekst</button>
             </div>
             <div class="text-slide__col">
                 <h4 class="text-slide__label minor-text">
                     {!! $label2 !!}
                 </h4>
-                <p class="text-slide__dsc text">
+                <div class="text-slide__dsc text">
                     {!! $dsc2 !!}
-				</p>
+				</div>
 				<button>rozwiń tekst</button>
             </div>
         </div>
