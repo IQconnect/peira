@@ -30,19 +30,25 @@
                 <h4 class="text-slide__label minor-text">
                     {!! $label1 !!}
                 </h4>
-                <div class="text-slide__dsc text">
+                <p class="text-slide__dsc text">
                     {!! $dsc1 !!}
+				</p>
+				<button data-toggle-button >rozwiń tekst</button>
+				<div class="text-slide__hidedtext text" data-dropdown>
+						{!! $addtxt1 !!}
 				</div>
-				<button>rozwiń tekst</button>
             </div>
             <div class="text-slide__col">
                 <h4 class="text-slide__label minor-text">
                     {!! $label2 !!}
                 </h4>
-                <div class="text-slide__dsc text">
+                <p class="text-slide__dsc text">
                     {!! $dsc2 !!}
+				</p>
+				<button data-toggle-button >rozwiń tekst</button>
+				<div class="text-slide__hidedtext text" data-dropdown>
+						{!! $addtxt2 !!}
 				</div>
-				<button>rozwiń tekst</button>
             </div>
         </div>
     </div>
