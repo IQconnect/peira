@@ -7,6 +7,7 @@
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
   <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
-
+  {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP3u_2TC5gJdOQwLSkoZJocoSfN0FM8WM"
+  async defer></script> --}}
   @php wp_head() @endphp
 </head>

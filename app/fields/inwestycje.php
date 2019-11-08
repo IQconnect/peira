@@ -48,6 +48,10 @@ $inwestycje
                 ->addChoice('Edukacja')
                 ->addChoice('Rozrywka')
                 ->addChoice('Inne')
-
+        ->endRepeater()
+    ->addTab('Osiedle') 
+        ->addGroup('text-slide')
+            ->addFields(get_field_partial('components.text-slide'))
+        ->endGroup()
     ;
 return $inwestycje;

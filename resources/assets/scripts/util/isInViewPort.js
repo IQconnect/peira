@@ -7,10 +7,10 @@ const IsInViewPort = elem => {
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
     ) {
-        console.log('In the viewport!');
+        // console.log('In the viewport!');
         return true;
     } else {
-        console.log('Not in the viewport... whomp whomp');
+        // console.log('Not in the viewport... whomp whomp');
         return false
     }
 }

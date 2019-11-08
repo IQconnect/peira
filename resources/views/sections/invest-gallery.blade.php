@@ -8,7 +8,7 @@
     array_push($sliders, $slider1, $slider2, $slider3)
 @endphp
 
-<section class="section section--half-top section--no-bottom section--shade" id="gallery">
+<section class="section section--half-top section--no-bottom section--shade" id="galeria" data-single-section>
     <div class="container">
         <header class="section__header">
             <h3 class="section__title title">

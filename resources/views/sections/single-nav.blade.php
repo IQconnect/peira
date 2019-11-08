@@ -9,7 +9,7 @@
         <li class="single-nav__elem">
             <a 
             href="{{ $item['link'] }}" 
-            class="@if($loop->first) -is-active @endif single-nav__link minor-text" 
+            class="single-nav__link minor-text" 
             data-single-nav
             >
                 {{ $item['title'] }}

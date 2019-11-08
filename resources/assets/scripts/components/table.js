@@ -19,18 +19,20 @@ const Table = {
         this.nav = document.querySelectorAll(NAV);
         this.filtr = document.querySelectorAll(FLITR);
 
-        this.inputsVal = {};
-        this.countRows = 0;
-        this.colspan = this.table.querySelectorAll('th').length - 1;
-        this.navLength = this.nav.length;
-
-        this.defaultTable = this.table.querySelector('tbody');
-        this.defaultTableContent = this.defaultTable.innerHTML;
-
-        this.class = CLASS;
-
-        this.tablesorter();
-        this.addEvent();
+        if(this.table) {
+            this.inputsVal = {};
+            this.countRows = 0;
+            this.colspan = this.table.querySelectorAll('th').length - 1;
+            this.navLength = this.nav.length;
+    
+            this.defaultTable = this.table.querySelector('tbody');
+            this.defaultTableContent = this.defaultTable.innerHTML;
+    
+            this.class = CLASS;
+    
+            this.tablesorter();
+            this.addEvent();
+        }
     },
 
     tablesorter() {

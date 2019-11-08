@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: gutter(2) 0 gutter(1);
+    padding: gutter(2) 0;
     transition: $transition * 4;
   }
 
@@ -59,7 +59,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: gutter(2);
-    padding: 0 gutter(5);
+    padding: 0 gutter(3);
+    margin: 0;
     border: none;
     overflow: hidden;
     transition: $transition;
@@ -67,12 +68,10 @@
 
     @include mediaTo(xl) {
       grid-template-columns: auto auto;
-      padding-bottom: gutter(3);
     }
 
     @include mediaTo(lg) {
       grid-template-columns: auto;
-      padding-bottom: gutter(2);
     }
   }
 
