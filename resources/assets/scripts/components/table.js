@@ -38,12 +38,11 @@ const Table = {
         const $this = e.currentTarget;
         console.log(e.currentTarget);
 
-        // Change button class
-        this.nav.forEach(element => { element.classList.remove(this.class.active) })
-        $this.classList.add(this.class.active);
-
         // Change page
         let num = $this.dataset.tableNav;
+
+        // Change button class
+        this.nav.forEach(element => { element.classList.remove(this.class.active) })
 
         if (num == 'next') {
             num = parseInt(this.table.dataset.table) > this.nav.length - 3 ? 1 : parseInt(this.table.dataset.table) + 1;
@@ -52,6 +51,14 @@ const Table = {
         else if (num == 'prev') {
             num = parseInt(this.table.dataset.table) - 1 == 0 ? this.nav.length - 2 : parseInt(this.table.dataset.table) - 1;
         }
+
+        else {
+            $this.classList.add(this.class.active);
+        }
+
+        this.nav[num].classList.add(this.class.active);
+
+
 
         this.table.dataset.table = num;
         console.log(num, this.nav.length);
