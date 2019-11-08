@@ -57,10 +57,16 @@
   }
 
   &__desc {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3), gutter_num(6))
+    );
+
     width: 90%;
     line-height: gutter(2.7);
     color: color(greey);
-    padding-bottom: gutter(2);
   }
 
   &__info {
@@ -87,5 +93,17 @@
 
   &__answear {
     color: color(primary);
+
+    p {
+      display: block;
+    }
+
+    a {
+      transition: $transition;
+
+      &:hover {
+        color: color(special);
+      }
+    }
   }
 }
