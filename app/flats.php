@@ -159,3 +159,32 @@ function get_sale_flats($flats)
 	$result = array_filter($flats, 'isSale');
 	return $result;
 }
+
+function getAreaOfInput($flats)
+{
+	$floors = array_column($flats, 'floor');
+	$rooms = array_column($flats, 'rooms');
+	$areas = array_column($flats, 'area');
+	$price = array_column($flats, 'price');
+
+	$areaOfInputs = [
+		'floor' => [
+			'min' => intval(min($floors)),
+			'max' => intval(max($floors)),
+		],
+		'rooms' => [
+			'min' => intval(min($rooms)),
+			'max' => intval(max($rooms)),
+		],
+		'area' => [
+			'min' => intval(min($areas)),
+			'max' => intval(max($areas)),
+		],
+		'price' => [
+			'min' => intval(str_replace(' ', '',  min($price))),
+			'max' => intval(str_replace(' ', '',  max($price))),
+		],
+	];
+
+	return $areaOfInputs;
+}

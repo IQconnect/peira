@@ -1,34 +1,29 @@
 @php
-$filtr = [
-    [
-        'title' => 'POWIERZCHNIA (m²)',
-        'name'  => 'area',
-        'from'  => 30,
-        'to'  => 70,
-    ],
-    [
-        'title' => 'ZAKRES CENOWY (zł)',
-        'name'  => 'price',
-        'from'  => 0,
-        'to'  => 600000,
-    ],
-    [
-        'title' => 'ILOŚĆ POKOI',
-        'name'  => 'rooms',
-        'from'  => 0,
-        'to'  => 4,
-    ],
-    [
-        'title' => 'PIĘTRO',
-        'name'  => 'floor',
-        'from'  => 0,
-        'to'  => 5,
-    ],
-];
+
 $name = mb_strtoupper (get_the_title());
 $flats = get_flats_from_invest($name);
 $free = get_free_flats($flats);
 $sale = get_sale_flats($flats);
+$fromTo = getAreaOfInput($flats);
+
+$filtr = [
+    [
+        'title' => 'POWIERZCHNIA (m²)',
+        'name'  => 'area',
+    ],
+    [
+        'title' => 'ZAKRES CENOWY (zł)',
+        'name'  => 'price',
+    ],
+    [
+        'title' => 'ILOŚĆ POKOI',
+        'name'  => 'rooms',
+    ],
+    [
+        'title' => 'PIĘTRO',
+        'name'  => 'floor',
+    ],
+];
 @endphp
 
 @if ($filtr)
@@ -39,8 +34,8 @@ $sale = get_sale_flats($flats);
             {{ $item['title'] }}
         </label>
         <div class="filtr__input-wrapper">
-            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_from" value="{{ $item['from'] }}">
-            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_to" value="{{ $item['to'] }}">
+            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_from" value="{{ $fromTo[$item['name']]['min'] }}">
+            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_to" value="{{ $fromTo[$item['name']]['max'] }}">
         </div>
     </div>
     @endforeach

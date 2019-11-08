@@ -21,7 +21,7 @@ const Table = {
 
         this.inputsVal = {};
         this.countRows = 0;
-        this.colspan = this.table.querySelectorAll('th').length -1;
+        this.colspan = this.table.querySelectorAll('th').length - 1;
         this.navLength = this.nav.length;
 
         this.defaultTable = this.table.querySelector('tbody');
@@ -34,7 +34,17 @@ const Table = {
     },
 
     tablesorter() {
-        $('table').tablesorter();
+        $('table').tablesorter({
+            sortRestart: true,
+            sortReset: true,
+        });
+
+        const usersTable = $('.tablesorter');
+
+        usersTable.trigger('update')
+            .trigger('sorton', [usersTable.get(0).config.sortList])
+            .trigger('appendCache')
+            .trigger('applyWidgets');
     },
 
     addEvent() {
@@ -55,7 +65,7 @@ const Table = {
         // Change button class
         this.nav.forEach(element => { element.classList.remove(this.class.active) })
 
-        if(myNum) {
+        if (myNum) {
             this.nav[myNum].classList.add(this.class.active);
             return this.table.dataset.table = myNum;
         }
@@ -64,7 +74,7 @@ const Table = {
         let num = $this.dataset.tableNav;
 
         if (num == 'next') {
-            num = parseInt(this.table.dataset.table) + 1 == this.navLength -1 ? 1 : parseInt(this.table.dataset.table) + 1;
+            num = parseInt(this.table.dataset.table) + 1 == this.navLength - 1 ? 1 : parseInt(this.table.dataset.table) + 1;
         }
 
         else if (num == 'prev') {
@@ -90,7 +100,7 @@ const Table = {
 
         const navs = this.countRows / 10;
 
-        if(this.countRows < 10) {
+        if (this.countRows < 10) {
             this.nav[0].closest('nav').classList.add('-hide');
         }
 
@@ -139,8 +149,8 @@ const Table = {
         const isFree = elem => {
             const state = elem.dataset.state;
 
-            if(this.inputsVal.free) {
-                if(state == 'free' || state == 'sale') {
+            if (this.inputsVal.free) {
+                if (state == 'free' || state == 'sale') {
                     return true;
                 }
             }
@@ -153,8 +163,8 @@ const Table = {
         const isSale = elem => {
             const sale = elem.dataset.price2 ? true : false;
 
-            if(this.inputsVal.sale) {
-                if(sale) {
+            if (this.inputsVal.sale) {
+                if (sale) {
                     return true;
                 }
             }
@@ -178,7 +188,7 @@ const Table = {
 
         console.log('countRows', this.countRows);
 
-        if(this.countRows == 0) {
+        if (this.countRows == 0) {
             this.defaultTable.innerHTML = `<tr><td style='text-align: left;padding-left: 30px;' colspan='${this.colspan}'>Nie znaleziono mieszkań w danej konfiguracji<td></tr>`;
         }
     },
@@ -202,7 +212,8 @@ const Table = {
         this.setVals();
         this.newTable();
         this.newTableNav();
-        this.changePage('',1);
+        this.changePage('', 1);
+        this.tablesorter();
     },
 }
 
