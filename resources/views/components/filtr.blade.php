@@ -48,7 +48,7 @@ $sale = get_sale_flats($flats);
         <div class="filtr__input-wrapper">
             @if (count($free))
             <div class="filtr__checkbox-wrapper">
-                <input type="checkbox" id="free" class="filtr__checkbox">
+                <input type="checkbox" id="free" name="free" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
                     
                 <label class="filtr__label minor-text" for="free">
@@ -62,9 +62,9 @@ $sale = get_sale_flats($flats);
 
             @if (count($sale))
             <div class="filtr__checkbox-wrapper">
-                <input type="checkbox" id="promotion" class="filtr__checkbox">
+                <input type="checkbox" id="sale" name="sale" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
-                <label class="filtr__label minor-text" for="promotion">
+                <label class="filtr__label minor-text" for="sale">
                     {{ __('Promocja') }} 
                     <span class="filtr__label--special">
                         ({{ count($sale) }})
