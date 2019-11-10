@@ -33,14 +33,9 @@
 
   &.-is-active {
     &::before {
-      width: 30%;
-      height: 30%;
-      position: absolute;
-      border: 2px solid color("secondary");
-      border-left: 0;
-      border-top: 0;
-      margin: auto;
-      transform: rotate(130deg);
+      transform: rotate(-135deg);
+      bottom: -15%;
+      border-color: color("special");
     }
   }
 }

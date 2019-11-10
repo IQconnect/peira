@@ -8,6 +8,8 @@
     @include('sections.single-nav')
     @include('sections.search-flat')
     @include('sections.location-map')
+    @include('sections.text-slide', ['data'=>get_field('text-slide'), 'ID'=>'osiedle'])
     @include('sections.invest-gallery')
+    @include('sections.contactform')
 
 @endsection

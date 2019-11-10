@@ -1,34 +1,29 @@
 @php
-$filtr = [
-    [
-        'title' => 'POWIERZCHNIA (m²)',
-        'name'  => 'area',
-        'from'  => 30,
-        'to'  => 70,
-    ],
-    [
-        'title' => 'ZAKRES CENOWY (zł)',
-        'name'  => 'price',
-        'from'  => 0,
-        'to'  => 600000,
-    ],
-    [
-        'title' => 'ILOŚĆ POKOI',
-        'name'  => 'rooms',
-        'from'  => 0,
-        'to'  => 4,
-    ],
-    [
-        'title' => 'PIĘTRO',
-        'name'  => 'floor',
-        'from'  => 0,
-        'to'  => 5,
-    ],
-];
+
 $name = mb_strtoupper (get_the_title());
 $flats = get_flats_from_invest($name);
 $free = get_free_flats($flats);
 $sale = get_sale_flats($flats);
+$fromTo = getAreaOfInput($flats);
+
+$filtr = [
+    [
+        'title' => 'POWIERZCHNIA (m²)',
+        'name'  => 'area',
+    ],
+    [
+        'title' => 'ZAKRES CENOWY (zł)',
+        'name'  => 'price',
+    ],
+    [
+        'title' => 'ILOŚĆ POKOI',
+        'name'  => 'rooms',
+    ],
+    [
+        'title' => 'PIĘTRO',
+        'name'  => 'floor',
+    ],
+];
 @endphp
 
 @if ($filtr)
@@ -39,8 +34,8 @@ $sale = get_sale_flats($flats);
             {{ $item['title'] }}
         </label>
         <div class="filtr__input-wrapper">
-            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_from" value="{{ $item['from'] }}">
-            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_to" value="{{ $item['to'] }}">
+            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_from" value="{{ $fromTo[$item['name']]['min'] }}">
+            <input class="filtr__input minor-text" type="number" name="{{ $item['name'] }}_to" value="{{ $fromTo[$item['name']]['max'] }}">
         </div>
     </div>
     @endforeach
@@ -48,7 +43,7 @@ $sale = get_sale_flats($flats);
         <div class="filtr__input-wrapper">
             @if (count($free))
             <div class="filtr__checkbox-wrapper">
-                <input type="checkbox" id="free" class="filtr__checkbox">
+                <input type="checkbox" id="free" name="free" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
                     
                 <label class="filtr__label minor-text" for="free">
@@ -62,9 +57,9 @@ $sale = get_sale_flats($flats);
 
             @if (count($sale))
             <div class="filtr__checkbox-wrapper">
-                <input type="checkbox" id="promotion" class="filtr__checkbox">
+                <input type="checkbox" id="sale" name="sale" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
-                <label class="filtr__label minor-text" for="promotion">
+                <label class="filtr__label minor-text" for="sale">
                     {{ __('Promocja') }} 
                     <span class="filtr__label--special">
                         ({{ count($sale) }})

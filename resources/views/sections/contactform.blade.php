@@ -19,7 +19,7 @@
 
 @endphp
 
-<section class="section section--no-bottom">
+<section class="section section--no-bottom" id="kontakt" data-single-section>
 	<div class="container">
 		<div class="contactform__wrapper">
 			<div class="contactform__left">
@@ -44,6 +44,7 @@
 					<p class="contactform__jobcontent minor-text ">
 						{{ $job }}
 					</p>
+					@if ($person)
 					<ul class="contactform__content">
 						@foreach ($person as $item)
 						@php
@@ -71,9 +72,10 @@
 						</li>
 						@endforeach
 					</ul>
+					@endif
 			</div>
 			<div class="contactform__form">
-		@include('components.form')
+				@include('components.form')
 			</div>
 		</div>
 	</div>

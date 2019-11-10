@@ -1,4 +1,4 @@
-<section class="section section--no-bottom" id="lista-mieszkan">
+<section class="section section--no-bottom" id="lista-mieszkan" data-single-section>
     <div class="section__wrapper">
         <div class="container">
             <header class="section__header">

@@ -1,10 +1,7 @@
 .container {
-  width: calc(100% - #{gutter(54)});
+  width: calc(100% - #{gutter(6)});
+  max-width: gutter(138);
   margin: 0 auto;
-
-  @include mediaTo(xl) {
-    width: calc(100% - #{gutter(6.4)});
-  }
 
   &--fluid {
     position: relative;

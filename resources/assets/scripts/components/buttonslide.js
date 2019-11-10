@@ -1,15 +1,13 @@
 const CONFIG = {
-  TRIGGER: '[data-drop]',
-  ELEM: '[data-toggle-bot]',
+  TRIGGER: '[data-slide-text]',
   CLASS: '-is-active',
 };
 
 const dropdown = {
   init() {
-    const { TRIGGER, ELEM, CLASS } = CONFIG;
+    const { TRIGGER, CLASS } = CONFIG;
     this.$elem = document.querySelectorAll(TRIGGER);
 
-    this.$button = ELEM;
     this.$class = CLASS;
     this.addEvent();
   },
@@ -18,10 +16,11 @@ const dropdown = {
     this.$elem.forEach(element => {
       element.addEventListener('click', event => {
         const $this = event.currentTarget;
-        const button = $this.querySelector(this.$button);
 
-        button.classList.toggle('-is-active');
-        $this.Element.classList.toggle(this.$class);
+        console.log('test', $this);
+
+        $this.classList.toggle(this.$class);
+        $this.parentElement.classList.toggle(this.$class);
       });
     });
   },

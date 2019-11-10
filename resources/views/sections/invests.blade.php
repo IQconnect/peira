@@ -9,6 +9,7 @@
         @php
             $id = $elem -> ID;
             $gallery = get_field('gallery', $id);
+            $logo = get_field('logo', $id);
         @endphp
         <div class="invests__cell">
             @if ($gallery)
@@ -23,7 +24,9 @@
             <div class="invest">
                 <div class="container">
                     <div class="invest__wrapper">
-                        <img src="" alt="" class="invest__logo">
+                        @if ($logo)
+                          {!!  image($logo['ID'], 'full', 'invest__logo') !!}
+                        @endif
                         <h3 class="invest__title title">
                             {{ $elem->post_title }}
                         </h3>

@@ -8,8 +8,8 @@
       "./scripts/customizer.js"
     ]
   },
-  "publicPath": "/peira_sage/wp-content/themes/peira",
-  "devUrl": "http://localhost/peira_sage",
+  "publicPath": "/peira/wp-content/themes/peira",
+  "devUrl": "http://localhost/peira",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
   "watch": [

@@ -45,6 +45,18 @@
     flex-direction: column;
   }
 
+  &__logo {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3.2), gutter_num(6.4))
+    );
+
+    height: gutter(4);
+    width: auto;
+  }
+
   &__image {
     @extend %absolute;
     @extend %image;
