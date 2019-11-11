@@ -1,7 +1,15 @@
 @php
 
-$name = mb_strtoupper (get_the_title());
-$flats = get_flats_from_invest($name);
+
+if(is_single()) {
+  $name = mb_strtoupper (get_the_title());
+  $flats = get_flats_from_invest($name);
+}
+
+else {
+  $flats = get_all_flats();
+}
+
 $free = get_free_flats($flats);
 $sale = get_sale_flats($flats);
 $fromTo = getAreaOfInput($flats);
@@ -45,9 +53,9 @@ $filtr = [
             <div class="filtr__checkbox-wrapper">
                 <input type="checkbox" id="free" name="free" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
-                    
+
                 <label class="filtr__label minor-text" for="free">
-                    {{ __('Wolne') }} 
+                    {{ __('Wolne') }}
                     <span class="filtr__label--special">
                         ({{ count($free) }})
                     </span>
@@ -60,7 +68,7 @@ $filtr = [
                 <input type="checkbox" id="sale" name="sale" class="filtr__checkbox filtr__input">
                 <div class="filtr__input filtr__input--checkbox"></div>
                 <label class="filtr__label minor-text" for="sale">
-                    {{ __('Promocja') }} 
+                    {{ __('Promocja') }}
                     <span class="filtr__label--special">
                         ({{ count($sale) }})
                     </span>

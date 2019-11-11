@@ -21,5 +21,6 @@ $builder
             ->addLayout(get_field_partial('components.contactform'))
             ->addLayout(get_field_partial('components.localization'))
             ->addLayout('contact', ['label'=>'Kontakt'])
+            ->addLayout('search-flat', ['label'=>'Znajdź mieszkanie - wszystkie inwestycje'])
             ->addLayout('invests-map', ['label'=>'Nasze inwestycje - mapa']);
 return $builder;

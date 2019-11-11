@@ -12,6 +12,7 @@ $inwestycje
 $inwestycje
     ->addTab('main', ['label'=> 'Ustawienia główne','placement' => 'left'])
         ->addImage('logo', ['label'=> 'Logo inwestycji', 'wrapper' => array ('width' => '50%')])
+        ->addImage('logo_dark', ['label'=> 'Logo inwestycji - Dark', 'wrapper' => array ('width' => '50%')])
         ->addImage('image', ['label'=> 'Zdjęcie inwestycji', 'wrapper' => array ('width' => '50%'), 'return_format' => 'id'])
         ->addTextarea('dsc', ['label'=>'opis', 'new_lines'=>'br'])
         ->addText('address', ['label'=>'Adres', 'new_lines'=>'br'])
