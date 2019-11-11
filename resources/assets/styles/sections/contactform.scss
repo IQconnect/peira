@@ -129,3 +129,13 @@
     color: color(primary);
   }
 }
+
+p {
+  a {
+    transition: $transition;
+
+    &:hover {
+      color: color(special);
+    }
+  }
+}

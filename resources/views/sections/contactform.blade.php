@@ -1,11 +1,11 @@
 <@php
-	$main = $data['main'];
+	$main = option('main');
 
 	$title = $main['title'];
 	$subtitle = $main['subtitle'];
 	$desc = $main['desc'];
 
-	$text = $data['contacttext'];
+	$text = option('contacttext');
 
 	$contactjob = $text['contactjob'];
 	$contactphone = $text['contactphone'];
@@ -13,7 +13,7 @@
 	$contactadres = $text['contactadres'];
 
 
-	$people= $data['people'];
+	$people = option('people');
 	$job = $people['jobtitle'];
 	$person =$people['person'];
 
@@ -37,8 +37,16 @@
 				</div>
 				<div class="contactform__contact">
 					<p class="contactform__job minor-text "> {!! $contactjob !!}</p>
-					<p class="contactform__name major-text"> {!! $contactphone !!}</p>
-					<p class="text"> {!! $contactemail !!}</p>
+					<p class="contactform__name major-text">
+            <a href="tel:{{ clearSpace($contactphone) }}">
+              {!! $contactphone !!}
+            </a>
+          </p>
+					<p class="text">
+            <a href="mailto:{!! $contactemail !!}">
+              {!! $contactemail !!}
+            </a>
+          </p>
 					<p class="text"> {!! $contactadres !!}</p>
 				</div>
 					<p class="contactform__jobcontent minor-text ">
@@ -63,10 +71,10 @@
 								{{ $name }}
 								</h3>
 								<p class="contactform__answear text">
-								{{ $phone }}
+                  <a href="tel:{{ clearSpace($phone) }}">{{ $phone }}</a>
 								</p>
 								<p class="contactform__answear text">
-								{{ $email }}
+                  <a href="mailto:{{ $email }}">{{ $email }}</a>
 								</p>
 							</div>
 						</li>

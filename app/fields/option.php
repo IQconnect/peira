@@ -25,6 +25,7 @@ $option
         ->addText('send_email', ['label' => 'Email do formularza', 'wrapper' => array ('width' => '50%')])
         ->addWysiwyg('rodo', ['label'=>'RODO'])
         ->addTextarea('terms', ['label'=>'Przetwarzanie danych osobowych'])
+        ->addFields(get_field_partial('components.contactform'))
     ->addTab('footer', ['label' => 'Stopka', 'placement' => 'left'])
         ->addGroup('footer_info')
             ->addImage('image', ['label'=>'Logo footer', 'wrapper' => array ('width' => '50%')])
@@ -35,5 +36,11 @@ $option
             ->addText('nip', ['label' => 'NIP', 'wrapper' => array ('width' => '33%')] )
             ->addText('regon', ['label' => 'Regon', 'wrapper' => array ('width' => '33%')] )
         ->endGroup()
+    ->addTab('singleNav', ['label' => 'Nawigacja poj. Inwestycji', 'placement' => 'left'])
+        ->addRepeater('menu')
+            ->addTrueFalse('off', ['label'=>'Ukryj', 'wrapper' => array ('width' => '5%')])
+            ->addText('title', ['label'=>'Tytuł'])
+            ->addText('link', ['label'=>'link'])
+        ->endRepeater()
     ;
 return $option;
