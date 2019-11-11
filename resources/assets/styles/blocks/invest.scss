@@ -1,7 +1,20 @@
 .invest {
+  @include cssLock(
+    "padding-top",
+    360,
+    1920,
+    (gutter_num(12), gutter_num(25))
+  );
+
   $root: &;
 
   z-index: 10;
+  height: 100%;
+
+  @include mediaTo(lg) {
+    height: auto;
+    padding-top: 0;
+  }
 
   &__title {
     @include cssLock(
@@ -26,6 +39,11 @@
 
     display: block;
     max-width: gutter(80);
+  }
+
+  &__message {
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   &__carousel {

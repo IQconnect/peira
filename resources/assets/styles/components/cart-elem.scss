@@ -1,0 +1,51 @@
+.cart-elem {
+  padding: gutter(1.6) 0;
+  border-bottom: 1px solid color("greey");
+
+  &__header {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: gutter(0.8);
+
+    &:hover {
+      g {
+        fill: color("special");
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    color: color("primary");
+    display: flex;
+    align-self: center;
+  }
+
+  &__price {
+    color: color("special");
+    font-weight: 600;
+
+    &--old {
+      color: color(greey);
+      text-decoration: line-through;
+      padding: 0 gutter(0.8);
+    }
+
+    &--label {
+      background-color: color("special");
+      color: color(light);
+      padding: gutter(0.4) gutter(0.8);
+      text-transform: uppercase;
+    }
+  }
+
+  &__info {
+    margin-top: gutter(1.6);
+    display: block;
+    color: color("greey");
+  }
+}

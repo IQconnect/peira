@@ -100,9 +100,15 @@ function get_all_flats()
 	return $rows;
 }
 
-function get_flat($id)
+function get_flat($id, $invest = false)
 {
-	$flats = get_all_flats();
+    if($invest) {
+        $flats = get_flats_from_invest($invest);
+    }
+
+    else {
+        $flats = get_all_flats();
+    }
 	foreach ($flats as $flat) if ($flat['id'] === $id) return $flat;
 }
 

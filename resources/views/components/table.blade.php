@@ -62,9 +62,9 @@
                             </a>
                         </td>
                         <td data-label="<?= __('Dodaj do koszyka', 'peira'); ?>">
-                            <button data-addtocart class="star">
+                            <a href="{{ home_url('/koszyk') }}/?cart_add={{ $inwestycja.'-'.$flat['id'] }}" data-cart-add="{{ $inwestycja.'-'.$flat['id'] }}" class="star">
                                 @include('svg.cart')
-                            </button>
+                            </a>
                         </td>
                     </tr>
             <?php endif;
@@ -81,7 +81,7 @@
             <li class="table-nav__elem">
                <button class="table-nav__button table-nav__button--prev" data-table-nav="prev">
                    @include('svg.arrow')
-                </button> 
+                </button>
             </li>
             @for ($i = 1; $i < $num + 1; $i++)
             <li class="table-nav__elem">
@@ -93,7 +93,7 @@
             <li class="table-nav__elem">
                 <button  class="table-nav__button table-nav__button--next" data-table-nav="next">
                     @include('svg.arrow')
-                </button> 
+                </button>
             </li>
         </ul>
     </nav>

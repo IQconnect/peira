@@ -16,8 +16,9 @@ const SingleNav = {
         this.allowScroll = true;
 
         this.class = CLASS;
-
-        this.addEvent();
+        if(this.elem) {
+          this.addEvent();
+        }
     },
 
     addEvent() {
@@ -55,7 +56,7 @@ const SingleNav = {
                         this.elem.forEach(element => { element.classList.remove(this.class) });
                         this.elem[index].classList.add(this.class)
                     }
-    
+
                     else if(elementInViewport(elem)) {
                         this.elem.forEach(element => { element.classList.remove(this.class) });
                         this.elem[index].classList.add(this.class)

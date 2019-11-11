@@ -22,6 +22,7 @@ $option
     ->addTab('contact', ['label'=>'Informacje kontatkowe', 'placement' => 'left'])
         ->addText('phone', ['label'=>'Telefon', 'wrapper' => array ('width' => '50%')])
         ->addText('email', ['label' => 'Email', 'wrapper' => array ('width' => '50%')])
+        ->addText('send_email', ['label' => 'Email do formularza', 'wrapper' => array ('width' => '50%')])
         ->addWysiwyg('rodo', ['label'=>'RODO'])
         ->addTextarea('terms', ['label'=>'Przetwarzanie danych osobowych'])
     ->addTab('footer', ['label' => 'Stopka', 'placement' => 'left'])

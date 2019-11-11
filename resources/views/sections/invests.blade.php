@@ -10,6 +10,9 @@
             $id = $elem -> ID;
             $gallery = get_field('gallery', $id);
             $logo = get_field('logo', $id);
+            $name = mb_strtoupper ($elem->post_title);
+            $flats = get_flats_from_invest($name);
+            $message = get_field('off_message', $id);
         @endphp
         <div class="invests__cell">
             @if ($gallery)
@@ -33,9 +36,16 @@
                         <p class="invest__dsc text">
                             {!! get_field('dsc', $id) !!}
                         </p>
-                        <a href="{{ get_permalink($id) }}" class="invest__link button button--transparent button--border button--big">
-                            ZOBACZ STRONĘ INWESTYCJI
-                        </a>
+                        @if (count($flats))
+                          <a href="{{ get_permalink($id) }}" class="invest__link button button--transparent button--border button--big">
+                              ZOBACZ STRONĘ INWESTYCJI
+                          </a>
+                        @else
+                          <p class="invest__message minor-text">
+                            {{ $message }}
+                          </p>
+                        @endif
+
                     </div>
                     @if ($gallery)
                     <ul class="invest__nav">

@@ -1,19 +1,17 @@
 @php
     $phone = option('phone');
-    $cartCount = 0;
+    $cartCount = count($_SESSION['cart']);
 @endphp
 
 <div class="widgets @if($class) {{ $class }} @endif">
     @if (1)
-    <button class="widgets__item widgets__item--cart button button--transparent" data-cart>
+    <button class="widgets__item widgets__item--cart button button--transparent" cart-toggle>
         @include('svg.cart')
-        @if ($cartCount)
-        <span class="widgets__count count minor-text">
-            <span class="count--num">
-                3
+        <span class="widgets__count count table-label">
+            <span class="count--num" data-cart-count={{ $cartCount }}>
+                {{ $cartCount }}
             </span>
         </span>
-        @endif
     </button>
     @endif
     @if ($phone)

@@ -19,7 +19,9 @@
   transition: $transition;
   text-transform: uppercase;
   white-space: nowrap;
-  display: inline-block;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
 
   &:hover {
     background: darken(color(secondary), 10%);

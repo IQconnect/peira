@@ -125,7 +125,7 @@ add_image_size('invest-list', 420, 140, true);
 
 add_action('admin_head', 'remove_content_editor');
 /**
- * Remove the content editor from ALL pages 
+ * Remove the content editor from ALL pages
  */
 function remove_content_editor()
 {
@@ -138,3 +138,31 @@ function cc_mime_types($mimes)
     return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
+
+if (!session_id()) {
+    session_start();
+
+    if(!$_SESSION['cart']) {
+        $_SESSION['cart'] = [];
+    }
+}
+
+if($_GET['cart_add']) {
+    $split = explode("-", $_GET['cart_add']);
+    $invest = $split[0];
+    $id = $split[1];
+
+    $item = array(
+        'invest' => $invest,
+        'id' => $id,
+    );
+
+    if(!in_array( $item, $_SESSION['cart'] )) {
+        array_push($_SESSION['cart'], $item);
+    }
+}
+
+if($_GET['cart_remove'] != '') {
+    $remove = intval($_GET['cart_remove']);
+    array_splice($_SESSION['cart'], $remove , 1);
+}
