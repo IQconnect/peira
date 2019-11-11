@@ -51,8 +51,6 @@ $invests = [];
 
 @endphp
 
-@dump($invests)
-
 <div class="table-responsive">
     <h3 class="section__title title">
         Wyniki wyszukiwania
