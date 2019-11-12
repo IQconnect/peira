@@ -22,6 +22,7 @@
   &__form {
     width: 100%;
     position: relative;
+    overflow: hidden;
 
     @include mediaTo(md) {
       &::before {
