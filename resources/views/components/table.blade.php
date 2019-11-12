@@ -59,7 +59,7 @@ $invests = [];
         <thead>
             <tr>
                 @if (!is_single())
-                <th><?= __('Nazwa Inwestycji', 'peira'); ?></th>
+                <th data-sorter="data-district"><?= __('Nazwa Inwestycji', 'peira'); ?></th>
                 @endif
                 <th><?= __('Numer', 'peira'); ?></th>
                 <th><?= __('Pokoje', 'peira'); ?></th>
@@ -83,6 +83,7 @@ $invests = [];
                     <tr data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>" data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>" data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>" data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>" data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź" data-district="<?= $flat['investment']; ?>">
                         @if(!is_single())
                         <td data-label="<?= __('Nazwa inwestycji', 'peira'); ?>">
+                          <span hidden><?= $flat['investment']; ?></span>
                             {!! image(get_invest_img($flat['investment'], $invests),'full', 'table__logo') !!}
                          </td>
                         @endif
