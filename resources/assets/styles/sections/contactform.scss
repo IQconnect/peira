@@ -79,7 +79,7 @@
     overflow: hidden;
 
     @include mediaTo(md) {
-      flex-direction: row;
+      flex-direction: column;
     }
   }
 
