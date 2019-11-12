@@ -34,6 +34,8 @@ $filtr = [
 ];
 @endphp
 
+@dump($fromTo['price']['max'] )
+
 @if ($filtr)
 <div class="filtr">
     @foreach ($filtr as $item)

@@ -171,7 +171,13 @@ function getAreaOfInput($flats)
 	$floors = array_column($flats, 'floor');
 	$rooms = array_column($flats, 'rooms');
 	$areas = array_column($flats, 'area');
-	$price = array_column($flats, 'price');
+    $price = array_column($flats, 'price');
+
+    $price_min = intval(str_replace(' ', '',  min($price)));
+    $price_max = intval(str_replace(' ', '',  max($price)));
+    if($price_min > $price_max)
+        $price_min = 0;
+
 
 	$areaOfInputs = [
 		'floor' => [
@@ -187,7 +193,7 @@ function getAreaOfInput($flats)
 			'max' => intval(max($areas)),
 		],
 		'price' => [
-			'min' => intval(str_replace(' ', '',  min($price))),
+			'min' => $price_min,
 			'max' => intval(str_replace(' ', '',  max($price))),
 		],
 	];
