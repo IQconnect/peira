@@ -1,5 +1,5 @@
 @php
-
+  $data = option('localization');
 	$title= $data['title'];
 	$localization = $data['localization'];
 

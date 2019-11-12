@@ -104,27 +104,7 @@ $invests = [];
                             <span class="button button--status button--<?= $flat['state']['value']; ?>"><?= $flat['state']['label']; ?></span>
                         </td>
                         <td data-label="<?= __('Karta', 'peira'); ?>">
-                            <a target="_blank" href="
-                                <?php
-                                        $inwestycja = $flat['investment'];
-                                        if ($inwestycja === 'OLIWKOWE') {
-                                            echo ('https://oliwkowe.com/mieszkanie/' . $flat['id'] . '/');
-                                        } else if ($inwestycja === 'HELIŃSKIEGO PARK') {
-                                            echo ('http://helinskiego.pl/wp-content/uploads/2018/12/nowe-KARTY-lok.' . substr($flat['id'], 2) . '_A4.pdf');
-                                        } else if ($inwestycja === 'SREBRZYŃSKA PARK 1') {
-                                            $lid = 'B1' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
-                                            echo ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
-                                        } else if ($inwestycja === 'SREBRZYŃSKA PARK 2') {
-                                            $lid = 'B2' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
-                                            echo ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
-                                        } else if ($inwestycja === 'SREBRZYŃSKA PARK III') {
-                                            $lid = 'B3M' . $flat['id'];
-                                            echo ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
-                                        } else {
-                                            echo ('#');
-                                        }
-                                        ?>
-                            ">
+                            <a target="_blank" href="{{ getPlanLink($flat) }}">
                                 @include('svg.download')
                             </a>
                         </td>

@@ -9,6 +9,12 @@
             $link = get_permalink($invest);
             $cat_id = wp_get_post_categories($invest)[0];
             $cat = get_term_by( 'id', $cat_id, 'category' );
+
+            $nameInvest = mb_strtoupper($name);
+            $flats = get_flats_from_invest($nameInvest);
+
+            $free = count(get_free_flats($flats));
+            $message = get_field('off_message', $invest);
         @endphp
 
         <li class="invests-list__elem" data-invest-map-elem-cat="{{ $cat->slug }}" data-invest-map-elem="{{ $name }}">
@@ -21,12 +27,18 @@
                     {!! $address !!}
                 </p>
                 <footer class="invests-list__footer">
-                    <span class="invests-list__info">
-                        5 wolnych mieszkań
-                    </span>
-                    <a href="{{ $link }}" class="invests-list__button button button--rev">
-                        ZOBACZ
-                    </a>
+                  @if ($free)
+                  <span class="invests-list__info">
+                      {{ $free }} wolnych mieszkań
+                  </span>
+                  <a href="{{ $link }}" class="invests-list__button button button--rev">
+                      ZOBACZ
+                  </a>
+                  @else
+                  <p class="invests-list__info">
+                    {{ $message }}
+                  </p>
+                  @endif
                 </footer>
             </div>
         </li>

@@ -1,4 +1,4 @@
-<@php
+@php
 	$main = option('main');
 
 	$title = $main['title'];
@@ -88,3 +88,6 @@
 		</div>
 	</div>
 </section>
+
+@include('sections.localization')
+@include('sections.office-map')

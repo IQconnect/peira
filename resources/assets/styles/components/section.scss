@@ -29,6 +29,10 @@
     background-color: lighten(color(greey), 32%);
   }
 
+  &--light {
+    background-color: color("light");
+  }
+
   &__header {
     @include cssLock(
       "margin-bottom",

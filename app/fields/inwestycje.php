@@ -49,5 +49,13 @@ $inwestycje
         ->addGroup('text-slide')
             ->addFields(get_field_partial('components.text-slide'))
         ->endGroup()
+    ->addTab('finansowanie')
+        ->addGroup('finansowanie')
+            ->addFields(get_field_partial('components.text-avatar'))
+        ->endGroup()
+    ->addTab('WYKOŃCZENIA POD KLUCZ')
+        ->addGroup('finish')
+            ->addFields(get_field_partial('components.text-avatar'))
+        ->endGroup()
     ;
 return $inwestycje;

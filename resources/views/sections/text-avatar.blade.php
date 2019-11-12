@@ -1,4 +1,4 @@
-<@php
+@php
 	$main = $data['main'];
 
 	$title = $main['title'];
@@ -15,7 +15,7 @@
 
 @endphp
 
-<section class="section">
+<section class="section section--{{ $theme }}" id="{{ $ID }}" data-single-section>
 	<div class="container">
 		<div class="text-avatar__wrapper">
 			<header class="section__header">
