@@ -1,0 +1,127 @@
+.contact {
+  padding: 6.1rem 0 7.4rem;
+  font-size: 1.4rem;
+
+  h3 {
+    font-size: 3.6rem;
+
+    @media (min-width: 992px) {
+      margin-top: 5.5rem;
+    }
+  }
+
+  &__box {
+    margin-top: 2.1rem;
+
+    h4 {
+      color: $orange;
+      font-weight: 500;
+      text-transform: uppercase;
+      //margin-bottom: 0.5rem;
+      line-height: 2.6rem; //
+    }
+
+    p {
+      line-height: 2.6rem;
+    }
+  }
+}
+
+.form {
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 991px) {
+    margin-top: 6.1rem;
+  }
+
+  @media (min-width: 992px) {
+    padding: 5.5rem;
+    background-color: #f9f9f9;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 5.5rem 9.5rem;
+  }
+
+  &::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: inherit;
+    content: attr(data-aftersend);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    font-size: 2rem;
+    transition: 1s;
+    transform: translateY(-100%);
+  }
+
+  &.sent::after {
+    transform: none;
+  }
+
+  h3 {
+    margin-top: 0 !important;
+  }
+
+  .input {
+    background: none;
+    border: 2px solid rgba($gray, 0.5);
+    margin-bottom: 2rem;
+    color: inherit;
+
+    &:focus {
+      background: $blue;
+      border-color: $blue;
+      color: $white;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    resize: none;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    input {
+      width: calc(50% - 1rem) !important;
+
+      @media (max-width: 767px) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  &__terms {
+    margin-bottom: 2rem;
+
+    p {
+      font-size: 1rem;
+      line-height: normal;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: $orange;
+      font-weight: 500;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+#map {
+  height: 50vh;
+}

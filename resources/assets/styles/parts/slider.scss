@@ -1,0 +1,143 @@
+.slider {
+  position: relative;
+
+  &--dark {
+    background: url("http://www.srebrzynskapark.pl/wp-content/uploads/2018/01/I-LIKE-ART-Srebrzynska-Park_06_www_ilikeart_pl-1920x1080.jpg") center;
+    background-size: cover;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $blue;
+      content: "";
+      z-index: 0;
+      opacity: 0.95;
+    }
+
+    h4 {
+      color: $orange !important;
+    }
+
+    p {
+      color: $white !important;
+    }
+
+    .dots button {
+      color: rgba($white, 0.2);
+
+      &::after {
+        background: rgba($white, 0.2);
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    padding: 15rem 0;
+  }
+}
+
+.slider1 {
+  z-index: 1;
+
+  &__cell {
+    width: 100%;
+    padding: 5rem 0;
+  }
+
+  &__content {
+    padding-bottom: 6.6rem;
+
+    @media (min-width: 1200px) {
+      padding-top: 6.6rem;
+    }
+  }
+
+  h4 {
+    font-family: $headingFont;
+    font-size: 4.5rem;
+    font-weight: 400;
+    color: $blue;
+    margin-bottom: 5.7rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 2.4rem;
+    color: $gray;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .btn {
+    margin-top: 4.1rem;
+  }
+
+  &__photos {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__dots {
+    position: relative;
+
+    @media (min-width: 1200px) {
+      top: 50%;
+      transform: translateY(-50%);
+
+      li:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      margin-top: 5rem;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    li {
+      text-align: right;
+    }
+  }
+}
+
+.slider2 {
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 1199px) {
+    height: 50vw;
+  }
+
+  &__cell {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    background: url("https://www.srebrzynskapark.pl/wp-content/uploads/2018/01/I-LIKE-ART-Srebrzynska-Park_01_www_ilikeart_pl-1920x1080.jpg") center;
+    background-size: cover;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 0;
+    position: absolute;
+    bottom: -5rem;
+    width: calc(100% - 30px);
+
+    @media (max-width: 1199px) {
+      display: none;
+    }
+  }
+}
+
+.flickity-viewport {
+  transition: height 0.3s;
+}

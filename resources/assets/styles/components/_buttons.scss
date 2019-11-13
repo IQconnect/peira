@@ -1,0 +1,28 @@
+.btn {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+
+  &--one {
+    display: inline-block;
+    background-color: $orange;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $white;
+    padding: 1.8rem 3.4rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: darken($orange, 5%);
+    }
+  }
+
+  &--gray {
+    background: $gray;
+
+    &:hover {
+      background-color: darken($gray, 5%);
+    }
+  }
+}

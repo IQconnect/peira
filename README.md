@@ -47,46 +47,34 @@ During theme installation you will have options to update `style.css` theme head
 ## Theme structure
 
 ```shell
-themes/your-theme-name/         # → Root of your Sage based theme
-├── app/                        # → Theme PHP
-│   ├── Controllers/            # → Controller files
-│   ├── admin.php               # → Theme customizer setup
-│   ├── filters.php             # → Theme filters
-│   ├── helpers.php             # → Helper functions
-│   ├── setup.php               # → Theme setup
-│   └── fields/                 # → ACF fields
-│       ├── components/         # → For reuseble components field
-│       ├── partials/           # → Partials field to import in specyfinc locations
-│       └── page.php            # → Page template with example filed
-├── composer.json               # → Autoloading for `app/` files
-├── composer.lock               # → Composer lock file (never edit)
-├── dist/                       # → Built theme assets (never edit)
-├── node_modules/               # → Node.js packages (never edit)
-├── package.json                # → Node.js dependencies and scripts
-├── resources/                  # → Theme assets and templates
-│   ├── assets/                 # → Front-end assets
-│   │   ├── config.json         # → Settings for compiled assets
-│   │   ├── build/              # → Webpack and ESLint config
-│   │   ├── fonts/              # → Theme fonts
-│   │   ├── images/             # → Theme images
-│   │   ├── scripts/            # → Theme JS
-│   │   ├── styles/             # → Theme stylesheets
-│   │      ├── autoload/        # → Scripts thats can autoload like fonts
-│   │      ├── blocks/          # → Partials field to import in specyfinc locations
-│   │      └── common/          # → TO DO
-│   │      └── components/      # → TO DO
-│   │      └── pages/           # → TO DO
-│   │      └── partials/        # → TO DO
-│   │      └── vendors/         # → TO DO
-│   │      └── main.scss        # → TO DO
-│   ├── functions.php           # → Composer autoloader, theme includes
-│   ├── index.php               # → Never manually edit
-│   ├── screenshot.png          # → Theme screenshot for WP admin
-│   ├── style.css               # → Theme meta information
-│   └── views/                  # → Theme templates
-│       ├── layouts/            # → Base templates
-│       └── partials/           # → Partial templates
-└── vendor/                     # → Composer packages (never edit)
+themes/your-theme-name/   # → Root of your Sage based theme
+├── app/                  # → Theme PHP
+│   ├── Controllers/      # → Controller files
+│   ├── admin.php         # → Theme customizer setup
+│   ├── filters.php       # → Theme filters
+│   ├── helpers.php       # → Helper functions
+│   └── setup.php         # → Theme setup
+├── composer.json         # → Autoloading for `app/` files
+├── composer.lock         # → Composer lock file (never edit)
+├── dist/                 # → Built theme assets (never edit)
+├── node_modules/         # → Node.js packages (never edit)
+├── package.json          # → Node.js dependencies and scripts
+├── resources/            # → Theme assets and templates
+│   ├── assets/           # → Front-end assets
+│   │   ├── config.json   # → Settings for compiled assets
+│   │   ├── build/        # → Webpack and ESLint config
+│   │   ├── fonts/        # → Theme fonts
+│   │   ├── images/       # → Theme images
+│   │   ├── scripts/      # → Theme JS
+│   │   └── styles/       # → Theme stylesheets
+│   ├── functions.php     # → Composer autoloader, theme includes
+│   ├── index.php         # → Never manually edit
+│   ├── screenshot.png    # → Theme screenshot for WP admin
+│   ├── style.css         # → Theme meta information
+│   └── views/            # → Theme templates
+│       ├── layouts/      # → Base templates
+│       └── partials/     # → Partial templates
+└── vendor/               # → Composer packages (never edit)
 ```
 
 ## Theme setup
@@ -130,28 +118,3 @@ Keep track of development and community news.
 * Read and subscribe to the [Roots Blog](https://roots.io/blog/)
 * Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
 * Listen to the [Roots Radio podcast](https://roots.io/podcast/)
-
-# Mirosz Development Guide
-
-## Order job
-1. Create GIT Repo
-2. Create DB
-3. Install Wordpress
-4. Install ACF Pro
-5. Create sage theme
-6. Change assets dir in `resources\assets\config.json`
-7. Change theme name dir in `resources\style.css`
-8. Chose theme in wp panel `resources\style.css`
-9. Have FUN ! :blush:
-
-## Rules
-
-1. Keep files names as `example_component.scss => example_component.blade.php => example_component.php => example_component.js`
-2. Use BEM metodology (expect wordpress classes)
-3. In JS use Objects
-4. Create new branch each section / dont push to master !!!
-5. Pull alot
-6. If section ready Pull Request
-
-## Hints
-1. How to include, pass variable and ect in Blade https://laravel.com/docs/5.8/blade

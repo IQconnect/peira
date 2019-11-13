@@ -28,3 +28,38 @@
     </div>
   </div>
 </header>
+
+
+<header class="header">
+    <div class="container-fluid col-p-normal">
+        <nav>
+            <div class="header__left">
+                <?php wp_nav_menu(array('menu_class'=>'header__menu', 'container'=>'', 'theme_location'=>'main-menu-left')); ?>
+            </div>
+            <div class="header__center">
+                <a class="header__logo" href="<?= get_home_url(); ?>"><h1><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-peira.png" alt="Peira"></h1>
+                </a>
+            </div>
+            <div class="header__right">
+                <?php wp_nav_menu(array('menu_class'=>'header__menu', 'container'=>'', 'theme_location'=>'main-menu-right')); ?>
+                <ul class="header__icons">
+                    <li>
+                        <button data-open-cart id="toggle-cart" class="header__icon">
+                            <img src="<?php bloginfo('template_url'); ?>/assets/images/icon_cart.png" alt="Koszyk">
+                            <span class="header__badge" data-cart-count>3</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <a class="header__mobile-logo" href="<?= get_home_url(); ?>">
+            <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-peira.png" alt="Peira">
+        </a>
+        <div class="header__mobile-icons">
+            <button id="hamburger" class="header__icon hamburger"></button>
+            <button data-open-cart id="toggle-cart" class="header__icon">
+                <img src="<?php bloginfo('template_url'); ?>/assets/images/icon_cart.png" alt="Koszyk">
+            </button>
+        </div>
+    </div>
+</header>

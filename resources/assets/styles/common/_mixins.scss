@@ -35,5 +35,18 @@
   @else {
     // Log a warning.
     @warn "Invalid breakpoint: #{$breakpoint}.";
+@mixin font-size($type) {
+  @if map-has-key($font-size, $type) {
+    $size: map-get($font-size, $type);
+
+    font-size: nth($size, 2);
+
+    @include media(md) {
+      font-size: nth($size, 1);
+    }
+  }
+
+  @else {
+    @warn "Invalid type: #{$breakpoint}.";
   }
 }

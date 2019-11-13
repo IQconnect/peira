@@ -9,6 +9,12 @@
   @include cssLock("font-size", 360, 1920, (gutter_num(3), gutter_num(6)));
 
   font-family: map-get($font-family, title), sans-serif;
+}
+
+.headline {
+  @include cssLock("font-size", 360, 1920, (gutter_num(3), gutter_num(8)));
+
+  font-family: map-get($font-family, title);
   font-weight: 800;
   line-height: 1.7;
 
@@ -19,6 +25,9 @@
   @include cssLock("font-size", 360, 1920, (gutter_num(2.5), gutter_num(4)));
 
   font-family: map-get($font-family, title), sans-serif;
+  @include cssLock("font-size", 360, 1920, (18, 56));
+
+  font-family: map-get($font-family, title);
   font-weight: 800;
 
   @extend %text;
@@ -28,6 +37,9 @@
   @include cssLock("font-size", 360, 1920, (16, 40));
 
   font-family: map-get($font-family, title), sans-serif;
+  @include cssLock("font-size", 360, 1920, (16, 32));
+
+  font-family: map-get($font-family, title);
   font-weight: 800;
 
   @extend %text;
@@ -79,6 +91,38 @@
 
   font-weight: 400;
   font-family: map-get($font-family, main), sans-serif;
+  @include cssLock("font-size", 360, 1920, (12, 16));
+
+  font-family: map-get($font-family, main);
+  font-weight: 800;
+
+  @extend %text;
+
+  &--thin {
+    font-weight: 300;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.large-text {
+  @include cssLock("font-size", 360, 1920, (16, 20));
+
+  font-family: map-get($font-family, main);
+  font-weight: 800;
+}
+
+.small-text {
+  @include cssLock("font-size", 360, 1920, (10, 12));
+
+  font-family: map-get($font-family, main);
+  font-weight: 300;
 }
 
 .bold {
