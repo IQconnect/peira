@@ -1,0 +1,65 @@
+.footer {
+  background: $blue;
+  padding: 9rem 0 6rem;
+  color: $white;
+  text-transform: uppercase;
+
+  a {
+    font-weight: 700;
+    display: inline-block;
+
+    &[href^="tel"] {
+      color: $orange;
+      margin-bottom: 1rem;
+      margin-top: 0.4rem;
+    }
+  }
+
+  &__logo {
+    height: 5rem;
+
+    @media (max-width: 575px) {
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__copyright {
+    margin-top: 5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+}
+
+.cookies {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  max-width: 100%;
+  width: 100%;
+  padding: 14px 0;
+  z-index: 2999;
+  transition: 0.3s;
+  transform: translateY(100%);
+  text-align: center;
+  background: $blue;
+  border-top: 1px solid $orange;
+  color: $white;
+
+  &.visible {
+    transform: none;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: normal;
+
+    &:not(:last-of-type) {
+      margin-bottom: 5px;
+    }
+  }
+
+  a {
+    color: $orange;
+    font-weight: 500;
+  }
+}

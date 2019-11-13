@@ -1,0 +1,50 @@
+.newsletter {
+  padding: 11rem 0;
+  text-align: center;
+
+  form {
+    width: 700px;
+    max-width: 100%;
+    margin: 6.2rem auto auto;
+  }
+
+  &__inputs {
+    display: flex;
+    position: relative;
+
+    input[type="email"] {
+      max-width: 100%;
+      flex-grow: 1;
+
+      @media (max-width: 575px) {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 575px) {
+      flex-direction: column;
+    }
+
+    .btn {
+      position: absolute;
+      right: 0;
+      width: 35%;
+    }
+  }
+
+  &__terms {
+    margin-top: 3rem;
+    text-align: left;
+
+    p {
+      font-size: 1rem;
+      line-height: normal;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: $orange;
+      font-weight: 500;
+    }
+  }
+}

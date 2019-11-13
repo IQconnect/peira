@@ -65,3 +65,4 @@ setTimeout(() => {
     $(this).addClass('-is-change');
   })
 }, 1000)
+

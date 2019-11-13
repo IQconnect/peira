@@ -38,7 +38,7 @@ if (version_compare('4.7.0', get_bloginfo('version'), '>=')) {
  * Ensure dependencies are loaded
  */
 if (!class_exists('Roots\\Sage\\Container')) {
-    if (!file_exists($composer = __DIR__ . '/../vendor/autoload.php')) {
+    if (!file_exists($composer = __DIR__.'/../vendor/autoload.php')) {
         $sage_error(
             __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
             __('Autoloader not found.', 'sage')
@@ -58,7 +58,7 @@ array_map(function ($file) use ($sage_error) {
     if (!locate_template($file, true, true)) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
-}, ['helpers', 'setup', 'filters', 'admin', 'custom-post-type', 'flats']);
+}, ['helpers', 'setup', 'filters', 'admin']);
 
 /**
  * Here's what's happening with these hooks:
@@ -85,9 +85,9 @@ array_map(
 Container::getInstance()
     ->bindIf('config', function () {
         return new Config([
-            'assets' => require dirname(__DIR__) . '/config/assets.php',
-            'theme' => require dirname(__DIR__) . '/config/theme.php',
-            'view' => require dirname(__DIR__) . '/config/view.php',
+            'assets' => require dirname(__DIR__).'/config/assets.php',
+            'theme' => require dirname(__DIR__).'/config/theme.php',
+            'view' => require dirname(__DIR__).'/config/view.php',
         ]);
     }, true);
 
@@ -96,73 +96,205 @@ Container::getInstance()
  * ADD ACF OPTION PAGE
  */
 
-if (function_exists('acf_add_options_page')) {
+if( function_exists('acf_add_options_page') ) {
 
-    acf_add_options_page('Ustawienia Strony');
+	acf_add_options_page('Ustawienia Strony');
+
 }
 
-@ini_set('upload_max_size', '64M');
-@ini_set('post_max_size', '64M');
-@ini_set('max_execution_time', '300');
+/*=============================================
+=            BREADCRUMBS			            =
+=============================================*/
+//  to include in functions.php
+function the_breadcrumb() {
+    $sep = '';
+    if (!is_front_page()) {
+	
+	// Start the breadcrumb with a link to your homepage
+        echo '<ul class="breadcramps">';
+        echo '<li class="breadcramps__item body">';
+        echo '<a href="';
+        echo get_option('home');
+        echo '" class="breadcramps__elem body link">';
+        echo 'Strona główna';
+        echo '</a>';
+        echo '</li>';
+        
+	// Check if the current page is a category, an archive or a single page. If so show the category or archive name.
+        if (is_category() ){
+           
+            $cat = get_queried_object();
 
-function image($id, $size, $class)
-{
-    return wp_get_attachment_image($id, $size, false, ['class' => $class]);
-}
+            if($cat -> category_parent == '0') {
+                echo '<li class="breadcramps__item body">';
+                echo $cat -> name;
+                echo '</li>';
+            }
 
-function option($field)
-{
-    return get_field($field, 'option');
-}
+            else {
+                $parent = get_category($cat -> category_parent);
+                echo '<li class="breadcramps__item body">';
+                echo '<a href="';
+                echo get_category_link($parent -> term_id);
+                echo '" class="breadcramps__elem body link">';
+                echo $parent -> name;
+                echo '</a>';
+                echo '</li>';
+                echo '<li class="breadcramps__item body">';
+                echo $cat -> name;
+                echo '</li>';
+            }
+            //print_r( get_queried_object());
+           
+        } elseif (is_archive() || is_single()){
+            if(is_single()) {
+                if(get_post_type() == 'partnerzy'):
+                    echo '<li class="breadcramps__item body">';
+                    echo '<a href="';
+                    echo get_permalink(277);
+                    echo '" class="breadcramps__elem body link">';
+                    echo get_post_type_object(get_post_type())->label;
+                    echo '</a>';
+                    echo '</li>';
+                else:
+                    echo '<li class="breadcramps__item body">';
+                    echo '<a href="';
+                    echo get_post_type_archive_link(get_post_type());
+                    echo '" class="breadcramps__elem body link">';
+                    echo get_post_type_object(get_post_type())->label;
+                    echo '</a>';
+                    echo '</li>';
+                endif;
+            }
 
-function clearSpace($text)
-{
-    return str_replace(' ', '', $text);
-}
+            else {
+                echo '<li class="breadcramps__item body">';        
+                echo get_post_type_object(get_post_type())->label;
+                echo '</li>';
+            }
+            
+        }
+	
+	// If the current page is a single post, show its title with the separator
+        if (is_single()) {
+            echo '<li class="breadcramps__item body">';
+            the_title();
+            echo '</li>';
 
-add_image_size('gallery-thumb', 180, 100, true);
-add_image_size('invest-list', 420, 140, true);
+            //print_r(get_post_type_object(get_post_type())->label);
+           
+        }
+	
+	// If the current page is a static page, show its title.
+        if (is_page()) {
+            $parent_id = get_page(get_the_ID())->post_parent;
+            $parent = get_page($parent_id);
 
-add_action('admin_head', 'remove_content_editor');
-/**
- * Remove the content editor from ALL pages
- */
-function remove_content_editor()
-{
-    remove_post_type_support('page', 'editor');
-}
+            if($parent_id != 0) {
+                echo '<li class="breadcramps__item body">';
+                echo '<a href="';
+                echo get_permalink($parent_id);
+                echo '" class="breadcramps__elem body link">';
+                echo $parent->post_title;
+                echo '</a>';
+                echo '</li>';
+            }
+            echo '<li class="breadcramps__item body">';
+            echo the_title();
+            echo '</li>';
+            //print_r($parent);
+        }
+	
+	// if you have a static page assigned to be you posts list page. It will find the title of the static page and display it. i.e Home >> Blog
+        if (is_home()){
+            global $post;
+            $page_for_posts_id = get_option('page_for_posts');
+            if ( $page_for_posts_id ) { 
+                $post = get_page($page_for_posts_id);
+                setup_postdata($post);
+                echo '<li class="breadcramps__item body">';
+                the_title();
+                echo '</li>';
+                rewind_posts();
+            }
+        }
 
-function cc_mime_types($mimes)
-{
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
-}
-add_filter('upload_mimes', 'cc_mime_types');
+        if(is_tag()) {
+            echo '<li class="breadcramps__item body">';
+            echo single_tag_title();
+            echo '</li>';
+        }
+        echo '</ul>';
 
-if (!session_id()) {
-    session_start();
-
-    if(!$_SESSION['cart']) {
-        $_SESSION['cart'] = [];
+        if( is_post_type_archive('oferty') )
+        {
+            echo 'halo';
+        }
     }
 }
+/*
+* Credit: http://www.thatweblook.co.uk/blog/tutorials/tutorial-wordpress-breadcrumb-function/
+*/
 
-if($_GET['cart_add']) {
-    $split = explode("-", $_GET['cart_add']);
-    $invest = $split[0];
-    $id = $split[1];
 
-    $item = array(
-        'invest' => $invest,
-        'id' => $id,
-    );
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
 
-    if(!in_array( $item, $_SESSION['cart'] )) {
-        array_push($_SESSION['cart'], $item);
+class Placeholder {
+    function image() {
+        return "images/bg-juno.jpg"; 
     }
+
+    function title() {
+        return 'Twoja bezpieczna przystań'; 
+    }
+} 
+
+function image($id, $size, $class) {
+    return wp_get_attachment_image($id, $size, false, ['class'=>$class]);
 }
 
-if($_GET['cart_remove'] != '') {
-    $remove = intval($_GET['cart_remove']);
-    array_splice($_SESSION['cart'], $remove , 1);
-}
+/* Peira */
+include("helpers/pdf.php");
+	//include("helpers/mail.php");
+	include("helpers/print.php");
+	include("helpers/flats.php");
+
+	acf_update_setting('google_api_key', 'AIzaSyAyF91ePW7ukaHo0VPgbngk4ul63tgcJP4');
+
+	show_admin_bar(false);
+	add_theme_support('title-tag');
+	add_theme_support('post-thumbnails');
+
+	add_action('after_setup_theme', function () {
+		register_nav_menu('main-menu-left', 'Menu główne (lewo)');
+		register_nav_menu('main-menu-right', 'Menu główne (prawo)');
+    });
+
+
+	add_action('init', function () {
+		register_taxonomy('status', 'produkty', array(
+			'labels' => array('name' => 'Status'),
+			'show_admin_column' => true,
+			'hierarchical' => true
+		));
+
+		register_post_type('inwestycje',
+			array(
+				'labels' => array('name' => 'Inwestycje'),
+				'public' => true,
+				'has_archive' => true,
+				'supports' => array('title', 'editor', 'thumbnail'),
+				'taxonomies'  => array('status'),
+				'menu_position' => 6,
+				'menu_icon' => 'dashicons-grid-view',
+				'rewrite' => array('slug' => 'inwestycje'),
+			)
+		);
+	});
+
+	add_action('admin_menu', function () {
+		remove_menu_page('edit-comments.php');
+		remove_menu_page('edit.php');
+	});
