@@ -132,8 +132,7 @@
     }
 
     #{$root}__icon {
-      filter: invert(66%) sepia(86%) saturate(512%) hue-rotate(325deg)
-        brightness(100%) contrast(86%);
+      filter: invert(66%) sepia(86%) saturate(512%) hue-rotate(325deg) brightness(100%) contrast(86%);
     }
 
     #{$root}__content {
