@@ -29,6 +29,7 @@
     height: gutter(3);
     margin: 0 gutter(3);
     filter: invert(0);
+    position: relative;
   }
 
   &__arrow {
@@ -131,7 +132,8 @@
     }
 
     #{$root}__icon {
-      filter: invert(66%) sepia(86%) saturate(512%) hue-rotate(325deg) brightness(100%) contrast(86%);
+      filter: invert(66%) sepia(86%) saturate(512%) hue-rotate(325deg)
+        brightness(100%) contrast(86%);
     }
 
     #{$root}__content {
