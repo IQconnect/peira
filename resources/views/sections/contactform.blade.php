@@ -19,7 +19,7 @@
 
 @endphp
 
-<section class="section section--no-bottom" id="kontakt" data-single-section>
+<section class="section section--no-bottom contactform" id="kontakt" data-single-section>
 	<div class="container">
 		<div class="contactform__wrapper">
 			<div class="contactform__left">

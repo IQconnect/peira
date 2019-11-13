@@ -12,6 +12,10 @@
   align-items: center;
   justify-content: flex-start;
 
+  @include mediaTo(xs) {
+    margin-top: gutter(7);
+  }
+
   &__content {
     position: relative;
     z-index: 1;

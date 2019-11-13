@@ -13,17 +13,29 @@
     padding-bottom: gutter(0.5);
 
     @include mediaTo(md) {
-      margin: guter(2.4) 0;
+      margin: gutter(2.4) 0 0;
       width: 100%;
       justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
     }
   }
 
   &__elem {
     margin-left: gutter(1.6);
+
+    @include mediaTo(md) {
+      margin-left: 0;
+      width: 100%;
+      margin-bottom: gutter(1.6);
+    }
   }
 
   &__button {
+    @include mediaTo(md) {
+      width: 100%;
+    }
+
     &.-is-active {
       @extend .button;
     }
