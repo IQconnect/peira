@@ -47,6 +47,9 @@ add_action('after_setup_theme', function () {
     register_nav_menus([
         'primary_navigation' => __('Primary Navigation', 'sage')
     ]);
+    register_nav_menus([
+        'footer_second' => __('Footer Second', 'sage')
+    ]);
 
     register_nav_menus([
         'footer_navigation' => __('Footer Navigation', 'sage')

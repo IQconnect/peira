@@ -9,17 +9,5 @@
   <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
   {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP3u_2TC5gJdOQwLSkoZJocoSfN0FM8WM"
   async defer></script> --}}
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137381896-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-137381896-1');
-</script>
-
-  
   @php wp_head() @endphp
 </head>

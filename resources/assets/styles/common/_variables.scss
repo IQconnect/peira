@@ -12,14 +12,6 @@ $theme-colors: (
   reservation: #a7a7a7,
   sale: #ec964f,
   sold: #ff4b3f
-  primary: #364ea2,
-  secondary: #dcc38b,
-  grey: #707070,
-  special: #fec400,
-  special_dark: #172247,
-  free: #20ff49,
-  taken: #ffdd1b,
-  sold: #fa0909
 );
 
 $media: (
@@ -39,12 +31,6 @@ $font-family: (
 
 $gutter: 10px;
 $gutter_num: 10;
-  main: "Biryani",
-  title: "Martel"
-);
-
-$gutter: 8px;
-$gutter_num: 8;
 
 /** Bootstrap navbar fix (https://git.io/fADqW) */
 $navbar-dark-toggler-icon-bg: none;
@@ -54,8 +40,4 @@ $z-index: (
   header: 100,
   cart: 200,
   preloader: 300,
-  infobar: 200,
-  header: 100,
-  preloader: 300,
-  popup: 250
 );

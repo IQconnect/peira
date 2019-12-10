@@ -4,10 +4,13 @@ namespace App;
 
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-$builder = new FieldsBuilder('small-hero');
+$smallHero = new FieldsBuilder('small-hero');
 
-$builder
-    ->addText('title', ['title'=>'Tytuł'])
-    ->addImage('img', ['title'=>'Obrazek w tle'])
+$smallHero
+    ->addGroup('content', ['label'=>'', 'width'=>"70%"])
+        ->addTextarea('title', ['label'=>'Tytuł', 'new_lines'=>'br', 'rows'=>2])
+        ->addTextarea('dsc', ['label'=>'Opis', 'new_lines'=>'br', 'rows'=>3])
+    ->endGroup()
+    ->addImage('image', ['label'=>'Zdjęcie', 'return_format' => 'id'])
     ;
-return $builder;
+return $smallHero;

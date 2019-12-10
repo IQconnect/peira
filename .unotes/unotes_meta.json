@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "app": {
+      "name": "app",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "config": {
+      "name": "config",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "resources": {
+      "name": "resources",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "vendor": {
+      "name": "vendor",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "CODE_OF_CONDUCT": 0,
+    "CHANGELOG": 1,
+    "LICENSE": 2,
+    "README": 3
+  }
+}

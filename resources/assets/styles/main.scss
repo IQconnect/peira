@@ -1,11 +1,3 @@
-/** Vendors */
-
-@import "vendors/scss-lock/css-lock";
-@import "vendors/fonts";
-@import "vendors/jquery-ui";
-@import "vendors/normalize";
-@import "vendors/tablesorter";
-
 /** Common */
 
 @import "common/variables";
@@ -22,15 +14,6 @@
 /** Import everything from autoload */
 
 @import "./autoload/**/*";
-/** Base */
-@import "base/fonts";
-@import "base/variables";
-@import "base/mixins";
-@import "base/reset";
-
-/** Import everything from autoload */
-
-// @import "./autoload/**/*";
 
 /**
  * Import npm dependencies
@@ -94,34 +77,3 @@
 @import "sections/preloader";
 
 /** Pages */
-@import "components/tableresponsive";
-@import "components/buttons";
-@import "components/checkbox";
-@import "components/inputs";
-@import "components/ranges";
-@import "components/popup";
-@import "components/preloader";
-@import "components/overlay";
-@import "components/hamburger";
-
-/** Blocks */
-
-/** Layouts */
-
-/** PAges */
-
-/** Parts */
-@import "parts/footer";
-@import "parts/halfsection";
-@import "parts/boxes";
-@import "parts/textsections";
-@import "parts/slider";
-@import "parts/hero";
-@import "parts/newsletter";
-@import "parts/investment";
-@import "parts/contact";
-@import "parts/choosebox";
-@import "parts/advancedsearch";
-@import "parts/flattable";
-@import "parts/header";
-@import "parts/cart";

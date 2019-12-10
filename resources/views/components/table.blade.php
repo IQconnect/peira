@@ -75,19 +75,6 @@ $invests = [];
                 <th><?= __('Status', 'peira'); ?></th>
                 <th data-sorter="false"><?= __('Karta', 'peira'); ?></th>
                 <th data-sorter="false"><?= __('Do koszyka', 'peira'); ?></th>
-<div class="table-responsive">
-    <table class="flat-table">
-        <thead>
-            <tr>
-                <th><?= __('Inwestycja', 'peira'); ?></th>
-                <th><?= __('Numer', 'peira'); ?></th>
-                <th><?= __('Pomieszczenia', 'peira'); ?></th>
-                <th><?= __('Piętro', 'peira'); ?></th>
-                <th><?= __('Powierzchnia', 'peira'); ?> <span class="text-lowercase">[m²]</span></th>
-                <th><?= __('Status', 'peira'); ?></th>
-                <th><?= __('Cena', 'peira'); ?> <span class="text-lowercase">[zł]</span></th>
-                <th data-sorter="false"><?= __('Karta', 'peira'); ?></th>
-                <th data-sorter="false"><?= __('Dodaj do koszyka', 'peira'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -159,71 +146,4 @@ $invests = [];
         </ul>
     </nav>
     @endif
-</div>
-            <tr data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>"
-                data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>"
-                data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>"
-                data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>"
-                data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź"
-                data-district="<?= $flat['investment']; ?>">
-                <td data-label="<?= __('Inwestycja', 'peira'); ?>"><?= $flat['investment']; ?></td>
-                <td data-label="<?= __('Numer', 'peira'); ?>">
-                    <a target="_blank" href="
-									<?php
-										$inwestycja = $flat['investment'];
-										if ($inwestycja === 'OLIWKOWE') {
-											echo ('https://oliwkowe.com/mieszkanie/'.$flat['id'].'/');
-										} else if ($inwestycja === 'HELIŃSKIEGO PARK'){				
-											echo ('http://helinskiego.pl/wp-content/uploads/2018/12/nowe-KARTY-lok.'.substr($flat['id'],2).'_A4.pdf');
-										} else if ($inwestycja === 'SREBRZYŃSKA PARK 1') {
-											$lid = 'B1'.'P'.$flat['floor'].'M'.$flat['staircase'].''.$flat['minstaircase'];
-											echo ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-'.$lid);
-										} else {
-											echo ('#');
-										}
-									?>
-									"><?= $flat['id']; ?></a>
-                </td>
-                <td data-label="<?= __('Pomieszczenia', 'peira'); ?>"><?= $flat['rooms']; ?></td>
-                <td data-label="<?= __('Piętro', 'peira'); ?>"><?= $flat['floor']; ?></td>
-                <td data-label="<?= __('Powierzchnia', 'peira'); ?>"><?= $flat['area']; ?> m²</td>
-                <td data-label="<?= __('Status', 'peira'); ?>">
-                    <span
-                        class="state__box state__box--<?= $flat['state']['value']; ?>"><?= $flat['state']['label']; ?></span>
-                </td>
-                <td data-label="<?= __('Cena', 'peira'); ?>">
-                    <?php if ($flat['state']['value'] === 'sale') : ?>
-                    <span class="price--old"><?= $flat['price2']; ?> zł</span>
-                    <span class="price" data-name="price"><?= $flat['price']; ?> zł</span>
-                    <?php else : ?>
-                    <span class="price" data-name="price"><?= $flat['price']; ?> zł</span>
-                    <?php endif; ?>
-                </td>
-                <td data-label="<?= __('Karta', 'peira'); ?>">
-                    <a target="_blank" href="
-									<?php
-										$inwestycja = $flat['investment'];
-										if ($inwestycja === 'OLIWKOWE') {
-											echo ('https://oliwkowe.com/mieszkanie/'.$flat['id'].'/');
-										} else if ($inwestycja === 'HELIŃSKIEGO PARK'){				
-											echo ('http://helinskiego.pl/wp-content/uploads/2018/12/nowe-KARTY-lok.'.substr($flat['id'],2).'_A4.pdf');
-										} else if ($inwestycja === 'SREBRZYŃSKA PARK 1') {
-											$lid = 'B1'.'P'.$flat['floor'].'M'.$flat['staircase'].''.$flat['minstaircase'];
-											echo ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-'.$lid);
-										} else {
-											echo ('#');
-										}
-									?>
-									"><img src="<?php bloginfo('template_url'); ?>/assets/images/icon_file.png"
-                            alt="<?php print_r($flat['staircase']); ?>"></a>
-                </td>
-                <td data-label="<?= __('Dodaj do koszyka', 'peira'); ?>">
-                    <button data-addtocart class="star"><img
-                            src="<?php bloginfo('template_url'); ?>/assets/images/icon_cart.png"
-                            alt="<?= __('Dodaj do koszyka', 'peira'); ?>"></button>
-                </td>
-            </tr>
-            <?php endif; endforeach; ?>
-        </tbody>
-    </table>
 </div>

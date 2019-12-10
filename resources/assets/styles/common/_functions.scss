@@ -12,9 +12,4 @@
 
 @function gutter_num($key) {
   @return $key * $gutter_num;
-  @return $gutter * $key;
-}
-
-@function gutter_num($key) {
-  @return $gutter_num * $key;
 }

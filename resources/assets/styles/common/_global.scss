@@ -10,18 +10,6 @@ body {
   padding: 0;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-#wpadminbar {
-  opacity: 0;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .gmp_map_opts,
 .gmpMapDetailsContainer,
 .gmp_MapPreview {
