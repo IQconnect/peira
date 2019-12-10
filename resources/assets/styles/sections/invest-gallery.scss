@@ -15,6 +15,11 @@
     }
   }
 
+  @include mediaTo(md) {
+    height: 60vh;
+    margin-top: gutter(2.4);
+  }
+
   .container {
     position: relative;
     height: 100%;
@@ -29,6 +34,10 @@
     transition: $transition;
     animation-duration: $transition;
     pointer-events: none;
+
+    @include mediaTo(md) {
+      height: 60vh;
+    }
   }
 
   &__carousel {
@@ -104,6 +113,10 @@
 
     .flickity-prev-next-button.next {
       right: -270px;
+    }
+
+    @include mediaTo(md) {
+      display: none;
     }
   }
 

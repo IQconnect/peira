@@ -23,7 +23,7 @@
                 @include('components.cart-list')
               </div>
             </div>
-            @if( $_SESSION['cart'] ) {
+            @if( $_SESSION['cart'] ) 
             <footer class="cart__wrapper cart__wrapper--dark">
               <h3 class="cart__title subtitle">
                 Wyślij ofertę na e-maila

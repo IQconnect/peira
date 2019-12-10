@@ -1,6 +1,8 @@
 .contactform {
   $root: &;
 
+  overflow: hidden;
+
   &__image {
     @extend %absolute;
     @extend %image;
@@ -22,7 +24,6 @@
   &__form {
     width: 100%;
     position: relative;
-    overflow: hidden;
 
     @include mediaTo(md) {
       &::before {
