@@ -19,14 +19,22 @@
                 Galeria zdjęć
             </h3>
             @if ($slidersName)
+            @php
+                $index = 1;   
+            @endphp
             <nav class="invest-slider-nav">
                 <ul class="invest-slider-nav__list">
-                    @foreach ($slidersName as $item)
+                    @foreach ($sliders as $slider)
+                    @if ($slider)
                     <li class="invest-slider-nav__elem">
-                        <button class="invest-slider-nav__button button button--rev @if($loop->first) -is-active @endif" data-invest-slider-index="{{ $loop->index + 1 }}">
-                            {{ $item }}
+                        <button class="invest-slider-nav__button button button--rev @if($loop->first) -is-active @endif" data-invest-slider-index="{{ $index }}">
+                            {{ $slidersName[$loop->index] }}
                         </button>
                     </li>
+                    @php
+                        $index++;   
+                    @endphp
+                    @endif
                     @endforeach
                 </ul>
             </nav>
@@ -35,7 +43,7 @@
     </div>
     
     @if($sliders)
-    <div class="invest-slider" data-invest-slider="1">
+    <div class="invest-slider" data-invest-slider="{{ $loop->index + 1 }}">
         @foreach ($sliders as $slider)
         @if ($slider)
         <div class="invest-slider__wrapper">
