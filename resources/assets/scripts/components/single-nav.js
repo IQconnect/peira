@@ -16,7 +16,7 @@ const SingleNav = {
         this.allowScroll = true;
 
         this.class = CLASS;
-        if(this.elem) {
+        if(this.elem.length) {
           this.addEvent();
         }
     },
