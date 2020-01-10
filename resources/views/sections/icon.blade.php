@@ -11,7 +11,7 @@
 				<figure class="icon__imgwrap">
 					{!! image($element['image']['ID'], 'full', 'icon__image') !!}
 				</figure>
-			<p class="icon__text major-text"> {!! $element['text'] !!}	</p>
+			<p class="icon__text extra-major-text"> {!! $element['text'] !!}	</p>
 			</div>
 			@endforeach
         </div>

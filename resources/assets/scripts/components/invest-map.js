@@ -51,7 +51,7 @@ const InvestMap = {
                     lat: Number(elem.dataset.lat),
                     lng: Number(elem.dataset.lng),
                 },
-                zoom: 11,
+                zoom: 11.5,
                 styles: mapStyle,
             });
 

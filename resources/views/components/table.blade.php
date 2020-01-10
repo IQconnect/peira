@@ -92,7 +92,7 @@ $invests = [];
                         </td>
                         <td data-label="<?= __('Pomieszczenia', 'peira'); ?>"><?= $flat['rooms']; ?></td>
                         <td data-label="<?= __('Piętro', 'peira'); ?>"><?= $flat['floor']; ?></td>
-                        <td data-label="<?= __('Powierzchnia', 'peira'); ?>"><?= $flat['area']; ?> m²</td>
+                        <td data-label="<?= __('Powierzchnia', 'peira'); ?>"><?= str_replace('.', ',', $flat['area']); ?> m²</td>
                         <td data-label="<?= __('Cena', 'peira'); ?>">
                             <?php if ($flat['state']['value'] === 'sale') : ?>
                                 <span class="price--old"><?= $flat['price2']; ?> zł</span>

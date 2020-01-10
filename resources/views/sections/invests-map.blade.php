@@ -48,7 +48,7 @@
         @include('components.invests-nav', ['invests'=>$invests])
         <div class="invest-map__wrapper">
             @include('components.invests-list', ['invests'=>$invests])
-            <div class="invest-map__map" invest-map data-lat="51.7812267" data-lng="19.3825387" data-markers="{{ $JSON_MARKERS }}"></div>
+            <div class="invest-map__map" invest-map data-lat="51.7606713" data-lng="19.4536833" data-markers="{{ $JSON_MARKERS }}"></div>
         </div>
     </div>
 </section>

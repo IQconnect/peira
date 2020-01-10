@@ -29,14 +29,17 @@
                 <footer class="invests-list__footer">
                   @if ($free)
                   <span class="invests-list__info">
-                      {{ $free }} wolnych mieszkań
+                      {{ $free }} 
+                      @if($free > 5) wolne mieszkanie
+                      @else wolnych mieszkań
+                      @endif
                   </span>
                   <a href="{{ $link }}" class="invests-list__button button button--rev">
                       ZOBACZ
                   </a>
                   @else
-                  <p class="invests-list__info">
-                    {{ $message }}
+                  <p class="invests-list__info invests-list__info--message">
+                    @include('svg.info') {{ $message }}
                   </p>
                   @endif
                 </footer>
