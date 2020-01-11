@@ -79,7 +79,17 @@ $invests = [];
         </thead>
         <tbody>
             <?php foreach ($flats as $flat) : if ($flat) : ?>
+              @php
+                $inCart = 0;
+                if($_SESSION['cart']) {
+                  foreach ($_SESSION['cart'] as $elem ) {
+                    if($elem['invest'] == $flat['investment'] && $elem['id'] == $flat['id']) {
+                      $inCart = 1;
+                    }
+                  }
+                }
 
+              @endphp
                     <tr data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>" data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>" data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>" data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>" data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź" data-district="<?= $flat['investment']; ?>">
                         @if(!is_single())
                         <td data-label="<?= __('Nazwa inwestycji', 'peira'); ?>">
@@ -110,7 +120,7 @@ $invests = [];
                             </a>
                         </td>
                         <td data-label="<?= __('Dodaj do koszyka', 'peira'); ?>">
-                            <a href="{{ home_url('/koszyk') }}/?cart_add={{ $inwestycja.'-'.$flat['id'] }}" data-cart-add="{{ $inwestycja.'-'.$flat['id'] }}" class="star">
+                            <a href="{{ home_url('/koszyk') }}/?cart_add={{ $flat['investment'].'-'.$flat['id'] }}" data-cart-add="{{ $flat['investment'].'-'.$flat['id'] }}" class="star @if($inCart) -is-active @endif">
                                 @include('svg.cart')
                             </a>
                         </td>
@@ -119,6 +129,8 @@ $invests = [];
             endforeach; ?>
         </tbody>
     </table>
+
+    @dump($_SESSION['cart'])
 
     @if (count($flats) > 10 )
     @php
