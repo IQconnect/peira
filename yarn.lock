@@ -1561,6 +1561,13 @@ animate.css@^3.7.2:
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
   integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
 
+animate@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/animate/-/animate-1.0.0.tgz#461f87afea4bc85db9eecfdebaee44d5b78a186c"
+  integrity sha1-Rh+Hr+pLyF257s/euu5E1beKGGw=
+  dependencies:
+    rafl "~1.2.2"
+
 ansi-align@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-3.0.0.tgz#b536b371cf687caaef236c18d3e21fe3797467cb"
@@ -6208,7 +6215,7 @@ global-prefix@^3.0.0:
     kind-of "^6.0.2"
     which "^1.3.1"
 
-global@^4.3.2:
+global@^4.3.2, global@~4.3.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
@@ -7616,6 +7623,21 @@ jquery-nice-select@^1.1.0:
   integrity sha1-nNWQ/q1Wr+a8zUEpQpP7o1YYnH0=
   dependencies:
     jquery "^2.2.3"
+
+jquery-ui-dist@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.12.1.tgz#5c0815d3cc6f90ff5faaf5b268a6e23b4ca904fa"
+  integrity sha1-XAgV08xvkP9fqvWyaKbiO0ypBPo=
+
+jquery-ui-slider@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui-slider/-/jquery-ui-slider-1.12.1.tgz#3d5f545321553f9699ed338d0502e51a7bf29d22"
+  integrity sha1-PV9UUyFVP5aZ7TONBQLlGnvynSI=
+
+jquery-ui@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
+  integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
 
 jquery@>=1.2.6:
   version "3.4.1"
@@ -10768,6 +10790,13 @@ quick-lru@^1.0.0:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
+rafl@~1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/rafl/-/rafl-1.2.2.tgz#fe930f758211020d47e38815f5196a8be4150740"
+  integrity sha1-/pMPdYIRAg1H44gV9Rlqi+QVB0A=
+  dependencies:
+    global "~4.3.0"
+
 ramda@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.21.0.tgz#a001abedb3ff61077d4ff1d577d44de77e8d0a35"
@@ -12796,10 +12825,10 @@ table@^4.0.1:
     slice-ansi "1.0.0"
     string-width "^2.1.1"
 
-tablesorter@^2.31.1:
-  version "2.31.1"
-  resolved "https://registry.yarnpkg.com/tablesorter/-/tablesorter-2.31.1.tgz#19c550c555fad4d3814500bfd4373e8b4f972305"
-  integrity sha512-xXFYMu2vc73oKNWcf+hdId1Rvtl2W3zS9pJAX0BWjJcn6zmhquXCk+kuBQzKid/Iq/T8ERPlyAJ7q0Wkgym7Sg==
+tablesorter@^2.31.2:
+  version "2.31.2"
+  resolved "https://registry.yarnpkg.com/tablesorter/-/tablesorter-2.31.2.tgz#3a37759c2b269688138b46f88454d61d1895b275"
+  integrity sha512-e4ubgJpHNXHWm8tR+eGt2BPAqoOCY+uOQ6PVDCgtklCtJO6VHmORmjZdtm9aYqSqWsUih72wB0nS95JiXZ2l2g==
   dependencies:
     jquery ">=1.2.6"
 
