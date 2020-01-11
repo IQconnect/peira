@@ -4,13 +4,17 @@
 
   $root: &;
 
-  margin-top: gutter(10);
+  margin-top: gutter(8.4);
   height: calc(60vh);
   position: relative;
   color: color(light);
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  @include mediaTo(xs) {
+    margin-top: gutter(7);
+  }
 
   &__content {
     position: relative;

@@ -37,5 +37,7 @@ $navbar-dark-toggler-icon-bg: none;
 $navbar-light-toggler-icon-bg: none;
 
 $z-index: (
-  header: 100
+  header: 100,
+  cart: 200,
+  preloader: 300,
 );

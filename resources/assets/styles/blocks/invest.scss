@@ -1,7 +1,20 @@
 .invest {
+  @include cssLock(
+    "padding-top",
+    360,
+    1920,
+    (gutter_num(12), gutter_num(25))
+  );
+
   $root: &;
 
   z-index: 10;
+  height: 100%;
+
+  @include mediaTo(lg) {
+    height: auto;
+    padding-top: 0;
+  }
 
   &__title {
     @include cssLock(
@@ -28,6 +41,11 @@
     max-width: gutter(80);
   }
 
+  &__message {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
   &__carousel {
     @extend %absolute;
 
@@ -43,6 +61,18 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }
+
+  &__logo {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      (gutter_num(3.2), gutter_num(6.4))
+    );
+
+    height: gutter(4);
+    width: auto;
   }
 
   &__image {

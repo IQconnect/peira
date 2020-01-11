@@ -12,6 +12,10 @@
       @for $i from (10 * $j - 9) through 10 * $j {
         &:nth-child(#{$i}) {
           display: table-row;
+
+          @include mediaTo(sm) {
+            display: block;
+          }
         }
       }
     }
@@ -48,6 +52,7 @@
       animation-duration: $transition * 2;
       opacity: 0;
       animation-fill-mode: both;
+      width: 100%;
 
       &:hover {
         border: 1px solid color(special);
@@ -65,6 +70,7 @@
     font-weight: 600;
     white-space: nowrap;
     padding: gutter(1.6) gutter(1);
+    position: relative;
 
     button {
       background: none;
@@ -88,11 +94,23 @@
   }
 
   .price--old {
+    @extend %absolute;
+    @extend .table-label;
+
+    height: gutter(2);
+    bottom: gutter(2);
+    margin: auto;
     color: color(greey);
+    text-decoration: line-through;
+
+    @include mediaTo(sm) {
+      padding-left: 50%;
+    }
   }
 
   .price--old + .price {
-    color: #f22;
+    position: relative;
+    top: gutter(0.5);
   }
 
   .star {
@@ -254,6 +272,11 @@
   display: flex;
   justify-content: center;
   margin: gutter(4.8);
+  transition: $transition;
+
+  &.-hide {
+    opacity: 0;
+  }
 
   &__list {
     padding: gutter(0.6) gutter(0.6);
@@ -261,6 +284,17 @@
     display: inline-flex;
     justify-content: center;
     border: 1px solid lighten(color(greey), 20%);
+  }
+
+  &__elem {
+    &:first-child,
+    &:last-child {
+      display: initial !important;
+    }
+
+    &.-hide {
+      display: none;
+    }
   }
 
   /* stylelint-disable */
@@ -297,4 +331,10 @@
       color: color(special);
     }
   }
+}
+
+
+.table__logo {
+  height: gutter(2.4);
+  width: auto;
 }

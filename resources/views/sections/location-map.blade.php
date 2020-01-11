@@ -31,7 +31,7 @@
     $JSON_MARKERS =  json_encode($markers);
 @endphp
 
-<section class="section section--no-bottom" id="localization">
+<section class="section section--no-bottom" id="lokalizacja" data-single-section>
     <div class="container">
         <header class="section__header">
             <h3 class="section__title title">

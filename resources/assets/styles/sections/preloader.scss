@@ -1,0 +1,13 @@
+.preloader {
+  @extend %absolute;
+
+  position: fixed;
+  z-index: z-index(preloader);
+  background: color("light");
+  transition: $transition;
+
+  &.-hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

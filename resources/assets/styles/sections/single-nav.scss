@@ -19,6 +19,7 @@
   @include mediaTo(xl) {
     padding-right: 0;
     justify-content: center;
+    display: none;
   }
 
   &__menu {

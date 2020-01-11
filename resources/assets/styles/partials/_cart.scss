@@ -1,0 +1,132 @@
+.big-cart {
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  .cart-list {
+    position: relative;
+  }
+}
+
+.cart {
+  @extend %absolute;
+
+  position: fixed;
+  left: unset;
+  width: gutter(54.2);
+  max-width: 100%;
+  height: 100vh;
+  transition: $transition;
+  z-index: z-index(cart);
+  background-color: color("light");
+  transform: translateX(100%);
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  &::before {
+    @extend %absolute;
+
+    position: fixed;
+    content: "";
+    background: rgba(color("primary"), 0.8);
+    width: calc(100vw + 100%);
+    z-index: -1;
+    left: unset;
+    transition: $transition;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.-is-active {
+    transform: translateX(0);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &__wrapper {
+    padding: gutter(4.8) gutter(4.8) gutter(2.4);
+    display: grid;
+    gap: gutter(2.4);
+    grid-template-rows: auto 1fr;
+    position: relative;
+    z-index: 1;
+    background-color: color("light");
+
+    &--dark {
+      padding: gutter(4.8);
+      background-color: lighten(color("greey"), 32%);
+      grid-template-rows: auto gutter(5.711) gutter(5.711);
+      gap: gutter(2.4);
+
+      @include mediaTo(xs) {
+        padding: gutter(1.6) gutter(4.8);
+        grid-template-rows: auto auto auto;
+        gap: gutter(0.8);
+      }
+    }
+  }
+
+  &__header {
+    position: relative;
+  }
+
+  &__title {
+    font-weight: 400;
+    color: color("primary");
+  }
+
+  &__close {
+    @extend %absolute;
+
+    left: unset;
+    width: #{gutter(2.4) * 1.4};
+    height: #{gutter(2.4) * 1.4};
+    padding: 0;
+
+    &::before,
+    &::after {
+      @extend %absolute;
+
+      content: "";
+      width: 100%;
+      height: 2px;
+      background: color(special);
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__cart-wrapper {
+    position: relative;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    @include mediaTo(xs) {
+      grid-template-columns: 1fr;
+      gap: gutter(0.8);
+    }
+  }
+
+  &__wrapper-button {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: gutter(3.2);
+
+    @include mediaTo(xs) {
+      grid-template-columns: 1fr;
+      gap: gutter(0.8);
+    }
+  }
+
+  &__input {
+    @extend .contact__input;
+  }
+}

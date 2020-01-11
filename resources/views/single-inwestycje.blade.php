@@ -8,6 +8,10 @@
     @include('sections.single-nav')
     @include('sections.search-flat')
     @include('sections.location-map')
+    @include('sections.text-slide', ['data'=>get_field('text-slide'), 'ID'=>'osiedle'])
     @include('sections.invest-gallery')
+    @include('sections.text-avatar', ['data'=>get_field('finansowanie'), 'ID'=>'finansowanie', 'theme'=>'light'])
+    @include('sections.text-avatar', ['data'=>get_field('finish'), 'ID'=>'wykonczenia-pod-klucz', 'theme'=>'shade'])
+    @include('sections.contactform')
 
 @endsection

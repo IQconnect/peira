@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import IsInViewPort from '../util/IsInViewPort';
+import mapStyle from '../util/mapStyle';
 import 'jquery';
 
 const loadGoogleMapsApi = require('load-google-maps-api')
@@ -37,179 +38,21 @@ const InvestMap = {
     },
 
     initMap() {
-        const mapStyle = [
-            {
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#f5f5f5"
-                    }
-                ]
-            },
-            {
-                "elementType": "labels.icon",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#616161"
-                    }
-                ]
-            },
-            {
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                    {
-                        "color": "#f5f5f5"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative.land_parcel",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#bdbdbd"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#eeeeee"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#757575"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#e5e5e5"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#9e9e9e"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#ffffff"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#757575"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#dadada"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#616161"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#9e9e9e"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit.line",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#e5e5e5"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit.station",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#eeeeee"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#c9c9c9"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#9e9e9e"
-                    }
-                ]
-            }
-        ];
-
         const elem = this.elem;
         const markersArray = this.markersArray;
         const selectFlag = (name) => { this.selectFlag(name) };
         const myMap = [];
 
-        loadGoogleMapsApi().then(function (googleMaps) {
+        loadGoogleMapsApi(
+            { 'key': 'AIzaSyBP3u_2TC5gJdOQwLSkoZJocoSfN0FM8WM', }
+        ).then(function (googleMaps) {
             const map = new googleMaps.Map(elem, {
                 center: {
                     lat: Number(elem.dataset.lat),
                     lng: Number(elem.dataset.lng),
                 },
-                zoom: 11,
+                zoom: 11.5,
+                styles: mapStyle,
             });
 
             myMap.push(map);
@@ -292,16 +135,16 @@ const InvestMap = {
 
                     let top = elem.getBoundingClientRect().y;
                     let offset = -window.innerHeight / 5;
-                    if(top < 0) {
+                    if (top < 0) {
                         offset = -200;
                     }
 
                     top = $(window).scrollTop() + top + offset;
 
-                    console.log('top: ', top, '| height: ', elem.offsetHeight, '| elemTop: ',elem.getBoundingClientRect().top,'| offset: ', offset);
+                    console.log('top: ', top, '| height: ', elem.offsetHeight, '| elemTop: ', elem.getBoundingClientRect().top, '| offset: ', offset);
                     const body = $("html, body");
                     body.stop().animate({ scrollTop: top }, 500, 'swing', function () {
-                        
+
                     });
                 }
             }
@@ -319,7 +162,7 @@ const InvestMap = {
             elem.addEventListener('click', (e) => {
                 const $this = e.currentTarget;
 
-                if(window.innerWidth < 993) {
+                if (window.innerWidth < 993) {
                     window.location = $this.querySelector('.invests-list__button').getAttribute('href');
                 }
 
@@ -350,14 +193,14 @@ const InvestMap = {
         this.list.classList.add(this.classHide);
 
         this.trigger.forEach((elem) => {
-            if(elem.dataset.investMapElemCat == cat || cat == 'all') {
-                setTimeout(()=> {
-                    elem.classList.remove(this.classHide) 
+            if (elem.dataset.investMapElemCat == cat || cat == 'all') {
+                setTimeout(() => {
+                    elem.classList.remove(this.classHide)
                 }, 400)
             }
-            
+
             else {
-                setTimeout(()=> {
+                setTimeout(() => {
                     elem.classList.add(this.classHide)
                 }, 400)
             }
@@ -378,7 +221,7 @@ const InvestMap = {
             }
         });
 
-        setTimeout(()=> {
+        setTimeout(() => {
             this.list.classList.remove(this.classHide);
             this.map[0].panBy(0, 1);
             this.map[0].setZoom(11);

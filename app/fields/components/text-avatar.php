@@ -13,9 +13,7 @@ $textavatar
 	->addTextArea('firmtitle', ['label'=> 'Dopiska','rows'=>1,'wrapper' => array ('width' => '100%')])
 		->addRepeater('firm')
 			->addTextArea('name', ['label'=> 'Nazwa','rows'=>2,'wrapper' => array ('width' => '50%%')])
-			->addTextArea('adres', ['label'=> 'Adres','rows'=>1, 'wrapper' => array ('width' => '40%')])
-			->addTextArea('code', ['label'=> 'Kod pocztowy','rows'=>1, 'wrapper' => array ('width' => '10%')])
-			->addTextArea('site', ['label'=> 'Strona www','rows'=>1, 'wrapper' => array ('width' => '20%')])
+			->addWysiwyg('content', ['label'=> 'Treść','new_lines'=>'br','rows'=>4,'wrapper' => array ('width' => '50%%')])
 			->addImage('avatar', ['label'=> 'Zdjęcie', 'wrapper' => array ('width' => '100%')])
 	->endGroup()
 		;

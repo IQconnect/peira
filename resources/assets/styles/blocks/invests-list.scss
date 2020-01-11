@@ -63,5 +63,14 @@
   &__info {
     color: color(special);
     font-weight: 600;
+
+    &--message {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: gutter(1);
+      }
+    }
   }
 }

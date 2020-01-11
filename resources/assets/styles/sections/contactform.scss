@@ -1,6 +1,8 @@
 .contactform {
   $root: &;
 
+  overflow: hidden;
+
   &__image {
     @extend %absolute;
     @extend %image;
@@ -78,7 +80,7 @@
     overflow: hidden;
 
     @include mediaTo(md) {
-      flex-direction: row;
+      flex-direction: column;
     }
   }
 
@@ -127,5 +129,15 @@
 
   &__answear {
     color: color(primary);
+  }
+}
+
+p {
+  a {
+    transition: $transition;
+
+    &:hover {
+      color: color(special);
+    }
   }
 }

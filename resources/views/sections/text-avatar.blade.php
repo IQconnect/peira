@@ -1,4 +1,4 @@
-<@php
+@php
 	$main = $data['main'];
 
 	$title = $main['title'];
@@ -15,7 +15,7 @@
 
 @endphp
 
-<section class="section">
+<section class="section section--{{ $theme }}" id="{{ $ID }}" data-single-section>
 	<div class="container">
 		<div class="text-avatar__wrapper">
 			<header class="section__header">
@@ -40,9 +40,7 @@
 					@foreach ($firm as $item)
 					@php
 						$name = $item['name'];
-						$adres = $item['adres'];
-						$code = $item['code'];
-						$site = $item['site'];
+						$content = $item['content'];
 						$image = $item['avatar'];
 					@endphp
 						<li class="text-avatar__elem">
@@ -53,15 +51,9 @@
 								<h3 class="text-avatar__name text">
 									{{ $name }}
 								</h3>
-								<p class="text-avatar__answear text">
-									{{$adres }}
-								</p>
-								<p class="text-avatar__answear text">
-									{{ $code }}
-								</p>
-								<p class="text-avatar__answear text">
-									{{ $site }}
-								</p>
+								<div class="text-avatar__answear text">
+									{!! $content !!}
+								</div>
 							</div>
 						</li>
 					@endforeach

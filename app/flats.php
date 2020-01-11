@@ -100,9 +100,15 @@ function get_all_flats()
 	return $rows;
 }
 
-function get_flat($id)
+function get_flat($id, $invest = false)
 {
-	$flats = get_all_flats();
+    if($invest) {
+        $flats = get_flats_from_invest($invest);
+    }
+
+    else {
+        $flats = get_all_flats();
+    }
 	foreach ($flats as $flat) if ($flat['id'] === $id) return $flat;
 }
 
@@ -158,4 +164,60 @@ function get_sale_flats($flats)
 {
 	$result = array_filter($flats, 'isSale');
 	return $result;
+}
+
+function getAreaOfInput($flats)
+{
+	$floors = array_column($flats, 'floor');
+	$rooms = array_column($flats, 'rooms');
+	$areas = array_column($flats, 'area');
+    $price = array_column($flats, 'price');
+
+    $price_min = intval(str_replace(' ', '',  min($price)));
+    $price_max = intval(str_replace(' ', '',  max($price)));
+    if($price_min > $price_max)
+        $price_min = 0;
+
+
+	$areaOfInputs = [
+		'floor' => [
+			'min' => intval(min($floors)),
+			'max' => intval(max($floors)),
+		],
+		'rooms' => [
+			'min' => intval(min($rooms)),
+			'max' => intval(max($rooms)),
+		],
+		'area' => [
+			'min' => intval(min($areas)),
+			'max' => intval(max($areas)),
+		],
+		'price' => [
+			'min' => $price_min,
+			'max' => intval(str_replace(' ', '',  max($price))),
+		],
+	];
+
+	return $areaOfInputs;
+}
+
+
+function getPlanLink($flat) {
+    $inwestycja = $flat['investment'];
+    if ($inwestycja === 'OLIWKOWE') {
+        return ('https://oliwkowe.com/mieszkanie/' . $flat['id'] . '/');
+    } else if ($inwestycja === 'HELIŃSKIEGO PARK') {
+        return ('http://helinskiego.pl/wp-content/uploads/2018/12/nowe-KARTY-lok.' . substr($flat['id'], 2) . '_A4.pdf');
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK 1') {
+        $lid = 'B1' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
+        return ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK 2') {
+        $lid = 'B2' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
+        return ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK III') {
+        $lid = 'B3M' . $flat['id'];
+        return ('https://www.srebrzynskapark.pl/znajdz-mieszkanie/wyszukiwarka-graficzna/#m-' . $lid);
+    } else {
+        return ('#');
+    }
 }

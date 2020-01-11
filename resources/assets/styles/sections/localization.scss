@@ -25,6 +25,7 @@
     @include cssLock("width", 360, 1920, (30, 50));
 
     margin: 0 gutter(2) 0 0;
+    position: relative;
 
     @include mediaTo(md) {
       margin: 0;

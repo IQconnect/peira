@@ -72,7 +72,7 @@
   &__image {
     @extend %image;
 
-    object-fit: none;
+    object-fit: cover;
 
     @include mediaTo(lg) {
       object-fit: cover;

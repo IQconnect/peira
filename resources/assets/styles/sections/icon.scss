@@ -22,6 +22,7 @@
     @include cssLock("width", 360, 1920, (30, 80));
 
     margin: 0;
+    position: relative;
   }
 
   &__text {

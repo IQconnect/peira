@@ -43,6 +43,8 @@
 @import "components/table";
 @import "components/icons";
 @import "components/invest-slider-nav";
+@import "components/cart-list";
+@import "components/cart-elem";
 
 /** Blocks */
 @import "blocks/widgets";
@@ -52,6 +54,7 @@
 /** Partials */
 @import "partials/header";
 @import "partials/footer";
+@import "partials/cart";
 
 /** Sections */
 @import "sections/hero";
@@ -70,5 +73,7 @@
 @import "sections/single-nav";
 @import "sections/invest-gallery";
 @import "sections/location-map";
+@import "sections/office-map";
+@import "sections/preloader";
 
 /** Pages */
