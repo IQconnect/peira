@@ -1,0 +1,76 @@
+.drafts {
+  $root: &;
+
+  list-style: none;
+  margin: gutter(6) 0 0;
+  padding: 0;
+  display: none;
+  grid-template-columns: 1fr;
+  gap: gutter(3);
+
+  @include media(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.-is-active {
+    display: grid;
+  }
+
+  &__elem {
+    @extend .fadeIn;
+
+    animation-duration: $transition * 2;
+    opacity: 0;
+    animation-fill-mode: both;
+    display: none;
+  }
+
+  &__summary {
+    display: flex;
+    width: 100%;
+    background-color: lighten(color(greey), 62%);
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+
+  &__info-wraper {
+    border: 1px solid lighten(color(greey), 32%);
+    padding: gutter(3);
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 2);
+
+    @include media(md) {
+      width: calc(100% / 3);
+      padding: gutter(1.6);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: gutter(1.6);
+    top: gutter(1);
+
+    @extend .table-label;
+
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: 0 !important;
+  }
+
+  /* stylelint-disable */
+  @for $j from 1 through 20 {
+    &[data-plans="#{$j}"] {
+      #{$root}__elem {
+        @for $i from (10 * $j - 9) through 10 * $j {
+          &:nth-child(#{$i}) {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import 'jquery'
+
 const CONFIG = {
   ELEM: '[cart]',
   CLOSE: '[cart-close]',
@@ -64,6 +66,11 @@ const Cart = {
             this.loadCart(link);
 
             this.cartCount = this.cartCount + 1;
+            const addBtn = document.querySelectorAll(`[data-cart-add="${$this.dataset.cartAdd}"]`);
+
+            addBtn.forEach(element => {
+              element.classList.add(this.class);
+            });
           }
           this.count();
         })
@@ -81,12 +88,24 @@ const Cart = {
 
         const $this = e.currentTarget;
 
-        const addBtn = document.querySelector(`[data-cart-add="${$this.dataset.cartRemove}"]`);
-        if(addBtn.classList.contains(this.class)) {
-          addBtn.classList.remove(this.class);
+        const addBtn = document.querySelectorAll(`[data-cart-add="${$this.dataset.cartRemove}"]`);
+
+        addBtn.forEach(element => {
+          if(element.classList.contains(this.class)) {
+            element.classList.remove(this.class);
+          }
+        });
+
+
+        if($this.closest('li')) {
+          $this.closest('li').remove();
+        }
+        else {
+          $this.closest('tr').remove();
+          const removeBtn = document.querySelector(`[data-cart-remove="${$this.dataset.cartRemove}"]`);
+          removeBtn.closest('li').remove();
         }
 
-        $this.closest('li').remove();
         let link = $this.getAttribute('href');
 
         link = link.replace(/ /g, '%20');
@@ -103,6 +122,12 @@ const Cart = {
 
   hide() {
     this.elem.classList.remove(this.class);
+
+    if($('.page-template-koszyk').length) {
+      $('.flat-table tbody').html(`<tr><td style='text-align: left;padding-left: 30px;' colspan='8'>Twój koszyk jest pusty <a href="../znajdz_mieszkanie/" class="button table-responsive__button">
+      Wróć do listy mieszkań
+    </a><td></tr>`);
+    }
   },
 
   show() {

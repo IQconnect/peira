@@ -3,25 +3,30 @@ import 'tablesorter';
 
 const CONFING = {
     TABLE: '[data-table]',
+    PLANS: '[data-plans]',
     NAV: '[data-table-nav]',
     FLITR: '.filtr__input',
     SALE: '#sale',
     FREE: '#free',
+    SWITCHER : '[data-table-switcher]',
     CLASS: {
         active: '-is-active',
+        switch: '-is-switched',
     },
 };
 
-const { TABLE, NAV, CLASS, FLITR, SALE, FREE } = CONFING;
+const { TABLE, PLANS, NAV, CLASS, FLITR, SALE, FREE, SWITCHER } = CONFING;
 
 const Table = {
     init() {
 
         this.table = document.querySelector(TABLE);
+        this.plans = document.querySelector(PLANS);
         this.nav = document.querySelectorAll(NAV);
         this.filtr = document.querySelectorAll(FLITR);
         this.sale = document.querySelector(SALE);
         this.free = document.querySelector(FREE);
+        this.switcher = document.querySelector(SWITCHER);
 
         if(this.table) {
             this.inputsVal = {};
@@ -61,6 +66,8 @@ const Table = {
         this.filtr.forEach(element => {
             element.addEventListener('change', e => this.filtrTable(e));
         });
+
+        this.switcher.addEventListener('click', e => this.switchView(e));
     },
 
     changePage(e, myNum) {
@@ -94,6 +101,7 @@ const Table = {
         this.nav[num].classList.add(this.class.active);
 
         this.table.dataset.table = num;
+        this.plans.dataset.plans = num;
 
         console.log(num);
     },
@@ -256,6 +264,12 @@ const Table = {
         this.newTableNav();
         this.changePage('', 1);
         this.tablesorter();
+    },
+
+    switchView() {
+      this.switcher.closest('div').classList.toggle(this.class.switch);
+      this.plans.classList.toggle(this.class.active);
+      this.table.classList.toggle(this.class.active);
     },
 }
 

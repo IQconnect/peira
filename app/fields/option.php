@@ -13,6 +13,7 @@ $option
     ->addTab('main', ['label'=>'Ustawienia główne', 'placement' => 'left'])
         ->addImage('logo_header', ['label'=>'Logo Header'])
         ->addPageLink('invest_link', ['label'=>'Link do inwestycji'] )
+        ->addPageLink('search_link', ['label'=>'Link do wyszukiwarki'] )
     ->addTab('LokalizacjaMenu', ['label'=>'Lokalizacja Menu', 'placement' => 'left'])
        ->addRepeater('loc_nav')
             ->addText('name', ['Label'=>'Tytuł'])

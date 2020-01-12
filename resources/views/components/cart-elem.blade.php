@@ -14,7 +14,7 @@
       <a class="cart-elem__button button button--transparent" href={{ getPlanLink($flat) }} target="_blank">
         @include('svg.loop')
       </a>
-      <a href="{{ home_url('/koszyk') }}/?cart_remove={{ $index }}" class="cart-elem__button button button--transparent" data-cart-remove="{{ $flat['investment'].'-'.$flat['id'] }}">
+      <a href="{{ home_url('/koszyk') }}/?cart_remove={{ $flat['investment'].'-'.$flat['id'] }}" class="cart-elem__button button button--transparent" data-cart-remove="{{ $flat['investment'].'-'.$flat['id'] }}">
           @include('svg.trash')
       </a>
     </div>

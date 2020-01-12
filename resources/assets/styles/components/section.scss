@@ -25,6 +25,10 @@
     padding-bottom: 0;
   }
 
+  &--no-top {
+    padding-top: 0;
+  }
+
   &--shade {
     background-color: lighten(color(greey), 32%);
   }
