@@ -8,6 +8,7 @@ const CONFING = {
     FLITR: '.filtr__input',
     SALE: '#sale',
     FREE: '#free',
+    SORT: '[data-sort-invest]',
     SWITCHER : '[data-table-switcher]',
     CLASS: {
         active: '-is-active',
@@ -15,7 +16,7 @@ const CONFING = {
     },
 };
 
-const { TABLE, PLANS, NAV, CLASS, FLITR, SALE, FREE, SWITCHER } = CONFING;
+const { TABLE, PLANS, NAV, CLASS, FLITR, SALE, FREE, SORT, SWITCHER } = CONFING;
 
 const Table = {
     init() {
@@ -26,6 +27,7 @@ const Table = {
         this.filtr = document.querySelectorAll(FLITR);
         this.sale = document.querySelector(SALE);
         this.free = document.querySelector(FREE);
+        this.sort = document.querySelector(SORT);
         this.switcher = document.querySelector(SWITCHER);
 
         if(this.table) {
@@ -70,13 +72,15 @@ const Table = {
             element.addEventListener('change', e => this.filtrTable(e));
         });
 
-        this.switcher.addEventListener('click', e => this.switchView(e));
+        if (this.switcher) {
+          this.switcher.addEventListener('click', e => this.switchView(e));
+        }
     },
 
     changePage(e, myNum) {
         const $this = e.currentTarget;
 
-        console.log('this.navLength: ', this.navLength);
+        //console.log('this.navLength: ', this.navLength);
 
         // Change button class
         this.nav.forEach(element => { element.classList.remove(this.class.active) })
@@ -106,7 +110,7 @@ const Table = {
         this.table.dataset.table = num;
         this.plans.dataset.plans = num;
 
-        console.log(num);
+        //console.log(num);
     },
 
     resetTable() {
@@ -130,7 +134,7 @@ const Table = {
             element.parentElement.classList.add('-hide');
         });
 
-        console.log('filtr', this.filtr);
+        //console.log('filtr', this.filtr);
 
         for (let index = 1; index < navs + 1; index++) {
             this.nav[index].parentElement.classList.remove('-hide');
@@ -202,7 +206,32 @@ const Table = {
             }
         }
 
+        const isInInvest = elem => {
+          if(elem.dataset.district == 'OLIWKOWE') {
+            if(this.inputsVal['oliwkowe-apartamenty'] == 1) {
+              return true;
+            }
+          }
+
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK 1') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK 2') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK III') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+        }
+
         rows.forEach((elem) => {
+            if (!isInInvest(elem)) elem.remove();
             if (!isInArea(elem)) elem.remove();
             if (!isInPrice(elem)) elem.remove();
             if (!isInRooms(elem)) elem.remove();
@@ -220,7 +249,6 @@ const Table = {
         });
 
         plans.forEach((elem) => {
-          console.log('elem: ', elem);
           if (!isInArea(elem)) elem.remove();
           if (!isInPrice(elem)) elem.remove();
           if (!isInRooms(elem)) elem.remove();

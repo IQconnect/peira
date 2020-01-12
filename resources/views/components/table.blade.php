@@ -68,11 +68,38 @@ $invests = [];
         </a>
         @endif
       </div>
-      <div class="table-responsive__cell table-responsive__cell--switcher">
-        <span class="minor-text filtr__label filtr__label--switcher -is-active">LISTA</span>
-        <button class="filtr__switcher" data-table-switcher></button>
-        <span class="minor-text filtr__label filtr__label--switcher">RZUTY</span>
+      @if ($basket == 0)
+      <div class="table-responsive__cell">
+        {{-- SORTUJ --}}
+        @if($invests)
+        <div class="table-responsive__cell table-responsive__cell--switcher sort-invest">
+          <span class="minor-text filtr__label filtr__label--sort">SORTUJ</span>
+          <div class="sort-invest__wrapper">
+
+            <input class="filtr__input filtr__input--sort minor-text" type="text" name="inwestycja" value="Wszystkie inwestycje" readonly>
+
+            <ul class="sort-invest__list">
+              @foreach ($invests as $item)
+              <li class="sort-invest__elem">
+                <input type="checkbox" data-sort-invest id="{{ $item['slug'] }}" name="{{ $item['slug'] }}" class="filtr__checkbox filtr__input" checked>
+                <div class="filtr__input filtr__input--checkbox"></div>
+                <label class="filtr__label minor-text" for="{{ $item['name'] }}">
+                  {{ $item['name'] }}
+                </label>
+              </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        @endif
+        {{-- LISTA / RZUTY --}}
+        <div class="table-responsive__cell table-responsive__cell--switcher">
+          <span class="minor-text filtr__label filtr__label--switcher -is-active">LISTA</span>
+          <button class="filtr__switcher" data-table-switcher></button>
+          <span class="minor-text filtr__label filtr__label--switcher">RZUTY</span>
+        </div>
       </div>
+      @endif
     </div>
     <table class="flat-table -is-active" data-table=1>
         <thead>

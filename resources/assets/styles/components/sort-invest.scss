@@ -1,0 +1,52 @@
+.sort-invest {
+  $root: &;
+
+  position: relative;
+  z-index: 10;
+
+  &:hover {
+    #{$root}__list {
+      @extend .fadeIn;
+
+      pointer-events: initial;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__list {
+    @extend .fadeOut;
+
+    opacity: 0;
+    animation-duration: $transition;
+    animation-fill-mode: both;
+    position: absolute;
+    width: gutter(20);
+    list-style: none;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    box-shadow: 0 gutter(0.5) gutter(1.5) 0 rgba(14, 35, 68, 0.1);
+    pointer-events: none;
+  }
+
+  &__elem {
+    position: relative;
+    width: 100%;
+    padding: gutter(1.6);
+    background-color: color("light");
+
+    .filtr__label {
+      margin: 0 !important;
+      padding: 0 0 0 gutter(4);
+      width: 100%;
+    }
+
+    .filtr__input--checkbox {
+      left: gutter(1.6);
+    }
+  }
+}
