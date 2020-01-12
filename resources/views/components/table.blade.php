@@ -185,13 +185,7 @@ $invests = [];
 
       <li class="drafts__elem" data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>" data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>" data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>" data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>" data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź" data-district="<?= $flat['investment']; ?>">
 
-        @php
-          $plan_url = "";
-          if($flat['investment'] == "OLIWKOWE") {
-            $plan_url = 'https://oliwkowe.com/wp-content/themes/oliwkowe/plans/800/rzuty_mieszkan_oliwkowe'.$flat['id'].'.jpg';
-          }
-        @endphp
-        <img src="{{ $plan_url }}" alt="Rzut mieszkania {{ $flat['staircase'] .'-'.$flat['id'] }}"  class="drafts__title">
+        <img src="{{ getImgLink($flat) }}" alt="Rzut mieszkania {{ $flat['staircase'] .'-'.$flat['id'] }}"  class="drafts__title">
 
         <div class="drafts__summary">
           {{-- CENA --}}

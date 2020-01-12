@@ -61,6 +61,20 @@
     outline: 0 !important;
   }
 
+  .price--old {
+    @extend .table-label;
+
+    position: absolute;
+    height: gutter(2);
+    bottom: gutter(0.5);
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: color(greey);
+    text-decoration: line-through;
+  }
+
   /* stylelint-disable */
   @for $j from 1 through 20 {
     &[data-plans="#{$j}"] {
