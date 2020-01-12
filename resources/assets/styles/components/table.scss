@@ -28,6 +28,10 @@
 
       &:first-child {
         margin-bottom: gutter(1.6);
+
+        @include media(md) {
+          margin-bottom: 0;
+        }
       }
 
       @include media(md) {
