@@ -37,6 +37,9 @@ const Table = {
             this.defaultTable = this.table.querySelector('tbody');
             this.defaultTableContent = this.defaultTable.innerHTML;
 
+            this.defaultPlans = this.plans;
+            this.defaultPlansContent = this.defaultPlans.innerHTML;
+
             this.class = CLASS;
 
             this.tablesorter();
@@ -108,6 +111,7 @@ const Table = {
 
     resetTable() {
         this.defaultTable.innerHTML = this.defaultTableContent;
+        this.defaultPlans.innerHTML = this.defaultPlansContent;
     },
 
     newTableNav() {
@@ -139,6 +143,7 @@ const Table = {
 
     newTable() {
         const rows = this.defaultTable.querySelectorAll('tr');
+        const plans = this.defaultPlans.querySelectorAll('li');
         const saleChecked = this.sale.checked;
         const freeChecked = this.free.checked;
 
@@ -213,6 +218,24 @@ const Table = {
               if (!isSale(elem)) elem.remove();
             }
         });
+
+        plans.forEach((elem) => {
+          console.log('elem: ', elem);
+          if (!isInArea(elem)) elem.remove();
+          if (!isInPrice(elem)) elem.remove();
+          if (!isInRooms(elem)) elem.remove();
+          if (!isInFloor(elem)) elem.remove();
+          if (!isInFloor(elem)) elem.remove();
+
+          if(saleChecked && freeChecked) {
+            if (!isFree(elem, saleChecked)) elem.remove();
+          }
+
+          else {
+            if (!isFree(elem, saleChecked)) elem.remove();
+            if (!isSale(elem)) elem.remove();
+          }
+      });
 
         this.countRows = this.defaultTable.querySelectorAll('tr').length;
 
