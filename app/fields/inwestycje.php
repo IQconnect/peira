@@ -17,6 +17,7 @@ $inwestycje
         ->addTextarea('dsc', ['label'=>'opis', 'new_lines'=>'br'])
         ->addText('address', ['label'=>'Adres', 'new_lines'=>'br'])
         ->addTextarea('off_message', ['label'=>'Wiadomość nieaktywnej inwestycji', 'new_lines'=>'br'])
+        ->addLink('linkToPage', ['label'=>'Link do strony'])
     ->addTab('gallery', ['label'=> 'Galeria','placement' => 'left'])
         ->addGallery('gallery', ['label'=> 'Galeria'])
     ->addTab('mapa', ['label'=> 'Mapa','placement' => 'left'])

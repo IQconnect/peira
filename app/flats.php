@@ -221,3 +221,23 @@ function getPlanLink($flat) {
         return ('#');
     }
 }
+
+function getImgLink($flat) {
+    $inwestycja = $flat['investment'];
+    if ($inwestycja === 'OLIWKOWE') {
+        return ('https://oliwkowe.com/wp-content/themes/oliwkowe/plans/1600/rzuty_mieszkan_oliwkowe' . $flat['id'] . '.jpg');
+    } else if ($inwestycja === 'HELIŃSKIEGO PARK') {
+        return ('http://helinskiego.pl/wp-content/uploads/2018/12/nowe-KARTY-lok.' . substr($flat['id'], 2) . '_A4.pdf');
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK 1') {
+        $lid = 'B1' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
+       return ('https://www.srebrzynskapark.pl/wp-content/themes/sreb/plans/' . $lid . '.jpg');
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK 2') {
+        $lid = 'B2' . 'P' . $flat['floor'] . 'M' . $flat['staircase'] . '' . $flat['minstaircase'];
+       return ('https://www.srebrzynskapark.pl/wp-content/themes/sreb/plans/' . $lid . '.jpg');
+    } else if ($inwestycja === 'SREBRZYŃSKA PARK III') {
+        $lid = 'B3M' . $flat['id'];
+        return ('https://www.srebrzynskapark.pl/wp-content/themes/sreb/plans/' . $lid . '.jpg');
+    } else {
+        return ('#');
+    }
+}

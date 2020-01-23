@@ -1,4 +1,9 @@
 @php
+
+// Check if component is load in basket
+$basket = $title == 'Koszyk' ? 1 : 0;
+$searchLink = option('search_link');
+
 $invests = [];
     $query = new WP_Query(array(
         'post_type' => 'inwestycje',
@@ -52,10 +57,51 @@ $invests = [];
 @endphp
 
 <div class="table-responsive">
-    <h3 class="section__title title">
-        Wyniki wyszukiwania
-    </h3>
-    <table class="flat-table" data-table=1>
+    <div class="table-responsive__header">
+      <div class="table-responsive__cell">
+        <h3 class="section__title title">
+          {{ $title or ' Wyniki wyszukiwania' }}
+        </h3>
+        @if ($basket)
+        <a href="{{ $searchLink }}" class="button table-responsive__button">
+          Powrót do listy mieszkań
+        </a>
+        @endif
+      </div>
+      @if ($basket == 0)
+      <div class="table-responsive__cell">
+        {{-- SORTUJ --}}
+        @if($invests)
+        <div class="table-responsive__cell table-responsive__cell--switcher sort-invest">
+          <span class="minor-text filtr__label filtr__label--sort">SORTUJ</span>
+          <div class="sort-invest__wrapper">
+
+            <input class="filtr__input filtr__input--sort minor-text" type="text" name="inwestycja" value="Wszystkie inwestycje" readonly>
+
+            <ul class="sort-invest__list">
+              @foreach ($invests as $item)
+              <li class="sort-invest__elem">
+                <input type="checkbox" data-sort-invest id="{{ $item['slug'] }}" name="{{ $item['slug'] }}" class="filtr__checkbox filtr__input" checked>
+                <div class="filtr__input filtr__input--checkbox"></div>
+                <label class="filtr__label minor-text" for="{{ $item['name'] }}">
+                  {{ $item['name'] }}
+                </label>
+              </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        @endif
+        {{-- LISTA / RZUTY --}}
+        <div class="table-responsive__cell table-responsive__cell--switcher">
+          <span class="minor-text filtr__label filtr__label--switcher -is-active">LISTA</span>
+          <button class="filtr__switcher" data-table-switcher></button>
+          <span class="minor-text filtr__label filtr__label--switcher">RZUTY</span>
+        </div>
+      </div>
+      @endif
+    </div>
+    <table class="flat-table -is-active" data-table=1>
         <thead>
             <tr>
                 @if (!is_single())
@@ -74,12 +120,28 @@ $invests = [];
                 <th><?= __('Cena', 'peira'); ?> <span class="text-lowercase">[zł]</span></th>
                 <th><?= __('Status', 'peira'); ?></th>
                 <th data-sorter="false"><?= __('Karta', 'peira'); ?></th>
-                <th data-sorter="false"><?= __('Do koszyka', 'peira'); ?></th>
+                <th data-sorter="false">
+                  @if($basket)
+                  <?= __('Usuń', 'peira'); ?>
+                  @else
+                  <?= __('Do koszyka', 'peira'); ?>
+                  @endif
+                </th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($flats as $flat) : if ($flat) : ?>
+              @php
+                $inCart = 0;
+                if($_SESSION['cart']) {
+                  foreach ($_SESSION['cart'] as $elem ) {
+                    if($elem['invest'] == $flat['investment'] && $elem['id'] == $flat['id']) {
+                      $inCart = 1;
+                    }
+                  }
+                }
 
+              @endphp
                     <tr data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>" data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>" data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>" data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>" data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź" data-district="<?= $flat['investment']; ?>">
                         @if(!is_single())
                         <td data-label="<?= __('Nazwa inwestycji', 'peira'); ?>">
@@ -110,15 +172,96 @@ $invests = [];
                             </a>
                         </td>
                         <td data-label="<?= __('Dodaj do koszyka', 'peira'); ?>">
-                            <a href="{{ home_url('/koszyk') }}/?cart_add={{ $inwestycja.'-'.$flat['id'] }}" data-cart-add="{{ $inwestycja.'-'.$flat['id'] }}" class="star">
+                          @if($basket)
+                          <a href="{{ home_url('/koszyk') }}/?cart_remove={{ $flat['investment'].'-'.$flat['id'] }}" data-cart-remove="{{ $flat['investment'].'-'.$flat['id'] }}" class="star @if($inCart) -is-active @endif">
+                            @include('svg.trash')
+                          </a>
+                          @else
+                            <a href="{{ home_url('/koszyk') }}/?cart_add={{ $flat['investment'].'-'.$flat['id'] }}" data-cart-add="{{ $flat['investment'].'-'.$flat['id'] }}" class="star @if($inCart) -is-active @endif">
                                 @include('svg.cart')
                             </a>
+                          @endif
                         </td>
                     </tr>
             <?php endif;
             endforeach; ?>
+
+            @if(!$flats)
+            <tr><td style='text-align: left;padding-left: 30px;' colspan='8'>Twój koszyk jest pusty <a href="../znajdz_mieszkanie/" class="button table-responsive__button">
+              Wróć do listy mieszkań
+            </a><td></tr>
+            @endif
         </tbody>
     </table>
+
+    @if($flats)
+    <ul class="drafts" data-plans="1">
+      <?php foreach ($flats as $flat) : ?>
+
+      @php
+        $inCart = 0;
+        if($_SESSION['cart']) {
+          foreach ($_SESSION['cart'] as $elem ) {
+            if($elem['invest'] == $flat['investment'] && $elem['id'] == $flat['id']) {
+              $inCart = 1;
+            }
+          }
+        }
+
+      @endphp
+
+      <li class="drafts__elem" data-flat-content data-minstaircase="<?= $flat['minstaircase'] ?>" data-staircase="<?= $flat['staircase']; ?>" data-id="<?= $flat['id']; ?>" data-floor="<?= $flat['floor']; ?>" data-price="<?= $flat['price']; ?>" data-price2="<?= $flat['price2']; ?>" data-rooms="<?= $flat['rooms']; ?>" data-area="<?= $flat['area']; ?>" data-state="<?= $flat['state']['value']; ?>" data-city="Łódź" data-district="<?= $flat['investment']; ?>">
+
+        <img src="{{ getImgLink($flat) }}" alt="Rzut mieszkania {{ $flat['staircase'] .'-'.$flat['id'] }}"  class="drafts__title">
+
+        <div class="drafts__summary">
+          {{-- CENA --}}
+          <div class="drafts__info-wraper">
+            <div class="drafts__label">
+              CENA:
+            </div>
+            <?php if ($flat['state']['value'] === 'sale') : ?>
+                <span class="price--old"><?= $flat['price2']; ?> zł</span>
+                <span class="price" data-name="price"><?= $flat['price']; ?> zł</span>
+            <?php else : ?>
+                <span class="price" data-name="price"><?= $flat['price']; ?> zł</span>
+            <?php endif; ?>
+          </div>
+          {{-- STATUS --}}
+          <div class="drafts__info-wraper">
+            <span class="button button--status button--<?= $flat['state']['value']; ?>"><?= $flat['state']['label']; ?></span>
+          </div>
+          {{-- POWIERZCHNIA --}}
+          <div class="drafts__info-wraper">
+            <div class="drafts__label">
+              POWIERZCHNIA:
+            </div>
+            <?= str_replace('.', ',', $flat['area']); ?> m²</td>
+          </div>
+          {{-- POKOJE --}}
+          <div class="drafts__info-wraper">
+            <div class="drafts__label">
+              POKOJE:
+            </div>
+            <?= $flat['rooms']; ?>
+          </div>
+          {{-- Koszyk --}}
+          <div class="drafts__info-wraper">
+            @if($basket)
+            <a href="{{ home_url('/koszyk') }}/?cart_remove={{ $flat['investment'].'-'.$flat['id'] }}" data-cart-remove="{{ $flat['investment'].'-'.$flat['id'] }}" class="star @if($inCart) -is-active @endif">
+              @include('svg.trash')
+            </a>
+            @else
+              <a href="{{ home_url('/koszyk') }}/?cart_add={{ $flat['investment'].'-'.$flat['id'] }}" data-cart-add="{{ $flat['investment'].'-'.$flat['id'] }}" class="star @if($inCart) -is-active @endif">
+                  @include('svg.cart')
+              </a>
+            @endif
+          </div>
+        </div>
+      </li>
+      <?php endforeach ;?>
+    </ul>
+    @endif
 
     @if (count($flats) > 10 )
     @php
@@ -146,4 +289,4 @@ $invests = [];
         </ul>
     </nav>
     @endif
-</div>
+</ul>

@@ -16,6 +16,11 @@
     font-weight: 400;
   }
 
+  &__message {
+    transition: $transition;
+    opacity: 0;
+  }
+
   &__form {
     @include cssLock("padding", 360, 1920, (gutter_num(2.4), gutter_num(4.8)));
     @include cssLock("padding-left", 360, 1920, (gutter_num(3), gutter_num(6)));
@@ -26,6 +31,12 @@
     @include mediaTo(md) {
       padding-left: 0;
       padding-right: 0;
+    }
+
+    &.-send {
+      #{$root}__message {
+        opacity: 1;
+      }
     }
   }
 
@@ -60,6 +71,28 @@
       &.-is-change {
         color: color(special);
         font-weight: 400;
+      }
+
+      .list {
+        max-height: 0;
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        transform: none;
+      }
+
+      &.open {
+        border-bottom-color: transparent;
+
+        .list {
+          max-height: gutter(20);
+          border: 2px solid;
+          border-top: 0;
+          box-sizing: border-box;
+          width: calc(100% + 3px);
+          transform: translateX(-1.5px);
+          background-color: lighten(color(greey), 32%);
+        }
       }
     }
 

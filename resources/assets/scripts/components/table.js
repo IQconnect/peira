@@ -3,33 +3,47 @@ import 'tablesorter';
 
 const CONFING = {
     TABLE: '[data-table]',
+    PLANS: '[data-plans]',
     NAV: '[data-table-nav]',
     FLITR: '.filtr__input',
+    SALE: '#sale',
+    FREE: '#free',
+    SORT: '[data-sort-invest]',
+    SWITCHER : '[data-table-switcher]',
     CLASS: {
         active: '-is-active',
+        switch: '-is-switched',
     },
 };
 
-const { TABLE, NAV, CLASS, FLITR } = CONFING;
+const { TABLE, PLANS, NAV, CLASS, FLITR, SALE, FREE, SORT, SWITCHER } = CONFING;
 
 const Table = {
     init() {
 
         this.table = document.querySelector(TABLE);
+        this.plans = document.querySelector(PLANS);
         this.nav = document.querySelectorAll(NAV);
         this.filtr = document.querySelectorAll(FLITR);
+        this.sale = document.querySelector(SALE);
+        this.free = document.querySelector(FREE);
+        this.sort = document.querySelector(SORT);
+        this.switcher = document.querySelector(SWITCHER);
 
         if(this.table) {
             this.inputsVal = {};
             this.countRows = 0;
             this.colspan = this.table.querySelectorAll('th').length - 1;
             this.navLength = this.nav.length;
-    
+
             this.defaultTable = this.table.querySelector('tbody');
             this.defaultTableContent = this.defaultTable.innerHTML;
-    
+
+            this.defaultPlans = this.plans;
+            this.defaultPlansContent = this.defaultPlans.innerHTML;
+
             this.class = CLASS;
-    
+
             this.tablesorter();
             this.addEvent();
         }
@@ -57,12 +71,16 @@ const Table = {
         this.filtr.forEach(element => {
             element.addEventListener('change', e => this.filtrTable(e));
         });
+
+        if (this.switcher) {
+          this.switcher.addEventListener('click', e => this.switchView(e));
+        }
     },
 
     changePage(e, myNum) {
         const $this = e.currentTarget;
 
-        console.log('this.navLength: ', this.navLength);
+        //console.log('this.navLength: ', this.navLength);
 
         // Change button class
         this.nav.forEach(element => { element.classList.remove(this.class.active) })
@@ -90,12 +108,14 @@ const Table = {
         this.nav[num].classList.add(this.class.active);
 
         this.table.dataset.table = num;
+        this.plans.dataset.plans = num;
 
-        console.log(num);
+        //console.log(num);
     },
 
     resetTable() {
         this.defaultTable.innerHTML = this.defaultTableContent;
+        this.defaultPlans.innerHTML = this.defaultPlansContent;
     },
 
     newTableNav() {
@@ -114,7 +134,7 @@ const Table = {
             element.parentElement.classList.add('-hide');
         });
 
-        console.log('filtr', this.filtr);
+        //console.log('filtr', this.filtr);
 
         for (let index = 1; index < navs + 1; index++) {
             this.nav[index].parentElement.classList.remove('-hide');
@@ -127,6 +147,9 @@ const Table = {
 
     newTable() {
         const rows = this.defaultTable.querySelectorAll('tr');
+        const plans = this.defaultPlans.querySelectorAll('li');
+        const saleChecked = this.sale.checked;
+        const freeChecked = this.free.checked;
 
         const isInArea = elem => {
             const area = parseInt(elem.dataset.area);
@@ -148,13 +171,20 @@ const Table = {
             return floor >= this.inputsVal.floor_from && floor <= this.inputsVal.floor_to;
         }
 
-        const isFree = elem => {
+        const isFree = (elem, saleChecked) => {
             const state = elem.dataset.state;
 
-            if (this.inputsVal.free) {
+            if (this.inputsVal.free && saleChecked) {
+                console.log('sale', saleChecked);
                 if (state == 'free' || state == 'sale') {
                     return true;
                 }
+            }
+
+            else if(this.inputsVal.free) {
+              if (state == 'free') {
+                return true;
+              }
             }
 
             else {
@@ -176,15 +206,64 @@ const Table = {
             }
         }
 
+        const isInInvest = elem => {
+          if(elem.dataset.district == 'OLIWKOWE') {
+            if(this.inputsVal['oliwkowe-apartamenty'] == 1) {
+              return true;
+            }
+          }
+
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK 1') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK 2') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+          if(elem.dataset.district == 'SREBRZYŃSKA PARK III') {
+            if(this.inputsVal['srebrzynska-park'] == 1) {
+              return true;
+            }
+          }
+        }
+
         rows.forEach((elem) => {
+            if (!isInInvest(elem)) elem.remove();
             if (!isInArea(elem)) elem.remove();
             if (!isInPrice(elem)) elem.remove();
             if (!isInRooms(elem)) elem.remove();
             if (!isInFloor(elem)) elem.remove();
             if (!isInFloor(elem)) elem.remove();
-            if (!isSale(elem)) elem.remove();
-            if (!isFree(elem)) elem.remove();
+
+            if(saleChecked && freeChecked) {
+              if (!isFree(elem, saleChecked)) elem.remove();
+            }
+
+            else {
+              if (!isFree(elem, saleChecked)) elem.remove();
+              if (!isSale(elem)) elem.remove();
+            }
         });
+
+        plans.forEach((elem) => {
+          if (!isInArea(elem)) elem.remove();
+          if (!isInPrice(elem)) elem.remove();
+          if (!isInRooms(elem)) elem.remove();
+          if (!isInFloor(elem)) elem.remove();
+          if (!isInFloor(elem)) elem.remove();
+
+          if(saleChecked && freeChecked) {
+            if (!isFree(elem, saleChecked)) elem.remove();
+          }
+
+          else {
+            if (!isFree(elem, saleChecked)) elem.remove();
+            if (!isSale(elem)) elem.remove();
+          }
+      });
 
         this.countRows = this.defaultTable.querySelectorAll('tr').length;
 
@@ -193,6 +272,25 @@ const Table = {
         if (this.countRows == 0) {
             this.defaultTable.innerHTML = `<tr><td style='text-align: left;padding-left: 30px;' colspan='${this.colspan}'>Nie znaleziono mieszkań w danej konfiguracji<td></tr>`;
         }
+    },
+
+    updateCount() {
+      const rows = this.defaultTable.querySelectorAll('tr');
+
+      let saleCount = 0, freeCount = 0;
+
+      console.log('rows', rows);
+
+      rows.forEach(elem  => {
+        const sale = elem.dataset.price2 ? true : false;
+        const state = elem.dataset.state;
+
+        if(sale) saleCount++;
+        if(state == 'free') freeCount++;
+      });
+
+      this.sale.parentElement.querySelector('span').innerHTML = `(${saleCount})`;
+      this.free.parentElement.querySelector('span').innerHTML = `(${freeCount})`;
     },
 
     setVals() {
@@ -209,13 +307,20 @@ const Table = {
     },
 
     filtrTable() {
-        // ex functions 
+        // ex functions
         this.resetTable();
         this.setVals();
         this.newTable();
+        this.updateCount();
         this.newTableNav();
         this.changePage('', 1);
         this.tablesorter();
+    },
+
+    switchView() {
+      this.switcher.closest('div').classList.toggle(this.class.switch);
+      this.plans.classList.toggle(this.class.active);
+      this.table.classList.toggle(this.class.active);
     },
 }
 

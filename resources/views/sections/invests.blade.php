@@ -13,6 +13,12 @@
             $name = mb_strtoupper ($elem->post_title);
             $flats = get_flats_from_invest($name);
             $message = get_field('off_message', $id);
+
+            $link = get_field('linkToPage', $id)['url'];
+
+            if(!$link) {
+                $link = get_permalink($id);
+            } ;
         @endphp
         <div class="invests__cell">
             @if ($gallery)
@@ -37,7 +43,7 @@
                             {!! get_field('dsc', $id) !!}
                         </p>
                         @if (count($flats))
-                          <a href="{{ get_permalink($id) }}" class="invest__link button button--transparent button--border button--big">
+                          <a href="{{ $link }}" class="invest__link button button--transparent button--border button--big">
                               ZOBACZ STRONĘ INWESTYCJI
                           </a>
                         @else

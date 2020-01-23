@@ -163,7 +163,21 @@ if($_GET['cart_add']) {
 }
 
 if($_GET['cart_remove'] != '') {
-    $remove = intval($_GET['cart_remove']);
-    array_splice($_SESSION['cart'], $remove , 1);
+    // $remove = intval($_GET['cart_remove']);
+    // array_splice($_SESSION['cart'], $remove , 1);
+
+    $split = explode("-", $_GET['cart_remove']);
+    $invest = $split[0];
+    $id = $split[1];
+
+    $item = array(
+        'invest' => $invest,
+        'id' => $id,
+    );
+
+    if(in_array( $item, $_SESSION['cart'] )) {
+        echo true;
+        array_splice($_SESSION['cart'], array_search($item, $_SESSION['cart']) , 1);
+    }
 }
 

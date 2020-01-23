@@ -6,7 +6,12 @@
             $img = get_field('image', $invest);
             $name = $post -> post_title;
             $address = get_field('address', $invest);
-            $link = get_permalink($invest);
+            $link = get_field('linkToPage', $invest)['url'];
+
+            if (!$link) {
+                $link = get_permalink($invest);
+            } 
+            
             $cat_id = wp_get_post_categories($invest)[0];
             $cat = get_term_by( 'id', $cat_id, 'category' );
 

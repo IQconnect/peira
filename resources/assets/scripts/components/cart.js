@@ -1,3 +1,5 @@
+import 'jquery'
+
 const CONFIG = {
   ELEM: '[cart]',
   CLOSE: '[cart-close]',
@@ -49,12 +51,27 @@ const Cart = {
         element.addEventListener('click', (e) => {
           e.preventDefault();
 
-          let link = e.currentTarget.getAttribute('href');
+          const $this = e.currentTarget;
 
-          link = link.replace(/ /g, '%20');
-          this.loadCart(link);
+          if($this.classList.contains(this.class)) {
+            document.querySelector(`[data-cart-remove="${$this.dataset.cartAdd}"]`).click();
+            $this.classList.remove(this.class);
+          }
 
-          this.cartCount = this.cartCount + 1;
+          else {
+            $this.classList.add(this.class);
+            let link = $this.getAttribute('href');
+
+            link = link.replace(/ /g, '%20');
+            this.loadCart(link);
+
+            this.cartCount = this.cartCount + 1;
+            const addBtn = document.querySelectorAll(`[data-cart-add="${$this.dataset.cartAdd}"]`);
+
+            addBtn.forEach(element => {
+              element.classList.add(this.class);
+            });
+          }
           this.count();
         })
       });
@@ -71,8 +88,24 @@ const Cart = {
 
         const $this = e.currentTarget;
 
+        const addBtn = document.querySelectorAll(`[data-cart-add="${$this.dataset.cartRemove}"]`);
 
-        $this.closest('li').remove();
+        addBtn.forEach(element => {
+          if(element.classList.contains(this.class)) {
+            element.classList.remove(this.class);
+          }
+        });
+
+
+        if($this.closest('li')) {
+          $this.closest('li').remove();
+        }
+        else {
+          $this.closest('tr').remove();
+          const removeBtn = document.querySelector(`[data-cart-remove="${$this.dataset.cartRemove}"]`);
+          removeBtn.closest('li').remove();
+        }
+
         let link = $this.getAttribute('href');
 
         link = link.replace(/ /g, '%20');
@@ -89,6 +122,12 @@ const Cart = {
 
   hide() {
     this.elem.classList.remove(this.class);
+
+    if($('.page-template-koszyk').length) {
+      $('.flat-table tbody').html(`<tr><td style='text-align: left;padding-left: 30px;' colspan='8'>Twój koszyk jest pusty <a href="../znajdz_mieszkanie/" class="button table-responsive__button">
+      Wróć do listy mieszkań
+    </a><td></tr>`);
+    }
   },
 
   show() {
@@ -100,20 +139,22 @@ const Cart = {
 
   loadCart(link) {
     const init = allow => this.init(allow);
-    const show = () => this.show();
-    const hide = () => this.hide();
+    // Open cart when add item to basket
+    // const show = () => this.show();
+    // const hide = () => this.hide();
     const count = () => this.count();
 
     $('#cart').load(link + ' #cart>*', function () {
       console.log('added ', link);
       init(false);
-      if($('#cart li').length) {
-        show();
-      }
+      // Open cart when add item to basket
+      // if($('#cart li').length) {
+      //   show();
+      // }
 
-      else {
-        hide();
-      }
+      // else {
+      //   hide();
+      // }
 
       count();
     })

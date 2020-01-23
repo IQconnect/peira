@@ -52,7 +52,7 @@ if($_POST['form_send'] == 1) {
     $terms = option('terms');
 @endphp
 
-<form action="./" method="post" data-aftersend="Wiadomość została wysłana." id="contact-form" data-form class="contact__form form">
+<form action="http://localhost/peira/" method="post" data-aftersend="Wiadomość została wysłana." id="contact-form" data-form class="contact__form form">
     <h3 class="contact__title title">
         Formularz kontaktowy
     </h3>
